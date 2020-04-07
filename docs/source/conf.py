@@ -109,7 +109,7 @@ html_static_path = ['_static']
 html_theme_options = {
     "edit_link": "true",
     "sidebar": "right",
-    "rootlinks": [("http://github.com/cadop/segment1d", "Github"),
+    "rootlinks": [("http://github.com/cadop/seg1d", "Github"),
                   ("http://", "Paper")]
 }
 
@@ -203,7 +203,7 @@ def linkcode_resolve(domain, info):
 
     fn = relpath(fn, start='')
 
-    return "https://github.com/cadop/segment1d/blob/master/seg1d/%s%s" % (
+    return "https://github.com/cadop/seg1d/blob/master/seg1d/%s%s" % (
            fn, linespec)
     
 
