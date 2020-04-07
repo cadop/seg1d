@@ -12,7 +12,7 @@ seg1d is an open-source python package for the automated segmentation and extrac
 
 ### Documentation
 
-Full Documentation Available Online: https://cadop.github.io/segment1d/
+Full Documentation Available Online: https://cadop.github.io/seg1d/
 
 
 ### Alternatives
