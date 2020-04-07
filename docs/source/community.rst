@@ -5,7 +5,7 @@ Community Guidelines
 Issues
 ------
 
-Issues and feature requests should be submitted on `github <https://github.com/cadop/segment1d/issues>`_ . 
+Issues and feature requests should be submitted on `github <https://github.com/cadop/seg1d/issues>`_ . 
 
 
 Contributing
@@ -27,4 +27,4 @@ preserves folder types.
 Copyright and Licensing
 -----------------------
 
-Please refer to the full `LICENSE <https://github.com/cadop/segment1d/blob/master/LICENSE.txt>`_ text.
+Please refer to the full `LICENSE <https://github.com/cadop/seg1d/blob/master/LICENSE.txt>`_ text.
