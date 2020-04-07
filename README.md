@@ -77,7 +77,7 @@ This project was used for the following paper:
 
 ### Community
 
-Issues and feature requests should be submitted on [github](https://github.com/cadop/segment1d/issues). 
+Issues and feature requests should be submitted on [github](https://github.com/cadop/seg1d/issues). 
 
 Please check the Community Guidelines for further details on contributing. 
 
@@ -92,4 +92,4 @@ Project was funded in part by the Agency for Science, Technology and Research (A
 
 ### License
 
-Please refer to the full [LICENSE](https://github.com/cadop/segment1d/blob/master/LICENSE.txt).
+Please refer to the full [LICENSE](https://github.com/cadop/seg1d/blob/master/LICENSE.txt).
