@@ -7,7 +7,7 @@ setuptools.setup(
     name="seg1d", 
     version="0.0.11",
     author="Mathew Schwartz",
-    author_email="cadop@umich.edu",
+    author_email="umcadop@gmail.com",
     description="Automated subsequence segmentation of 1-dimensional data",
     long_description=long_description,
     long_description_content_type="text/markdown",
