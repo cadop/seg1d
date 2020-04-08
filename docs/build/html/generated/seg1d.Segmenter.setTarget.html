@@ -86,9 +86,9 @@
             
   <div class="section" id="seg1d-segmenter-settarget">
 <h1>seg1d.Segmenter.setTarget<a class="headerlink" href="#seg1d-segmenter-settarget" title="Permalink to this headline">¶</a></h1>
-<dl class="py method">
+<dl class="method">
 <dt id="seg1d.Segmenter.setTarget">
-<code class="descclassname">Segmenter.</code><code class="descname">setTarget</code><span class="sig-paren">(</span><em><span class="n">self</span></em>, <em><span class="n">t</span></em>, <em><span class="n">copy</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L287-L367"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter.setTarget" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">Segmenter.</code><code class="descname">setTarget</code><span class="sig-paren">(</span><em>self</em>, <em>t</em>, <em>copy=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/..\seg1d\segment.py#L287-L372"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter.setTarget" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the target data by overiding any existing target.
 If the target is not a dict, it will be converted to one.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -97,8 +97,10 @@ If the target is not a dict, it will be converted to one.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
 <dt><strong>t</strong><span class="classifier">dict or ndarray</span></dt><dd><div class="line-block">
-<div class="line">Dictionary containing labeled features as keys and values as 1-D arrays (must be same size).</div>
-<div class="line">ndarray of dimension 1 will be used as a single feature for the target.</div>
+<div class="line">Dictionary containing labeled features as keys and values as 1-D
+arrays (must be same size).</div>
+<div class="line">ndarray of dimension 1 will be used as a single feature
+for the target.</div>
 <div class="line">ndarray of n-dimensions will use rows as unique features.</div>
 </div>
 </dd>
@@ -121,9 +123,11 @@ If the target is not a dict, it will be converted to one.</p>
 </dl>
 </div>
 <p class="rubric">Notes</p>
-<p>This is the recommended method for adding a feature. 
-You can also set the target directly through the Attribute <em>t</em> by <code class="docutils literal notranslate"><span class="pre">`Segmenter.t</span> <span class="pre">=</span>&#160; <span class="pre">`</span></code>
-however, this method ensures the data labels and length or stored properly. 
+<p>This is the recommended method for adding a feature.
+You can also set the target directly through the
+Attribute <em>t</em> by <code class="docutils literal notranslate"><span class="pre">`Segmenter.t</span> <span class="pre">=</span>&#160; <span class="pre">`</span></code>
+however, this method ensures the data labels and length or stored
+properly.
 Setting <em>t</em> directly must be done with a dictionary.</p>
 <p class="rubric">Examples</p>
 <p>Target data can be set to a single numpy array.</p>
@@ -137,7 +141,8 @@ Setting <em>t</em> directly must be done with a dictionary.</p>
 <span class="go">{&#39;0&#39;: array([0.        , 0.33333333, 0.66666667, 1.        ])}</span>
 </pre></div>
 </div>
-<p>Alternatively, you can pass a 2-dimensional array representing multiple features.</p>
+<p>Alternatively, you can pass a 2-dimensional array representing
+multiple features.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">Segmenter</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">setTarget</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
@@ -181,7 +186,7 @@ Setting <em>t</em> directly must be done with a dictionary.</p>
         &copy; Copyright 2020, Mathew Schwartz.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
       </li>
     </ul>
     </div>

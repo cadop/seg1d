@@ -86,11 +86,11 @@
             
   <div class="section" id="seg1d-optimized-funcs-vcor">
 <h1>seg1d.optimized_funcs.vCor<a class="headerlink" href="#seg1d-optimized-funcs-vcor" title="Permalink to this headline">¶</a></h1>
-<dl class="py function">
+<dl class="attribute">
 <dt id="seg1d.optimized_funcs.vCor">
-<code class="descclassname">seg1d.optimized_funcs.</code><code class="descname">vCor</code><span class="sig-paren">(</span><em><span class="n">x</span></em>, <em><span class="n">y</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/optimized_funcs.py#L69-L136"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.optimized_funcs.vCor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Rolling correlation between two arrays</p>
-<p>Optimized by numba if available</p>
+<code class="descclassname">optimized_funcs.</code><code class="descname">vCor</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/..\seg1d\optimized_funcs.py#L69-L134"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.optimized_funcs.vCor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rolling correlation between two arrays.
+Optimized by numba if available</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -113,10 +113,11 @@
 </tbody>
 </table>
 <p class="rubric">Notes</p>
-<p>Required: <code class="docutils literal notranslate"><span class="pre">size(x)</span> <span class="pre">&gt;</span> <span class="pre">size(y)</span></code></p>
+<p>Required: <code class="docutils literal notranslate"><span class="pre">size(x)</span> <span class="pre">&gt;</span> <span class="pre">size(y)</span></code>
+This will try to use numba for optimization.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">seg1d.optimized_funcs</span> <span class="k">as</span> <span class="nn">optF</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">seg1d.optimized_funcs</span> <span class="k">as</span> <span class="nn">optF</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span> <span class="p">)</span>
@@ -164,7 +165,7 @@
         &copy; Copyright 2020, Mathew Schwartz.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
       </li>
     </ul>
     </div>

@@ -86,9 +86,9 @@
             
   <div class="section" id="seg1d-segmenter-makesegments">
 <h1>seg1d.Segmenter.makeSegments<a class="headerlink" href="#seg1d-segmenter-makesegments" title="Permalink to this headline">¶</a></h1>
-<dl class="py method">
+<dl class="method">
 <dt id="seg1d.Segmenter.makeSegments">
-<code class="descclassname">Segmenter.</code><code class="descname">makeSegments</code><span class="sig-paren">(</span><em><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L498-L553"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter.makeSegments" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">Segmenter.</code><code class="descname">makeSegments</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/..\seg1d\segment.py#L509-L564"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter.makeSegments" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an array of segmented target data</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -100,7 +100,8 @@
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>Segments</strong><span class="classifier">list of dicts(array)</span></dt><dd><p>applies the segment endpoints to the given target data <em>t</em> on all features.</p>
+<dt><strong>Segments</strong><span class="classifier">List[Dict[str,numpy.array]]</span></dt><dd><p>applies the segment endpoints to the given target data <em>t</em> on all 
+features.</p>
 </dd>
 </dl>
 </td>
@@ -114,7 +115,7 @@
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#create an array of data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#get an array of data from a sin function </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#get an array of data from a sin function</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">targ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -183,7 +184,7 @@
         &copy; Copyright 2020, Mathew Schwartz.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
       </li>
     </ul>
     </div>

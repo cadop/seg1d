@@ -86,9 +86,9 @@
             
   <div class="section" id="seg1d-algorithm-rollingwincorr">
 <h1>seg1d.algorithm.rollingWinCorr<a class="headerlink" href="#seg1d-algorithm-rollingwincorr" title="Permalink to this headline">¶</a></h1>
-<dl class="py function">
+<dl class="function">
 <dt id="seg1d.algorithm.rollingWinCorr">
-<code class="descclassname">seg1d.algorithm.</code><code class="descname">rollingWinCorr</code><span class="sig-paren">(</span><em><span class="n">x</span></em>, <em><span class="n">yData</span></em>, <em><span class="n">winSize</span></em>, <em><span class="n">cMax</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/algorithm.py#L22-L94"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.algorithm.rollingWinCorr" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">seg1d.algorithm.</code><code class="descname">rollingWinCorr</code><span class="sig-paren">(</span><em>x</em>, <em>yData</em>, <em>winSize</em>, <em>cMax=False</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/..\seg1d\algorithm.py#L20-L93"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.algorithm.rollingWinCorr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rolling Correlation</p>
 <p>Calculates the rolling correlation coefficient over the given window sizes</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -113,7 +113,7 @@
 </tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
 <tr class="field-odd field"><td>&#160;</td><td class="field-body"><dl class="first last docutils">
-<dt><strong>cMax</strong><span class="classifier">Bool, optional</span></dt><dd><p>Use maximum of correlations (Default False)</p>
+<dt><strong>cMax</strong><span class="classifier">bool, optional</span></dt><dd><p>Use maximum of correlations (Default False)</p>
 </dd>
 </dl>
 </td>
@@ -123,10 +123,11 @@
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <div class="last line-block">
-<div class="line">The reference data (yData) must be smaller than the target data (x) AFTER resampling.</div>
-<div class="line">This means if the reference data is length 80, and the target data is length 100, 
-it will work. However, if the winSize is supposed to be length 120, the reference
-will be scaled and correlation will crash.</div>
+<div class="line">The reference data (yData) must be smaller than the target data (x)
+AFTER resampling.</div>
+<div class="line">This means if the reference data is length 80, and the target data is
+length 100, it will work. However, if the winSize is supposed to be length
+120, the reference will be scaled and correlation will crash.</div>
 </div>
 </div>
 <div class="admonition seealso">
@@ -191,7 +192,7 @@ will be scaled and correlation will crash.</div>
         &copy; Copyright 2020, Mathew Schwartz.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
       </li>
     </ul>
     </div>
