@@ -82,6 +82,8 @@ def rollingWinCorr(x, yData, winSize, cMax=False):
 
     refScaled = resample(yData, winSize)  # resample reference data
 
+    assert x.size >= refScaled.shape[1], "Cannot correlate when reference larger than target "
+
     # get the rolling correlation between reference(s) and target
     rCorr = optf.rCor(x, refScaled)
 
