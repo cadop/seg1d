@@ -1,6 +1,6 @@
 seg1d.optimized\_funcs.vCor
 ===========================
 
-.. currentmodule:: seg1d
+.. currentmodule:: seg1d.optimized_funcs
 
-.. autoattribute:: optimized_funcs.vCor
+.. autofunction:: vCor

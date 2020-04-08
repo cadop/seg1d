@@ -193,7 +193,7 @@ def avrCorrelate(x, w, method='m', scale=True):
     return cDict
 
 
-def getPeaks(x, minC=0.7, dst=None):
+def getPeaks(x, minC= 0.7, dst=None):
     '''
     Peak Detection
 
@@ -326,6 +326,9 @@ def uniqSegments(sortedPeaks, srcLen):
     [[7, 17, 0.9], [20, 40, 0.8], [40, 65, 0.7]]
 
     '''
+
+    #TODO prioritize a correlation that is closer to the original reference size
+    # if there are multiples
 
     # make an array to block out the defined segments so they don't overlap
     segmentLoc = np.ones((srcLen))

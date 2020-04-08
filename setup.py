@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="seg1d", 
-    version="0.0.8",
+    version="0.0.1",
     author="Mathew Schwartz",
     author_email="cadop@umich.edu",
     description="Automated subsequence segmentation of 1-dimensional data",
@@ -15,14 +15,8 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-        "Operating System :: OS Independent",
+        "License :: OSI Approved :: GNU General Public License",
+        "Operating System :: Unix, Windows",
     ],
-    python_requires='>=3.6',
-    install_requires=['numpy>=1.15','scipy>=1.0.0','scikit-learn>=0.2','numba>=0.40.0'],
-    package_data={
-        "": ["examples/data/*.csv"],
-        "seg1d": ["examples/data/*.pickle"],
-    },
-    include_package_data=True,    # include everything in source control
+    python_requires='>=3.8',
 )

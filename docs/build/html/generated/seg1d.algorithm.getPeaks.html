@@ -86,9 +86,9 @@
             
   <div class="section" id="seg1d-algorithm-getpeaks">
 <h1>seg1d.algorithm.getPeaks<a class="headerlink" href="#seg1d-algorithm-getpeaks" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="seg1d.algorithm.getPeaks">
-<code class="descclassname">seg1d.algorithm.</code><code class="descname">getPeaks</code><span class="sig-paren">(</span><em>x</em>, <em>minC=0.7</em>, <em>dst=None</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/..\seg1d\algorithm.py#L196-L275"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.algorithm.getPeaks" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">seg1d.algorithm.</code><code class="descname">getPeaks</code><span class="sig-paren">(</span><em><span class="n">x</span></em>, <em><span class="n">minC</span><span class="o">=</span><span class="default_value">0.7</span></em>, <em><span class="n">dst</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/algorithm.py#L196-L275"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.algorithm.getPeaks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Peak Detection</p>
 <p>Find the peaks of a data array with a minimum value of a peak
 and an optional distance parameter.</p>
@@ -98,13 +98,13 @@ and an optional distance parameter.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>x</strong><span class="classifier">Dict[int,List[float]]</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">{scale:</span>&#160; <span class="pre">[correlations]</span> <span class="pre">}</span></code></p>
+<dt><strong>x</strong><span class="classifier">dict containing 1d arrays</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">{scale:</span>&#160; <span class="pre">[correlations]</span> <span class="pre">}</span></code></p>
 </dd>
 </dl>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
-<dt>n x 3 array</dt><dd><p>sorted by highest to lowest correlation of form
+<dt>n x 3 array</dt><dd><p>sorted by highest to lowest correlation of form 
 <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">scale,</span> <span class="pre">correlation</span> <span class="pre">,</span> <span class="pre">peak</span> <span class="pre">index</span> <span class="pre">]</span></code></p>
 </dd>
 </dl>
@@ -114,7 +114,7 @@ and an optional distance parameter.</p>
 <tr class="field-odd field"><td>&#160;</td><td class="field-body"><dl class="first last docutils">
 <dt><strong>minC</strong><span class="classifier">float, optional</span></dt><dd><p>-1 to 1</p>
 </dd>
-<dt><strong>dst</strong><span class="classifier">real, optional</span></dt><dd><p>int or float</p>
+<dt><strong>dst</strong><span class="classifier">number, optional</span></dt><dd><p>int or float</p>
 </dd>
 </dl>
 </td>
@@ -190,7 +190,7 @@ and an optional distance parameter.</p>
         &copy; Copyright 2020, Mathew Schwartz.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
       </li>
     </ul>
     </div>
