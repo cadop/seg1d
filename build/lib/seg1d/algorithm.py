@@ -10,16 +10,14 @@ from copy import deepcopy
 import warnings
 
 import numpy as np
-from scipy import signal
 from scipy.signal import find_peaks
 from scipy.interpolate import interp1d
-from sklearn.preprocessing import minmax_scale 
 from sklearn.cluster import AgglomerativeClustering
 
 from . import optimized_funcs as optf
 
 
-def rollingWinCorr(x,yData,winSize,cMax=False):
+def rollingWinCorr(x, yData, winSize, cMax=False):
     '''
     Rolling Correlation
     
@@ -28,17 +26,17 @@ def rollingWinCorr(x,yData,winSize,cMax=False):
     Parameters
     ----------
     x : 1-D array
-        array of target data 
+        array of target data
     
     yData : 2-D array
         array of reference data
     
     winSize : int
-        scale of the that the reference data should be rescaled to 
+        scale of the that the reference data should be rescaled to
 
     Other Parameters
     ----------------
-    cMax : Bool, optional
+    cMax : bool, optional
         Use maximum of correlations (Default False)
 
     Returns
@@ -48,10 +46,11 @@ def rollingWinCorr(x,yData,winSize,cMax=False):
     
     Warnings
     --------
-    | The reference data (yData) must be smaller than the target data (x) AFTER resampling.
-    | This means if the reference data is length 80, and the target data is length 100, 
-     it will work. However, if the winSize is supposed to be length 120, the reference
-     will be scaled and correlation will crash.
+    | The reference data (yData) must be smaller than the target data (x)
+      AFTER resampling.
+    | This means if the reference data is length 80, and the target data is
+     length 100, it will work. However, if the winSize is supposed to be length
+     120, the reference will be scaled and correlation will crash.
 
 
     See Also
@@ -81,48 +80,49 @@ def rollingWinCorr(x,yData,winSize,cMax=False):
 
     '''
 
-    refScaled = resample(yData,winSize) #resample reference data
+    refScaled = resample(yData, winSize)  # resample reference data
 
-    #get the rolling correlation between reference(s) and target
-    rCorr = optf.rCor(x,refScaled)
+    # get the rolling correlation between reference(s) and target
+    rCorr = optf.rCor(x, refScaled)
 
-    #stack the correlations 
+    # stack the correlations
     corrs = np.vstack(rCorr)
 
-    #return the mean or max of the correlations of the references 
-    if cMax : return np.max(corrs,axis=0)
-    else : return np.mean(corrs,axis=0)  
+    # return the mean or max of the correlations of the references
+    if cMax: return np.max(corrs, axis=0)
+    else: return np.mean(corrs, axis=0)
 
 
-def avrCorrelate(x,w,method='m',scale=True):
+def avrCorrelate(x, w, method='m', scale=True):
     '''
     Average Weighted Correlation
 
     Takes in the correlated data results and multiply the weighting values
-    to each array of data for that feature. 
+    to each array of data for that feature.
     | Averages the results of the weighted features
     
 
     Parameters
     ----------
-    x : dict of dicts containing arrays
+    x : Dict[int,Dict[string,numpy.array]] 
             ``{scale:{ feature: array([correlations]) } }``
         
-    w : dict of floats
+    w : Dict[string,float]
             ``{ feature: weight }``
 
-    method : string, optional
+    method : {'w', 'm', 's'}
         keyword to use for aggregating feature correlations (default `w`).
         Options, w=weighted mean, m=mean, s=sum
     
     scale : bool, optional
-        keyword argument for scaling the correlated feature before applying 
+        keyword argument for scaling the correlated feature before applying
         any of the aggregation methods
 
     Returns
     -------
 
-    dict of arrays ``{scale: array([weighted correlations]) }``
+    Dict[int,numpy.array]  
+        ``{scale: array([weighted correlations]) }``
     
 
     See Also
@@ -171,41 +171,41 @@ def avrCorrelate(x,w,method='m',scale=True):
 
     cDict = {}
 
-    #iterate through window sizes of data
-    for win in x:      
+    # iterate through window sizes of data
+    for win in x:
         winData = x[win]
         w_list = []
         featRes = []
-        #iterate through features of data
+        # iterate through features of data
         for f in winData:
             featData = winData[f]
-            #multiply weights from the table to scale features
+            # multiply weights from the table to scale features
             if scale: featRes.append( w[f] * featData )
-            else: featRes.append( featData )
+            else: featRes.append(featData)
             w_list.append(w[f])
         
-        #stack numpy arrays and average correlations on each frame 
+        # stack numpy arrays and average correlations on each frame
         sF = np.vstack(featRes)
-        if method=='m': cDict[win] = np.mean(sF,axis=0)
-        if method=='w': cDict[win] = np.average(sF,axis=0,weights=w_list)
-        if method=='s': cDict[win] = np.sum(sF,axis=0)
+        if method == 'm': cDict[win] = np.mean(sF, axis=0)
+        if method == 'w': cDict[win] = np.average(sF, axis=0, weights=w_list)
+        if method == 's': cDict[win] = np.sum(sF, axis=0)
 
     return cDict
 
 
-def getPeaks(x,minC= 0.7,dst=None):
+def getPeaks(x, minC=0.7, dst=None):
     '''
     Peak Detection
 
     Find the peaks of a data array with a minimum value of a peak
-    and an optional distance parameter. 
+    and an optional distance parameter.
 
     Relies on ``scipy.signal.find_peaks``
 
     Parameters
     ----------
 
-    x : dict containing 1d arrays
+    x : Dict[int,List[float]]
         ``{scale:  [correlations] }``
         
 
@@ -215,13 +215,13 @@ def getPeaks(x,minC= 0.7,dst=None):
     minC : float, optional
         -1 to 1
 
-    dst : number, optional
+    dst : real, optional
         int or float
 
     Returns
     -------
-    n x 3 array 
-        sorted by highest to lowest correlation of form 
+    n x 3 array
+        sorted by highest to lowest correlation of form
         ``[ scale, correlation , peak index ]``
     
 
@@ -260,22 +260,22 @@ def getPeaks(x,minC= 0.7,dst=None):
 
     '''
 
-    #iterate through each scaled window time periods to find the peaks
+    # iterate through each scaled window time periods to find the peaks
     peakArr = []
     for wSize in x:
         row = x[wSize]
-        #only take peaks above a height and optional distance
-        peaks, _ = find_peaks(row, height=minC,distance=dst)
-        #make an array of correlation,window size, index
-        peakArr +=  [ [wSize,row[y],y] for y in peaks ] 
+        # only take peaks above a height and optional distance
+        peaks, _ = find_peaks(row, height=minC, distance=dst)
+        # make an array of correlation,window size, index
+        peakArr += [[wSize, row[y], y] for y in peaks] 
 
-    #sort by highest correlations
-    sortedPeaks = sorted(peakArr, key=itemgetter(1),reverse=True)
+    # sort by highest correlations
+    sortedPeaks = sorted(peakArr, key=itemgetter(1), reverse=True)
 
     return sortedPeaks
 
 
-def uniqSegments(sortedPeaks,srcLen):
+def uniqSegments(sortedPeaks, srcLen):
     '''
     Unique Segment Identification
 
@@ -286,7 +286,7 @@ def uniqSegments(sortedPeaks,srcLen):
     ----------
 
     sortedPeaks : n x 3 array
-        n x 3 array sorted by highest to lowest correlation 
+        n x 3 array sorted by highest to lowest correlation
         of form ``[ scale (int), correlation(float) , peak index (int) ]``
         
     srcLen : int
@@ -295,9 +295,11 @@ def uniqSegments(sortedPeaks,srcLen):
 
     Returns
     -------
-
-    n x 3 array ``[ start index, end index, correlation ]``
-    None if no segments are found
+ 
+    n x 3 array
+        ``[ start index, end index, correlation ]``
+    None
+        if no segments are found
     
 
     See Also
@@ -325,41 +327,39 @@ def uniqSegments(sortedPeaks,srcLen):
 
     '''
 
-    #TODO prioritize a correlation that is closer to the original reference size
-    # if there are multiples
-
-    #make an array to block out the defined segments so they don't overlap
-    segmentLoc  = np.ones((srcLen))
-    #empty array for segment groups to use in clustering
-    segGroups   = []
-    #go through the correlation list
+    # make an array to block out the defined segments so they don't overlap
+    segmentLoc = np.ones((srcLen))
+    # empty array for segment groups to use in clustering
+    segGroups  = []
+    # go through the correlation list
     for peak in sortedPeaks:
         # in order of highest correlation, match it to a peak
         # find which window the peak is in
-        wSize  = peak[0]
-        corr   = peak[1]
-        sPos   = peak[2]
+        wSize = peak[0]
+        corr  = peak[1]
+        sPos  = peak[2]
 
         # add the window size to start indexS
-        ePos   = sPos+wSize
+        ePos = sPos+wSize
 
-        #if segment does not overlap
+        # if segment does not overlap
         newSeg = segmentLoc[sPos:ePos]
         # remove that size from the segment array
         if (0==newSeg).any(): continue
 
-        # store the start and end points of the segment, with the corresponding correlation
-        segGroups.append([sPos,ePos,corr])
+        # store the start and end points of the segment, with the
+        # corresponding correlation
+        segGroups.append([sPos, ePos, corr])
         segmentLoc[sPos:ePos].fill(0)
     
     if len(segGroups) == 0: return None
     
-    return segGroups 
+    return segGroups
 
 
-def clusterSegments(segGroups,segAdder=0.5,nClust=2):
+def clusterSegments(segGroups, segAdder=0.5, nClust=2):
     '''
-    Clustering 
+    Clustering
 
     Clusters segments based on correlation values
 
@@ -393,10 +393,12 @@ def clusterSegments(segGroups,segAdder=0.5,nClust=2):
     Warns
     -----
 
-    Segment Adder value was included in final cluster.This may mean cluster is poorly defined or Adder is too high.
-        It is removed before being returned. However, it may be a sign of poor clustering settings as the intention
-        of the segment adder is to force clustering of highly similar segments by creating
-        a lower group (therefore, it should not be in the high cluster group).
+    Segment Adder value was included in final cluster.
+        This may mean cluster is poorly defined or Adder is too high.
+        It is removed before being returned. However, it may be a sign of
+        poor clustering settings as the intention of the segment adder is to
+        force clustering of highly similar segments by creating a lower group
+        (therefore, it should not be in the high cluster group).
 
     See Also
     --------
@@ -419,7 +421,8 @@ def clusterSegments(segGroups,segAdder=0.5,nClust=2):
 
     Note: This should raise the following warning:
 
-    UserWarning: Segment Adder value was included in final cluster.This may mean cluster is poorly defined or Adder is too high.
+    UserWarning: Segment Adder value was included in final cluster.
+        This may mean cluster is poorly defined or Adder is too high.
 
     >>> alg.clusterSegments(x,nClust=3)
     [[7, 17, 0.9], [20, 40, 0.88], [40, 65, 0.8]]
@@ -433,41 +436,47 @@ def clusterSegments(segGroups,segAdder=0.5,nClust=2):
 
     segGroups = deepcopy(segGroups)
 
-    #Add a correlation of the lower threshold to force a cluster of good data if necessary
-    if segAdder is not None: segGroups.append([-1,-1,segAdder])
+    # Add a correlation of the lower threshold to force a cluster
+    # of good data if necessary
+    if segAdder is not None: segGroups.append([-1, -1, segAdder])
 
-    #Check for incorrect segments by clustering
+    # Check for incorrect segments by clustering
     corrVals = [x[2] for x in segGroups]
 
-    #define the x value series
+    # define the x value series
     x_grid = np.ones((len(corrVals),))
-    x = list(zip(x_grid,corrVals))
+    x = list(zip(x_grid, corrVals))
 
-    #use clustering to find the most likely reference segments
-    cluster = AgglomerativeClustering(n_clusters=nClust, affinity='euclidean', linkage='single')
+    # use clustering to find the most likely reference segments
+    cluster = AgglomerativeClustering(n_clusters=nClust,
+                                      affinity='euclidean',
+                                      linkage='single')
     cluster.fit_predict(x)
 
     # retrieve only highest ranked
     segClust = []
-    #since correlations are sorted, first cluster label is the desired cluster
+    # since correlations are sorted, first cluster label is the desired cluster
     topClust = cluster.labels_[0]  
-    for i,label in enumerate(cluster.labels_):
+    for i, label in enumerate(cluster.labels_):
         if label != topClust: continue
         segClust.append(segGroups[i])
 
-    if [-1,-1,segAdder] in segClust:
+    if [-1, -1, segAdder] in segClust:
         warnings.warn('Segment Adder value was included in final cluster.'
-                      'This may mean cluster is poorly defined or Adder is too high.', stacklevel=2)
-        segClust.remove([-1,-1,segAdder])
+                      'This may mean cluster is poorly defined \
+                       or Adder is too high.',
+                      stacklevel=2)
+        segClust.remove([-1, -1, segAdder])
 
     return segClust
 
 
-def resample(x,s):
+def resample(x, s):
     '''
     Interpolation
 
-    Apply a cubic interpolation on an n x m dataset that is resampled to the number of samples
+    Apply a cubic interpolation on an n x m dataset that is resampled
+    to the number of samples
 
     Parameters
     ----------
@@ -479,7 +488,7 @@ def resample(x,s):
 
     Returns
     -------
-    n x s array 
+    n x s array
         interpolated dataset
 
 
@@ -513,14 +522,15 @@ def resample(x,s):
     def interSub(y):
         f = interp1d(range(y.size), y, kind='cubic')
         return f
-    def getInter(y):
-        p = np.linspace(0,y.size-1,num=s,endpoint=True)
-        return interSub(y)( p )
 
-    #make an empty numpty array to store reinterpolated data
-    resampled = np.empty((x.shape[0],s),dtype=np.float64)    
-    #store the interpolated data for each array
-    for i in range(0,len(x)):
+    def getInter(y):
+        p = np.linspace(0, y.size-1, num=s, endpoint=True)
+        return interSub(y)(p)
+
+    # make an empty numpty array to store reinterpolated data
+    resampled = np.empty((x.shape[0], s), dtype=np.float64)
+    # tore the interpolated data for each array
+    for i in range(0, len(x)):
         resampled[i] = getInter(x[i])
 
     return resampled
