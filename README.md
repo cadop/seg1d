@@ -7,7 +7,7 @@ Segmentation of one-dimensional data.
 
 seg1d is an open-source python package for the automated segmentation and extraction of time series data using one or more reference sequences. The segmentation process allows users to apply various methods and parameters for the process through weighted reference features in a rolling correlation size-varying window. Correlations can be averaged across the references and a peak detection algorithm finds individual segments. Non-overlapping segments are identified and a clustering algorithm groups the most similar subsequence movements within the target. The package was developed for movement sciences but should be useful to anyone interested in extracting correlated subsequences from a dataset. 
 
-![seg1d](https://github.com/cadop/seg1d/tree/master/docs/build/plot_directive/api_basic-1.png)
+![seg1d](https://raw.githubusercontent.com/cadop/seg1d/master/docs/build/plot_directive/api_basic-1.png)
 
 
 ### Documentation
