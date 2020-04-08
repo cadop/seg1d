@@ -86,33 +86,34 @@
             
   <div class="section" id="seg1d-algorithm-avrcorrelate">
 <h1>seg1d.algorithm.avrCorrelate<a class="headerlink" href="#seg1d-algorithm-avrcorrelate" title="Permalink to this headline">¶</a></h1>
-<dl class="py function">
+<dl class="function">
 <dt id="seg1d.algorithm.avrCorrelate">
-<code class="descclassname">seg1d.algorithm.</code><code class="descname">avrCorrelate</code><span class="sig-paren">(</span><em><span class="n">x</span></em>, <em><span class="n">w</span></em>, <em><span class="n">method</span><span class="o">=</span><span class="default_value">'m'</span></em>, <em><span class="n">scale</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/algorithm.py#L97-L193"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.algorithm.avrCorrelate" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">seg1d.algorithm.</code><code class="descname">avrCorrelate</code><span class="sig-paren">(</span><em>x</em>, <em>w</em>, <em>method='m'</em>, <em>scale=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/..\seg1d\algorithm.py#L96-L193"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.algorithm.avrCorrelate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Average Weighted Correlation</p>
 <p>Takes in the correlated data results and multiply the weighting values
-to each array of data for that feature. 
+to each array of data for that feature.
 | Averages the results of the weighted features</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>x</strong><span class="classifier">dict of dicts containing arrays</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">{scale:{</span> <span class="pre">feature:</span> <span class="pre">array([correlations])</span> <span class="pre">}</span> <span class="pre">}</span></code></p>
+<dt><strong>x</strong><span class="classifier">Dict[int,Dict[string,numpy.array]]</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">{scale:{</span> <span class="pre">feature:</span> <span class="pre">array([correlations])</span> <span class="pre">}</span> <span class="pre">}</span></code></p>
 </dd>
-<dt><strong>w</strong><span class="classifier">dict of floats</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">feature:</span> <span class="pre">weight</span> <span class="pre">}</span></code></p>
+<dt><strong>w</strong><span class="classifier">Dict[string,float]</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">feature:</span> <span class="pre">weight</span> <span class="pre">}</span></code></p>
 </dd>
-<dt><strong>method</strong><span class="classifier">string, optional</span></dt><dd><p>keyword to use for aggregating feature correlations (default <em class="xref py py-obj">w</em>).
+<dt><strong>method</strong><span class="classifier">{‘w’, ‘m’, ‘s’}</span></dt><dd><p>keyword to use for aggregating feature correlations (default <em class="xref py py-obj">w</em>).
 Options, w=weighted mean, m=mean, s=sum</p>
 </dd>
-<dt><strong>scale</strong><span class="classifier">bool, optional</span></dt><dd><p>keyword argument for scaling the correlated feature before applying 
+<dt><strong>scale</strong><span class="classifier">bool, optional</span></dt><dd><p>keyword argument for scaling the correlated feature before applying
 any of the aggregation methods</p>
 </dd>
 </dl>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt>dict of arrays <code class="docutils literal notranslate"><span class="pre">{scale:</span> <span class="pre">array([weighted</span> <span class="pre">correlations])</span> <span class="pre">}</span></code></dt><dd></dd>
+<dt>Dict[int,numpy.array]</dt><dd><p><code class="docutils literal notranslate"><span class="pre">{scale:</span> <span class="pre">array([weighted</span> <span class="pre">correlations])</span> <span class="pre">}</span></code></p>
+</dd>
 </dl>
 </td>
 </tr>
@@ -197,7 +198,7 @@ any of the aggregation methods</p>
         &copy; Copyright 2020, Mathew Schwartz.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
       </li>
     </ul>
     </div>

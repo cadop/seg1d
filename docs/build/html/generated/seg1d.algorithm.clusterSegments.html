@@ -86,9 +86,9 @@
             
   <div class="section" id="seg1d-algorithm-clustersegments">
 <h1>seg1d.algorithm.clusterSegments<a class="headerlink" href="#seg1d-algorithm-clustersegments" title="Permalink to this headline">¶</a></h1>
-<dl class="py function">
+<dl class="function">
 <dt id="seg1d.algorithm.clusterSegments">
-<code class="descclassname">seg1d.algorithm.</code><code class="descname">clusterSegments</code><span class="sig-paren">(</span><em><span class="n">segGroups</span></em>, <em><span class="n">segAdder</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em><span class="n">nClust</span><span class="o">=</span><span class="default_value">2</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/algorithm.py#L360-L463"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.algorithm.clusterSegments" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">seg1d.algorithm.</code><code class="descname">clusterSegments</code><span class="sig-paren">(</span><em>segGroups</em>, <em>segAdder=0.5</em>, <em>nClust=2</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/..\seg1d\algorithm.py#L360-L471"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.algorithm.clusterSegments" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clustering</p>
 <p>Clusters segments based on correlation values</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -120,9 +120,11 @@ a correlation cluster of the highest values</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Warns:</th><td class="field-body"><dl class="first last docutils">
-<dt>Segment Adder value was included in final cluster.This may mean cluster is poorly defined or Adder is too high.</dt><dd><p>It is removed before being returned. However, it may be a sign of poor clustering settings as the intention
-of the segment adder is to force clustering of highly similar segments by creating
-a lower group (therefore, it should not be in the high cluster group).</p>
+<dt>Segment Adder value was included in final cluster.</dt><dd><p>This may mean cluster is poorly defined or Adder is too high.
+It is removed before being returned. However, it may be a sign of
+poor clustering settings as the intention of the segment adder is to
+force clustering of highly similar segments by creating a lower group
+(therefore, it should not be in the high cluster group).</p>
 </dd>
 </dl>
 </td>
@@ -150,7 +152,9 @@ a lower group (therefore, it should not be in the high cluster group).</p>
 </pre></div>
 </div>
 <p>Note: This should raise the following warning:</p>
-<p>UserWarning: Segment Adder value was included in final cluster.This may mean cluster is poorly defined or Adder is too high.</p>
+<dl class="docutils">
+<dt>UserWarning: Segment Adder value was included in final cluster.</dt><dd>This may mean cluster is poorly defined or Adder is too high.</dd>
+</dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">alg</span><span class="o">.</span><span class="n">clusterSegments</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nClust</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="go">[[7, 17, 0.9], [20, 40, 0.88], [40, 65, 0.8]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">alg</span><span class="o">.</span><span class="n">clusterSegments</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">segAdder</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">nClust</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
@@ -193,7 +197,7 @@ a lower group (therefore, it should not be in the high cluster group).</p>
         &copy; Copyright 2020, Mathew Schwartz.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
       </li>
     </ul>
     </div>

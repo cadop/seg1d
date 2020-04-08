@@ -1,0 +1,169 @@
+Results of doctest builder run on 2020-04-07 22:29:52
+=====================================================
+
+Document: generated/seg1d.Segmenter.clearReference
+--------------------------------------------------
+1 items passed all tests:
+   7 tests in default
+7 tests in 1 items.
+7 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.optimized_funcs.vCor
+----------------------------------------------
+1 items passed all tests:
+   5 tests in default
+5 tests in 1 items.
+5 passed and 0 failed.
+Test passed.
+
+Document: api_ecg
+-----------------
+1 items passed all tests:
+  25 tests in default
+25 tests in 1 items.
+25 passed and 0 failed.
+Test passed.
+
+Document: api_tune
+------------------
+1 items passed all tests:
+  25 tests in default
+25 tests in 1 items.
+25 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.algorithm.clusterSegments
+---------------------------------------------------
+1 items passed all tests:
+   8 tests in default
+8 tests in 1 items.
+8 passed and 0 failed.
+Test passed.
+
+Document: code_simple
+---------------------
+1 items passed all tests:
+   6 tests in default
+6 tests in 1 items.
+6 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.Segmenter
+-----------------------------------
+1 items passed all tests:
+   6 tests in default
+6 tests in 1 items.
+6 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.Segmenter.setTarget
+---------------------------------------------
+1 items passed all tests:
+  10 tests in default
+10 tests in 1 items.
+10 passed and 0 failed.
+Test passed.
+
+Document: start
+---------------
+1 items passed all tests:
+  36 tests in default
+36 tests in 1 items.
+36 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.Segmenter.segment
+-------------------------------------------
+1 items passed all tests:
+   5 tests in default
+5 tests in 1 items.
+5 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.Segmenter.makeSegments
+------------------------------------------------
+1 items passed all tests:
+  11 tests in default
+11 tests in 1 items.
+11 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.Segmenter.addReference
+------------------------------------------------
+1 items passed all tests:
+  10 tests in default
+10 tests in 1 items.
+10 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.algorithm.rollingWinCorr
+--------------------------------------------------
+1 items passed all tests:
+   6 tests in default
+6 tests in 1 items.
+6 passed and 0 failed.
+Test passed.
+
+Document: api_feat
+------------------
+1 items passed all tests:
+  17 tests in default
+17 tests in 1 items.
+17 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.algorithm.avrCorrelate
+------------------------------------------------
+1 items passed all tests:
+  11 tests in default
+11 tests in 1 items.
+11 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.optimized_funcs.rCor
+----------------------------------------------
+1 items passed all tests:
+   5 tests in default
+5 tests in 1 items.
+5 passed and 0 failed.
+Test passed.
+
+Document: api_basic
+-------------------
+1 items passed all tests:
+  12 tests in default
+12 tests in 1 items.
+12 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.algorithm.resample
+--------------------------------------------
+1 items passed all tests:
+   6 tests in default
+6 tests in 1 items.
+6 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.algorithm.uniqSegments
+------------------------------------------------
+1 items passed all tests:
+   5 tests in default
+5 tests in 1 items.
+5 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.algorithm.getPeaks
+--------------------------------------------
+1 items passed all tests:
+   6 tests in default
+6 tests in 1 items.
+6 passed and 0 failed.
+Test passed.
+
+Doctest summary
+===============
+  222 tests
+    0 failures in tests
+    0 failures in setup code
+    0 failures in cleanup code
