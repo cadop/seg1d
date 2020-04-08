@@ -15,7 +15,6 @@ __all__ = ['Segmenter', 'segmentData', 'sampleData']
 
 def get_data_dir():
     '''Returns the directory of the package.
-
     '''
 
     dir_root     = os.path.dirname(__file__)

@@ -23,4 +23,3 @@ seg1d/examples/ex_sine_noise.py
 seg1d/examples/ex_sine_noise_few.py
 seg1d/examples/ex_sine_scale.py
 seg1d/examples/noise.py
-seg1d/examples/testdata.py

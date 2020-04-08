@@ -84,7 +84,7 @@ def vCor(x, y):
     1D array
         correlations at each increment
 
-        ``(``size = size(x) - size(y) + 1``
+        ``size = (size(x) - size(y)) + 1``
 
     Notes
     -----

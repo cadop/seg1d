@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: seg1d
-Version: 0.0.8
+Version: 0.0.10
 Summary: Automated subsequence segmentation of 1-dimensional data
 Home-page: https://github.com/cadop/seg1d
 Author: Mathew Schwartz
