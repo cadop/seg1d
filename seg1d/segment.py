@@ -618,11 +618,11 @@ def segmentData(r,t,w,minS,maxS,step):
 
     Parameters
     ----------
-    r : array of dicts or ndarray
+    r : List[Dict[key,numpy.array]]
         reference data of form 
         ``[ {(feature Key): [data array] }, {(feature Key): [data array] } ]``
     
-    t : dict of features with arrays or ndarray
+    t : Dict[key,numpy.array]
         target data of form 
         ``{ (feature Key): [data array] }`` 
 
