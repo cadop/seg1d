@@ -16,7 +16,7 @@ authors:
   - name: Cyril J. Donnelly
     affiliation: 3
 affiliations:
- - name: Mathew Schwartz
+ - name: New Jersey Institute of Technology
    index: 1
  - name: Kyoto University, Department of Human Health Sciences
    index: 2
