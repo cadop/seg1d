@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="seg1d", 
-    version="0.0.10",
+    version="0.0.11",
     author="Mathew Schwartz",
     author_email="cadop@umich.edu",
     description="Automated subsequence segmentation of 1-dimensional data",
