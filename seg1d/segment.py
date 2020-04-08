@@ -9,26 +9,25 @@ from copy import deepcopy
 
 import numpy as np
 
-from . import optimized_funcs as optf
 from . import algorithm as alg
 
 
 class Segmenter:
     '''
     Segmentation class that exposes all algorithm parameters and attributes for
-    advanced access and tuning of segmentation. 
+    advanced access and tuning of segmentation.
 
-    Additional convenience methods for adding reference and target data as numpy arrays
-    are provided.  
+    Additional convenience methods for adding reference and target data as
+    numpy arrays are provided.
 
-    Results of each step of the algorithm process can be accessed through the class Attributes
-    after running the segmentation. These can likewise be passed to the algorithms methods
-    described in the documentation. 
+    Results of each step of the algorithm process can be accessed through the
+    class Attributes after running the segmentation. These can likewise be
+    passed to the algorithms methods described in the documentation.
 
 
     Examples
     --------
-    Simple usage of the class by directly assigning attributes 
+    Simple usage of the class by directly assigning attributes
     using sample data included with this package.
 
     >>> import seg1d
@@ -50,8 +49,7 @@ class Segmenter:
     '''
 
     def __init__(self):
-        '''
-        Initialization of segmentation class and parameters
+        ''' Initialization of segmentation class and parameters
 
         
         Attributes
@@ -71,7 +69,8 @@ class Segmenter:
         step : int
             step size for rolling correlation
         wSizes : list
-            sizes to use for resampling reference (can be used instead of minW,maxW,step)
+            sizes to use for resampling reference
+            (can be used instead of minW,maxW,step)
         cMax : bool
             use maximum in rolling correlation (default False)
         cMin : float
@@ -82,10 +81,12 @@ class Segmenter:
             peak distance to use for scipy peak detection (Default None)
         nC : int
             number of clusters for correlation results
-        fMean : string
-            use mean instead of sum for weighted feature aggregation (Default `w`)
+        fMode : {'w', 'm', 's'}
+            keyword to use for aggregating feature correlations (default `w`).
+            Options, w=weighted mean, m=mean, s=sum
         fScale : bool
-            scale the feature correlation by its weight before feature aggregation (Default True)
+            scale the feature correlation by its weight before feature 
+            aggregation (Default True)
 
         tSeg : []    
             the target data as segmented arrays
@@ -105,114 +106,115 @@ class Segmenter:
 
         # '''
 
-        self.r        = []    # reference data ## if 'r' not in *args
-        self.t        = {}    # target data
-        self.w        = {}    # weights
+        self.r = []    # reference data ## if 'r' not in *args
+        self.t = {}    # target data
+        self.w = {}    # weights
 
-        self.minW     = 50    # minimum percent to scale data
-        self.maxW     = 200   # maximum percent to scale data
-        self.step     = 1     # step size for rolling correlation
-        self.wSizes   = []    # sizes to use for resampling reference
-        self.cMax     = False # use maximum in rolling correlation
-        self.cMin     = 0.5   # min correlation
-        self.cAdd     = 0.5   # value to add for forcing clusters
-        self.pD       = None  # peak distance
-        self.nC       = 2     # num clusters
-        self.fMode    = 'm'   # method to aggregate weighted features
-        self.fScale   = True  # scale the features correlation by the weight
+        self.tF = set()  # features of the target data
+        self.rF = set()  # features of the reference data
+        self.wF = set()  # features of the weights
 
-        self.tLen     = 0     # length of target data
-        self.rLen     = 0     # length of reference data
-        self.tF       = set() # features of the target data
-        self.rF       = set() # features of the reference data
-        self.wF       = set() # features of the weights
+        self.tLen = 0      # length of target data
+        self.rLen = 0      # length of reference data
 
-        self.tSeg     = []    # the target data as segmented arrays
+        self.minW = 50     # minimum percent to scale data
+        self.maxW = 200    # maximum percent to scale data
+        self.step = 1      # step size for rolling correlation
+        self.wSizes = []     # sizes to use for resampling reference
 
-        self._maxR    = 0     # keeps track of reference size 
+        self.cMax   = False  # use maximum in rolling correlation
+        self.cMin   = 0.5    # min correlation
+        self.cAdd   = 0.5    # value to add for forcing clusters
+        self.pD     = None   # peak distance
+        self.nC     = 2      # num clusters
+        self.fMode  = 'm'    # method to aggregate weighted features
+        self.fScale = True   # scale the features correlation by the weight
+
+        self.tSeg   = []     # the target data as segmented arrays
+
+        self._maxR  = 0      # keeps track of reference size
 
 
     @property
     def featC(self):
-        '''
-        Rolling correlation of reference and target features created by :func:`algorithm.rollingWinCorr`
+        '''Rolling correlation of reference and target features created by
+        :func:`algorithm.rollingWinCorr`
         '''
 
         resDict = {}
-        #iterate through a change in percentage of window sizes
-        for wSize in self.wSizes:         
+        # iterate through a change in percentage of window sizes
+        for wSize in self.wSizes:
             featDict = {}
-            #for using generated tuples 
+            # for using generated tuples
             for featName in self.w:
-                #make an array of the reference data
-                r = np.asarray( [ x[featName] for x in self.r ] )
+                # make an array of the reference data
+                r = np.asarray([x[featName] for x in self.r])
 
-                #get target data of this feature
+                # get target data of this feature
                 t = self.t[featName]
 
-                #get the correlation of a reference set across the length of the target data
-                featDict[featName] = alg.rollingWinCorr(t,r,wSize,cMax = self.cMax) 
+                # get the correlation of a reference set across the length of
+                # the target data
+                featDict[featName] = alg.rollingWinCorr(t, r, wSize, cMax=self.cMax) 
 
-            #store features for this window size 
-            resDict[wSize] = featDict 
+            # store features for this window size
+            resDict[wSize] = featDict
 
-        return resDict 
+        return resDict
 
 
     @property
     def peaks(self):
+        ''' Peaks of the correlations created by :func:`algorithm.getPeaks`
         '''
-        Peaks of the correlations created by :func:`algorithm.getPeaks`
-        '''
-        return alg.getPeaks(self.meanC,self.cMin,self.pD)
+        return alg.getPeaks(self.meanC, self.cMin, self.pD)
 
 
     @property
     def meanC(self):
-        '''
-        The averaged correlation of the rolling feautre correlation
+        ''' The averaged correlation of the rolling feautre correlation
         and the weighting table created by :func:`algorithm.avrCorrelate`
         '''
-        return alg.avrCorrelate(self.featC,self.w,self.fMode,self)
+        return alg.avrCorrelate(self.featC, self.w, self.fMode, self.fScale)
 
 
     @property
     def clusters(self):
+        '''Segments reduced by clustering algorithm from
+        :func:`algorithm.clusterSegments`
         '''
-        Segments reduced by clustering algorithm from :func:`algorithm.clusterSegments`
-        '''
-        return alg.clusterSegments(self.groups,segAdder=self.cAdd,nClust=self.nC)
+        return alg.clusterSegments(self.groups, segAdder=self.cAdd, nClust=self.nC)
 
 
     @property
     def groups(self):
+        ''' Possible segments through parsing overlapping segment locations
+        defined by :func:`algorithm.uniqSegments`
         '''
-        Possible segments through parsing overlapping segment locations defined by :func:`algorithm.uniqSegments`
-        '''
-        return alg.uniqSegments(self.peaks,self.tLen)
+        return alg.uniqSegments(self.peaks, self.tLen)
 
 
     @property
     def masked_t(self):
-        '''
-        The target data as ndarray masked with the non-defined segments as NaNs.
+        ''' The target data as ndarray masked with the non-defined 
+        segments as NaNs.
         
         Useful for plotting, but should not be used for data processing as
         dicts are not ordered.
         '''
 
         # slice and mask the data
-        _t = np.asarray( [ x for x in self.t.values() ] )
-        mask_seg = np.concatenate( [ np.arange(x[0],x[1],1) for x in self.clusters ] ) 
-        mask_arr = np.full( _t.shape, True, dtype=bool) 
+        _t = np.asarray([x for x in self.t.values()])
+        mask_seg = np.concatenate([np.arange(x[0], x[1], 1)
+                                   for x in self.clusters])
+        mask_arr = np.full(_t.shape, True, dtype=bool)
         mask_arr[ :, mask_seg] = False
-        _t[ mask_arr ] = np.NaN
+        _t[mask_arr] = np.NaN
 
         return _t
 
     def _processParams(self):
-        '''
-        Processes parameters 
+        ''' Processes parameters
 
         If sizes for scaling are not set, uses min,max,step parameter.
         If no weights were set, a default of 1 (no weighting) will be applied.
@@ -221,79 +223,78 @@ class Segmenter:
 
         self._refSize()
 
-        if len( self.w.keys() ) == 0: self.w =  { x:1 for x in self.t.keys() } 
+        if len(self.w.keys()) == 0: self.w = {x: 1 for x in self.t.keys()} 
 
-        self.wF = set( self.w.keys() )
-        self.tF = set( self.t.keys() )
+        self.wF = set(self.w.keys())
+        self.tF = set(self.t.keys())
 
         for _r in self.r: self.rF.update(_r.keys())
 
         self._interpRef()
 
-        self.tLen = len( list( self.t.values() )[0] )
+        self.tLen = len(list(self.t.values())[0])
 
-        if len(self.wSizes) == 0: 
+        if len(self.wSizes) == 0:
             self._setScales()
 
         self._checkCompliance()
 
 
     def _checkCompliance(self):
-        '''
-        Checks data formats and parameters for compliance with segmentation methods
+        ''' Checks data formats and parameters for compliance with
+        segmentation methods
         '''
 
         assert 0 not in self.wSizes, "Scaling parameters cannot have 0"
-        assert self.minW  < self.maxW, "Minimum scaling must be less than Maximum"
+        assert self.minW < self.maxW, "Minimum scaling must be less than Maximum"
         assert len(self.r) > 0, "Must have at least one reference"
         assert len(self.t.values()) > 0, "Must have one target"
         assert self.wF.issubset(self.tF), "All weights must exist in target data"
         assert self.wF.issubset(self.rF), "All weights must exist in reference data"
 
     def _refSize(self):
-        '''
-        find the max length of all reference data 
+        ''' Find the max length of all reference data
         '''
 
-        d = lambda x : max( [ len(y) for y in x.values()  ] )
-        a = lambda x : max( [ d(y) for y in x ] )
+        def d(x): return max([ len(y) for y in x.values() ])
+        def a(x): return max([ d(y) for y in x ])
 
         self._maxR = a(self.r)
         self.rLen = a(self.r)
 
     def _setScales(self):
-        '''
-        Sets the window scaling sizes based on the min and max percent with the step size 
+        ''' Sets the window scaling sizes based on the min and 
+        max percent with the step size 
         '''
 
-        #define steps for data scaling based on percentage
-        wScale = range(self.minW,self.maxW+1,self.step)
-        self.wSizes = set( [ int( self.rLen* (x/100.0) )  for x in wScale ] )
+        # define steps for data scaling based on percentage
+        wScale = range(self.minW, self.maxW+1, self.step)
+        self.wSizes = set([ int( self.rLen* (x/100.0) ) for x in wScale ])
 
     def _interpRef(self):
-        '''
-        Resamples reference data to match the same length
+        ''' Resamples reference data to match the same length
         '''
 
         _r = deepcopy(self.r)
 
         for ref in _r:
-            for f in ref: 
-                ref[f] = alg.resample(ref[f],self._maxR)[0]
+            for f in ref:
+                ref[f] = alg.resample(ref[f], self._maxR)[0]
 
         self.r = _r
 
 
-    def setTarget(self,t,copy=True):
-        '''
-        Sets the target data by overiding any existing target.
+    def setTarget(self, t, copy=True):
+        ''' Sets the target data by overiding any existing target.
         If the target is not a dict, it will be converted to one.
 
         Parameters
         ----------
         t : dict or ndarray
-            | Dictionary containing labeled features as keys and values as 1-D arrays (must be same size).
-            | ndarray of dimension 1 will be used as a single feature for the target.
+            | Dictionary containing labeled features as keys and values as 1-D
+              arrays (must be same size).
+            | ndarray of dimension 1 will be used as a single feature
+              for the target.
             | ndarray of n-dimensions will use rows as unique features.
 
         copy : bool, optional
@@ -302,7 +303,7 @@ class Segmenter:
 
         Returns
         -------
-        None 
+        None
 
 
         See Also
@@ -312,9 +313,11 @@ class Segmenter:
 
         Notes
         -----
-        This is the recommended method for adding a feature. 
-        You can also set the target directly through the Attribute *t* by ```Segmenter.t =  ```
-        however, this method ensures the data labels and length or stored properly. 
+        This is the recommended method for adding a feature.
+        You can also set the target directly through the
+        Attribute *t* by ```Segmenter.t =  ```
+        however, this method ensures the data labels and length or stored
+        properly.
         Setting *t* directly must be done with a dictionary.
 
 
@@ -332,7 +335,8 @@ class Segmenter:
         >>> S.t
         {'0': array([0.        , 0.33333333, 0.66666667, 1.        ])}
 
-        Alternatively, you can pass a 2-dimensional array representing multiple features.
+        Alternatively, you can pass a 2-dimensional array representing
+        multiple features.
 
         >>> S = seg1d.Segmenter()
         >>> t = np.linspace(0,1,6).reshape(2,3)
@@ -342,34 +346,35 @@ class Segmenter:
 
         '''
         
-        assert isinstance(t,(dict,list,np.ndarray)), 'Target must be Dict, List, or Array'
+        assert isinstance(t, (dict, list, np.ndarray)), \
+                          'Target must be Dict, List, or Array'
 
-        if copy: 
+        if copy:
             t = deepcopy(t)
             self.t = deepcopy(self.t)
 
-        if not isinstance(t,dict): 
+        if not isinstance(t, dict):
 
             if t.ndim == 1:
-                self.t = { '0': t } 
+                self.t = {'0': t}
 
             else:
                 _tD = {}
-                for i,_t in enumerate(t): 
+                for i, _t in enumerate(t):
 
-                    _tD[ str(i) ] = _t
+                    _tD[str(i)] = _t
 
                 self.t = _tD
         
         else: self.t = t
 
-        self.tLen = len( list( self.t.values() )[0] )
-        self.tF   = set( self.t.keys() )
+        self.tLen = len(list( self.t.values() )[0])
+        self.tF   = set(self.t.keys())
 
 
-    def addReference(self,r,copy=True):
-        '''
-        Appends a reference containing one or more features to the existing reference dataset.
+    def addReference(self, r, copy=True):
+        ''' Appends a reference containing one or more features to the existing
+        reference dataset.
         If the reference is not a dict, it will be converted to one.
         If this should be the only reference set, use ``clearReference()``
         before calling this method.
@@ -378,12 +383,15 @@ class Segmenter:
         Parameters
         ----------
         r : dict or ndarray
-            | Dictionary containing labeled features as keys and values as 1-D arrays (must be same size).
-            | ndarray of dimension 1 will be used as a single feature for the reference.
+            | Dictionary containing labeled features as keys and values as
+              1-D arrays (must be same size).
+            | ndarray of dimension 1 will be used as a single feature for the
+              reference.
             | ndarray of n-dimensions will use rows as unique features.
 
         copy : bool, optional
-            If True, will make a deepcopy of the passed parameter (Default True).
+            If True, will make a deepcopy of the passed parameter
+            (Default True).
 
 
         See Also
@@ -394,15 +402,17 @@ class Segmenter:
 
         Notes
         --------
-        This method allows features that are not in previous references to be added, and vice-versa. 
-        It will also allow different sizes of reference data to be added. 
-        This is done as you can explicitly declare which features to use when segmenting. 
+        This method allows features that are not in previous references to be
+        added, and vice-versa.
+        It will also allow different sizes of reference data to be added.
+        This is done as you can explicitly declare which features to use when
+        segmenting.
 
 
         Examples
         --------
 
-        Add a reference with multiple features 
+        Add a reference with multiple features
 
         >>> import seg1d
         >>> import numpy as np
@@ -415,7 +425,8 @@ class Segmenter:
 
         Alternatively, each row of the array can be added as the same labeled
         feature for different references by calling this method in a loop.
-        Notice this is now an array of dictionaries containing the same feature label.
+        Notice this is now an array of dictionaries containing the same
+        feature label.
 
         >>> S = seg1d.Segmenter()
         >>> r = np.linspace(0,1,6).reshape(2,3)
@@ -426,35 +437,35 @@ class Segmenter:
 
         '''
 
-        assert isinstance(r,(dict,np.ndarray)), 'Reference must be Dict or Array'
+        assert isinstance(r, (dict, np.ndarray)), \
+                          'Reference must be Dict or Array'
         
-        if copy: 
+        if copy:
             r = deepcopy(r)
             self.r = deepcopy(self.r)
 
-        if not isinstance(r,dict): 
+        if not isinstance(r, dict):
 
             if r.ndim == 1:
-                self.r.append( { '0': r } )
+                self.r.append({'0': r})
                 self.rF.add('0')
 
             else:
                 _rD = {}
-                for i,_r in enumerate(r): 
+                for i, _r in enumerate(r):
 
-                    _rD[ str(i) ] = _r
+                    _rD[str(i)] = _r
 
-                self.r.append( _rD )
-                self.rF.update( _rD.keys() )
+                self.r.append(_rD)
+                self.rF.update(_rD.keys())
 
-        else: 
+        else:
             self.r.append(r)
-            self.rF.update( r.keys() )
+            self.rF.update(r.keys())
 
 
     def clearReference(self):
-        '''
-        Removes any reference data currently assigned
+        ''' Removes any reference data currently assigned
 
         Parameters
         ----------
@@ -496,8 +507,7 @@ class Segmenter:
         self._maxR = 0
 
     def makeSegments(self):
-        '''
-        Returns an array of segmented target data
+        ''' Returns an array of segmented target data
 
         Parameters
         ----------
@@ -505,8 +515,9 @@ class Segmenter:
 
         Returns
         -------
-        Segments : list of dicts(array)
-            applies the segment endpoints to the given target data *t* on all features.
+        Segments : List[Dict[str,numpy.array]]
+            applies the segment endpoints to the given target data *t* on all 
+            features.
 
         Examples
         --------
@@ -515,7 +526,7 @@ class Segmenter:
 
         >>> #create an array of data
         >>> x = np.linspace(-np.pi*2, np.pi*2, 500)
-        >>> #get an array of data from a sin function 
+        >>> #get an array of data from a sin function
         >>> targ = np.sin(x)
 
         >>> #Make an instance of the segmenter
@@ -548,13 +559,13 @@ class Segmenter:
         self.tSeg = []
 
         for c in self.clusters:
-            self.tSeg.append( { x:y[ c[0]:c[1] ] for x,y in self.t.items() } )
+            self.tSeg.append({ x: y[c[0]:c[1]] for x, y in self.t.items() })
 
         return self.tSeg
 
     def segment(self):
-        '''
-        Method to run the segmentation algorithm on the current Segmenter instance
+        ''' Method to run the segmentation algorithm on the current
+        Segmenter instance
         
         Parameters
         ----------
@@ -573,7 +584,8 @@ class Segmenter:
         Examples
         --------
 
-        This example is the same as the main ``Segmenter`` class as it is the interface method.
+        This example is the same as the main ``Segmenter`` class as it is the 
+        interface method.
 
         >>> import seg1d
         >>>
@@ -597,8 +609,7 @@ class Segmenter:
 
 
 def segmentData(r,t,w,minS,maxS,step):
-    '''
-    Segmentation manager for interfacing with Segmenter class
+    ''' Segmentation manager for interfacing with Segmenter class
 
     Find segments of a reference dataset in a target dataset using
     a rolling correlation of *n* number of reference examples with 

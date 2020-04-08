@@ -9,8 +9,8 @@ import numpy as np
 import numba
 
 
-@numba.jit(nopython=True,fastmath = True)
-def rCor(x,Y):
+@numba.jit(nopython=True, fastmath=True)
+def rCor(x, Y):
     '''
     Correlation of multiple arrays to a single array using a rolling
     window correlation.
@@ -31,14 +31,14 @@ def rCor(x,Y):
 
     Notes
     -----
-    This will try to use numba for optimization. 
+    This will try to use numba for optimization.
 
 
     Examples
     --------
 
     >>> import numpy as np
-    >>> import seg1d.optimized_funcs as optF 
+    >>> import seg1d.optimized_funcs as optF
 
     >>> x = np.sin( np.linspace(-3, 3, 25) )
     >>> y = np.sin( np.linspace(-3, 3, 60) ).reshape(3,20)
@@ -53,24 +53,22 @@ def rCor(x,Y):
 
     '''
 
-    rSize, w = Y.shape # number of references , size of reference
-    cSize = x.size-w+1 #size of the rolling correlation array
+    rSize, w = Y.shape  # number of references , size of reference
+    cSize = x.size-w+1  # size of the rolling correlation array
 
-    #empty array for putting rolling correlation
-    rCorr = np.empty((rSize,cSize)) 
+    # empty array for putting rolling correlation
+    rCorr = np.empty((rSize, cSize))
 
-    for i in range(0,rSize):
+    for i in range(0, rSize):
         y = Y[i]
-        #get the correlation between the values
-        rCorr[i] = vCor(x,y) 
+        # get the correlation between the values
+        rCorr[i] = vCor(x, y)
 
     return rCorr
 
-@numba.jit(nopython=True,fastmath = True)
-def vCor(x,y):
-    '''
-    Rolling correlation between two arrays 
-    
+@numba.jit(nopython=True, fastmath=True)
+def vCor(x, y):
+    ''' Rolling correlation between two arrays.
     Optimized by numba if available
 
     Parameters
@@ -91,13 +89,13 @@ def vCor(x,y):
     Notes
     -----
     Required: ``size(x) > size(y)``
-
+    This will try to use numba for optimization.
 
     Examples
     --------
 
     >>> import numpy as np
-    >>> import seg1d.optimized_funcs as optF 
+    >>> import seg1d.optimized_funcs as optF
 
     >>> x = np.sin( np.linspace(-3, 3, 25) )
     >>> y = np.sin( np.linspace(-3, 3, 20) )
@@ -112,12 +110,12 @@ def vCor(x,y):
     xSize = x.size
     corrs = np.empty(((xSize-ySize)+1,))
     n = ySize
-    for i in range(0,(xSize-ySize)+1):
+    for i in range(0, (xSize-ySize)+1):
         X = x[i:i+ySize]
         Y = y
         xSum = 0.0
         ySum = 0.0
-        for k in range(0,n):
+        for k in range(0, n):
             xSum += X[k]
             ySum += Y[k]
         xMean = xSum/n
@@ -125,12 +123,12 @@ def vCor(x,y):
         num = 0.0
         sumx2 = 0.0
         sumy2 = 0.0
-        for j in range(0,n):
-            xm = (X[j] - xMean) 
+        for j in range(0, n):
+            xm = (X[j] - xMean)
             ym = (Y[j] - yMean)
             num += xm*ym
             sumx2 += xm*xm
             sumy2 += ym*ym
-        denom = np.sqrt( sumx2 * sumy2 )
+        denom = np.sqrt(sumx2 * sumy2)
         corrs[i] = num/denom
     return corrs
