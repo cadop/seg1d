@@ -1,7 +1,7 @@
 '''
 .. module:: segment
    :platform: Unix, Windows
-   :synopsis: Segmentation of 1D subsequence data.
+   :synopsis: Segmentation of 1D data from subsequences.
 
 '''
 

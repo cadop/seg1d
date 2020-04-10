@@ -1,6 +1,6 @@
 # seg1d
 
-Segmentation of one-dimensional data. 
+Automated one-dimensional subsequence segmentation
 
 
 ## Overview

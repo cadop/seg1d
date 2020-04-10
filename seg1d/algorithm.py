@@ -1,7 +1,7 @@
 '''
 .. module:: algorithm
    :platform: Unix, Windows
-   :synopsis: Algorithms to handle segmentation of 1D sub-series data.
+   :synopsis: Algorithms to handle 1D subsequence segmentation of data.
 
 '''
 

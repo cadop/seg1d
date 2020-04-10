@@ -5,10 +5,10 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="seg1d", 
-    version="0.0.11",
+    version="0.0.13",
     author="Mathew Schwartz",
     author_email="umcadop@gmail.com",
-    description="Automated subsequence segmentation of 1-dimensional data",
+    description="Automated one-dimensional subsequence segmentation",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/cadop/seg1d",
