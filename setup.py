@@ -1,3 +1,4 @@
+from seg1d._version import __version__
 import setuptools
 
 with open("README.md", "r") as fh:
@@ -5,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="seg1d", 
-    version="0.0.13",
+    version= __version__,
     author="Mathew Schwartz",
     author_email="umcadop@gmail.com",
     description="Automated one-dimensional subsequence segmentation",
