@@ -1,6 +1,5 @@
-
 ====================================
-seg1d: subsequence data segmentation
+seg1d: subsequence segmentation
 ====================================
 
 Contents
