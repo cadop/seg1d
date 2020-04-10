@@ -18,19 +18,18 @@ from . import optimized_funcs as optf
 
 
 def rollingWinCorr(x, yData, winSize, cMax=False):
-    '''
-    Rolling Correlation
-    
+    ''' Rolling Correlation
+
     Calculates the rolling correlation coefficient over the given window sizes
-    
+
     Parameters
     ----------
     x : 1-D array
         array of target data
-    
+
     yData : 2-D array
         array of reference data
-    
+
     winSize : int
         scale of the that the reference data should be rescaled to
 
@@ -43,7 +42,7 @@ def rollingWinCorr(x, yData, winSize, cMax=False):
     -------
     ndarray
         1-D array of length (size(x) - winSize + 1)
-    
+
     Warnings
     --------
     | The reference data (yData) must be smaller than the target data (x)
@@ -96,26 +95,25 @@ def rollingWinCorr(x, yData, winSize, cMax=False):
 
 
 def avrCorrelate(x, w, method='m', scale=True):
-    '''
-    Average Weighted Correlation
+    ''' Average Weighted Correlation
 
     Takes in the correlated data results and multiply the weighting values
     to each array of data for that feature.
     | Averages the results of the weighted features
-    
+
 
     Parameters
     ----------
     x : Dict[int,Dict[string,numpy.array]] 
             ``{scale:{ feature: array([correlations]) } }``
-        
+    
     w : Dict[string,float]
             ``{ feature: weight }``
 
     method : {'w', 'm', 's'}
         keyword to use for aggregating feature correlations (default `w`).
         Options, w=weighted mean, m=mean, s=sum
-    
+
     scale : bool, optional
         keyword argument for scaling the correlated feature before applying
         any of the aggregation methods
@@ -125,7 +123,7 @@ def avrCorrelate(x, w, method='m', scale=True):
 
     Dict[int,numpy.array]  
         ``{scale: array([weighted correlations]) }``
-    
+
 
     See Also
     --------
@@ -185,7 +183,7 @@ def avrCorrelate(x, w, method='m', scale=True):
             if scale: featRes.append( w[f] * featData )
             else: featRes.append(featData)
             w_list.append(w[f])
-        
+
         # stack numpy arrays and average correlations on each frame
         sF = np.vstack(featRes)
         if method == 'm': cDict[win] = np.mean(sF, axis=0)
@@ -196,8 +194,7 @@ def avrCorrelate(x, w, method='m', scale=True):
 
 
 def getPeaks(x, minC=0.7, dst=None):
-    '''
-    Peak Detection
+    ''' Peak Detection
 
     Find the peaks of a data array with a minimum value of a peak
     and an optional distance parameter.
@@ -209,7 +206,7 @@ def getPeaks(x, minC=0.7, dst=None):
 
     x : Dict[int,List[float]]
         ``{scale:  [correlations] }``
-        
+
 
     Other Parameters
     ----------------
@@ -225,7 +222,7 @@ def getPeaks(x, minC=0.7, dst=None):
     n x 3 array
         sorted by highest to lowest correlation of form
         ``[ scale, correlation , peak index ]``
-    
+
 
     See Also
     --------
@@ -269,7 +266,7 @@ def getPeaks(x, minC=0.7, dst=None):
         # only take peaks above a height and optional distance
         peaks, _ = find_peaks(row, height=minC, distance=dst)
         # make an array of correlation,window size, index
-        peakArr += [[wSize, row[y], y] for y in peaks] 
+        peakArr += [[wSize, row[y], y] for y in peaks]
 
     # sort by highest correlations
     sortedPeaks = sorted(peakArr, key=itemgetter(1), reverse=True)
@@ -278,31 +275,30 @@ def getPeaks(x, minC=0.7, dst=None):
 
 
 def uniqSegments(sortedPeaks, srcLen):
-    '''
-    Unique Segment Identification
+    ''' Unique Segment Identification
 
     | Find unique segment(s) in a sequence of correlation values. 
     | Guarantees segments are not overlapping
-    
+
     Parameters
     ----------
 
     sortedPeaks : n x 3 array
         n x 3 array sorted by highest to lowest correlation
         of form ``[ scale (int), correlation(float) , peak index (int) ]``
-        
+
     srcLen : int
         length of the target data, used to block out possible segments
-        
+
 
     Returns
     -------
- 
+
     n x 3 array
         ``[ start index, end index, correlation ]``
     None
         if no segments are found
-    
+
 
     See Also
     --------
@@ -315,7 +311,7 @@ def uniqSegments(sortedPeaks, srcLen):
 
     >>> import numpy as np
     >>> import seg1d.algorithm as alg
-    
+
     >>> p = [ [10, 0.90, 7  ],
     ...     [10, 0.89, 8  ],
     ...     [20, 0.80, 20 ],
@@ -332,14 +328,14 @@ def uniqSegments(sortedPeaks, srcLen):
     # make an array to block out the defined segments so they don't overlap
     segmentLoc = np.ones((srcLen))
     # empty array for segment groups to use in clustering
-    segGroups  = []
+    segGroups = []
     # go through the correlation list
     for peak in sortedPeaks:
         # in order of highest correlation, match it to a peak
         # find which window the peak is in
         wSize = peak[0]
-        corr  = peak[1]
-        sPos  = peak[2]
+        corr = peak[1]
+        sPos = peak[2]
 
         # add the window size to start indexS
         ePos = sPos+wSize
@@ -347,21 +343,20 @@ def uniqSegments(sortedPeaks, srcLen):
         # if segment does not overlap
         newSeg = segmentLoc[sPos:ePos]
         # remove that size from the segment array
-        if (0==newSeg).any(): continue
+        if (0 == newSeg).any(): continue
 
         # store the start and end points of the segment, with the
         # corresponding correlation
         segGroups.append([sPos, ePos, corr])
         segmentLoc[sPos:ePos].fill(0)
-    
+
     if len(segGroups) == 0: return None
-    
+
     return segGroups
 
 
 def clusterSegments(segGroups, segAdder=0.5, nClust=2):
-    '''
-    Clustering
+    ''' Clustering
 
     Clusters segments based on correlation values
 
@@ -390,7 +385,7 @@ def clusterSegments(segGroups, segAdder=0.5, nClust=2):
 
     n x 3 array
         ``[start segment, end segment, correlation score of segment]``
-    
+
 
     Warns
     -----
@@ -484,7 +479,7 @@ def resample(x, s):
     ----------
     x : n x m array
         n-number of datasets with length m
-        
+
     s : int
         number of samples to interpolate x
 
