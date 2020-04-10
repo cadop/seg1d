@@ -1,7 +1,7 @@
 '''
 .. module:: segment
    :platform: Unix, Windows
-   :synopsis: Segmentation of 1D subsequence data.
+   :synopsis: Segmentation of 1D data from subsequences.
 
 '''
 
@@ -51,7 +51,7 @@ class Segmenter:
     def __init__(self):
         ''' Initialization of segmentation class and parameters
 
-        
+
         Attributes
         ----------
 
@@ -85,14 +85,14 @@ class Segmenter:
             keyword to use for aggregating feature correlations (default `w`).
             Options, w=weighted mean, m=mean, s=sum
         fScale : bool
-            scale the feature correlation by its weight before feature 
+            scale the feature correlation by its weight before feature
             aggregation (Default True)
 
         tSeg : []    
             the target data as segmented arrays
-    
+
         '''
-        #internal attributes
+        # internal attributes
         # tLen : int
         #     length of target data
         # rLen : int
@@ -196,9 +196,9 @@ class Segmenter:
 
     @property
     def masked_t(self):
-        ''' The target data as ndarray masked with the non-defined 
+        ''' The target data as ndarray masked with the non-defined
         segments as NaNs.
-        
+
         Useful for plotting, but should not be used for data processing as
         dicts are not ordered.
         '''
@@ -345,7 +345,7 @@ class Segmenter:
         {'0': array([0. , 0.2, 0.4]), '1': array([0.6, 0.8, 1. ])}
 
         '''
-        
+
         assert isinstance(t, (dict, list, np.ndarray)), \
                           'Target must be Dict, List, or Array'
 
@@ -433,13 +433,13 @@ class Segmenter:
         >>> for _r in r: S.addReference(_r)
         >>> S.r
         [{'0': array([0. , 0.2, 0.4])}, {'0': array([0.6, 0.8, 1. ])}]
-    
+
 
         '''
 
         assert isinstance(r, (dict, np.ndarray)), \
                           'Reference must be Dict or Array'
-        
+
         if copy:
             r = deepcopy(r)
             self.r = deepcopy(self.r)
@@ -490,7 +490,7 @@ class Segmenter:
         --------
         >>> import numpy as np
         >>> import seg1d
-        >>> 
+        >>>
         >>> S = seg1d.Segmenter()
         >>> S.addReference( np.linspace(0,3,3) )
         >>> S.r
@@ -516,7 +516,7 @@ class Segmenter:
         Returns
         -------
         Segments : List[Dict[str,numpy.array]]
-            applies the segment endpoints to the given target data *t* on all 
+            applies the segment endpoints to the given target data *t* on all
             features.
 
         Examples
@@ -566,7 +566,7 @@ class Segmenter:
     def segment(self):
         ''' Method to run the segmentation algorithm on the current
         Segmenter instance
-        
+
         Parameters
         ----------
 
@@ -575,16 +575,16 @@ class Segmenter:
 
         Returns
         -------
-        
-        *3 x n* array 
-            segments of form 
+
+        *3 x n* array
+            segments of form
             ``[start of segment,end of segment,correlation score]``
 
 
         Examples
         --------
 
-        This example is the same as the main ``Segmenter`` class as it is the 
+        This example is the same as the main ``Segmenter`` class as it is the
         interface method.
 
         >>> import seg1d
@@ -608,59 +608,59 @@ class Segmenter:
         return self.clusters
 
 
-def segmentData(r,t,w,minS,maxS,step):
+def segmentData(r, t, w, minS, maxS, step):
     ''' Segmentation manager for interfacing with Segmenter class
 
     Find segments of a reference dataset in a target dataset using
-    a rolling correlation of *n* number of reference examples with 
+    a rolling correlation of *n* number of reference examples with
     a peak detection applied to the average of *m* reference features
     with weights applied to each feature.
 
     Parameters
     ----------
-    r : array of dicts or ndarray
-        reference data of form 
+    r : List[Dict[key,numpy.array]]
+        reference data of form
         ``[ {(feature Key): [data array] }, {(feature Key): [data array] } ]``
-    
-    t : dict of features with arrays or ndarray
-        target data of form 
-        ``{ (feature Key): [data array] }`` 
 
-    w : dict or None
-        Weights of form 
+    t : Dict[key,numpy.array]
+        target data of form
+        ``{ (feature Key): [data array] }``
+
+    w : Dict[key,float] or None
+        Weights of form
         ``{ (feature key):float,(feature key):float }``
 
     minS : int
-        Minimum scale to apply for reference data 
+        Minimum scale to apply for reference data
 
     maxS : int
-        Maximum scale to apply for reference data 
+        Maximum scale to apply for reference data
 
     step : int
-        Size of step to use in rolling correlation 
+        Size of step to use in rolling correlation
 
     Returns
     -------
-    *3 x n* array 
-        segments of form 
+    *3 x n* array
+        segments of form
         ``[start of segment,end of segment,correlation score]``
-    
+
     Examples
     --------
     First we import sample data from the examples folder that has multiple
     features derived from motion capture data
 
-    >>> import seg1d 
+    >>> import seg1d
     >>> r,t,w = seg1d.sampleData()
 
     Then we define some segmentation parameters such as the scaling percentage
     of the reference data and index stepping to use in rolling correlation
-    
+
     >>> minW = 70 # percent to scale down reference data
     >>> maxW = 150 # percent to scale up reference data
     >>> step = 1 #step to use for correlating reference to target data
 
-    Finally we call the segmentation algorithm 
+    Finally we call the segmentation algorithm
 
     >>> seg1d.segmentData(r,t,w,minW,maxW,step)
     [[207, 240, 0.9124223704844657], [342, 381, 0.880190111545897], [72, 112, 0.8776795468035664]]
@@ -668,10 +668,10 @@ def segmentData(r,t,w,minS,maxS,step):
 
     '''
 
-    #Make an instance of the segmenter
+    # Make an instance of the segmenter
     s = Segmenter()
 
-    #set the parameters
+    # set the parameters
     s.minW = minS
     s.maxW = maxS
     s.step = step
@@ -679,5 +679,5 @@ def segmentData(r,t,w,minS,maxS,step):
     s.r = r
     s.w = w
 
-    #return the segments created by the Segmenter
+    # return the segments created by the Segmenter
     return s.segment()

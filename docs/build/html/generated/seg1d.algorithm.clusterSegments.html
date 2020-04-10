@@ -88,45 +88,47 @@
 <h1>seg1d.algorithm.clusterSegments<a class="headerlink" href="#seg1d-algorithm-clustersegments" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="seg1d.algorithm.clusterSegments">
-<code class="descclassname">seg1d.algorithm.</code><code class="descname">clusterSegments</code><span class="sig-paren">(</span><em>segGroups</em>, <em>segAdder=0.5</em>, <em>nClust=2</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/..\seg1d\algorithm.py#L360-L471"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.algorithm.clusterSegments" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">seg1d.algorithm.</code><code class="descname">clusterSegments</code><span class="sig-paren">(</span><em>segGroups</em>, <em>segAdder=0.5</em>, <em>nClust=2</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/algorithm.py#L358-L468"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.algorithm.clusterSegments" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clustering</p>
 <p>Clusters segments based on correlation values</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>segGroups</strong><span class="classifier">n x 3 array</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">[</span> <span class="pre">start</span> <span class="pre">index,</span> <span class="pre">end</span> <span class="pre">index,</span> <span class="pre">correlation</span> <span class="pre">]</span> <span class="pre">]</span></code></p>
-</dd>
-<dt><strong>segAdder</strong><span class="classifier">float, optional</span></dt><dd><p>0.0 to 1.0 or None
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>segGroups</strong> : n x 3 array</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">[</span> <span class="pre">start</span> <span class="pre">index,</span> <span class="pre">end</span> <span class="pre">index,</span> <span class="pre">correlation</span> <span class="pre">]</span> <span class="pre">]</span></code></p>
+</div></blockquote>
+<p><strong>segAdder</strong> : float, optional</p>
+<blockquote>
+<div><p>0.0 to 1.0 or None
 If not None, the value that is added to the cluster groups to force
 a correlation cluster of the highest values</p>
-</dd>
-</dl>
+</div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
-<dt>n x 3 array</dt><dd><p><code class="docutils literal notranslate"><span class="pre">[start</span> <span class="pre">segment,</span> <span class="pre">end</span> <span class="pre">segment,</span> <span class="pre">correlation</span> <span class="pre">score</span> <span class="pre">of</span> <span class="pre">segment]</span></code></p>
-</dd>
-</dl>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">n x 3 array</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">[start</span> <span class="pre">segment,</span> <span class="pre">end</span> <span class="pre">segment,</span> <span class="pre">correlation</span> <span class="pre">score</span> <span class="pre">of</span> <span class="pre">segment]</span></code></p>
+</div></blockquote>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body"><dl class="first docutils">
-<dt><strong>nClust</strong><span class="classifier">int, optional</span></dt><dd><p>number of clusters to group data in (Default 2)</p>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><p class="first"><strong>nClust</strong> : int, optional</p>
+<blockquote>
+<div><p>number of clusters to group data in (Default 2)</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">nClust=0</span></code>, returns segGroups</p>
-</dd>
-</dl>
+</div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Warns:</th><td class="field-body"><dl class="first last docutils">
-<dt>Segment Adder value was included in final cluster.</dt><dd><p>This may mean cluster is poorly defined or Adder is too high.
+<tr class="field-even field"><th class="field-name">Warns:</th><td class="field-body"><p class="first"><strong>Segment Adder value was included in final cluster.</strong></p>
+<blockquote class="last">
+<div><p>This may mean cluster is poorly defined or Adder is too high.
 It is removed before being returned. However, it may be a sign of
 poor clustering settings as the intention of the segment adder is to
 force clustering of highly similar segments by creating a lower group
 (therefore, it should not be in the high cluster group).</p>
-</dd>
-</dl>
+</div></blockquote>
 </td>
 </tr>
 </tbody>

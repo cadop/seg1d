@@ -24,5 +24,5 @@ setuptools.setup(
     package_data={
         "": ["examples/data/*.npy"],
     },
-    include_package_data=True,    # include everything in source control
+    include_package_data=True,   
 )

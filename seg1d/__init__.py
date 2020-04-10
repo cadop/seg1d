@@ -1,7 +1,7 @@
-'''
-seg1d:  Python module for automated 1D subsequence segmentation
+""" seg1d:  Python module for automated 1D subsequence segmentation
 Copyright (C) 2020  Mathew Schwartz
-'''
+"""
+
 from . _version import __version__
 import os
 
@@ -11,17 +11,13 @@ __all__ = ['Segmenter', 'segmentData', 'sampleData']
 
 
 def get_data_dir():
-    '''Returns the directory of the package.
-    '''
-
-    dir_root     = os.path.dirname(__file__)
-    dir_data     = os.path.join(dir_root, 'examples', 'data')
-
-    return dir_data
+    """Returns the directory of the package.
+    """
+    return os.path.join(os.path.dirname(__file__), 'examples', 'data')
 
 
 def sampleData(c=0.8):
-    '''Helper function for accessing sample data.
+    """ Helper function for accessing sample data.
 
     Parameters
     ----------
@@ -29,8 +25,8 @@ def sampleData(c=0.8):
     c : float, optional
         the minimum correlation weights to load from the sample dataset
 
-    '''
-    
+    """
+
     import numpy as np
 
     data_dir = get_data_dir()

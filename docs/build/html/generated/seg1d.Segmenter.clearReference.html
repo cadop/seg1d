@@ -88,21 +88,15 @@
 <h1>seg1d.Segmenter.clearReference<a class="headerlink" href="#seg1d-segmenter-clearreference" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="seg1d.Segmenter.clearReference">
-<code class="descclassname">Segmenter.</code><code class="descname">clearReference</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/..\seg1d\segment.py#L467-L507"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter.clearReference" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">Segmenter.</code><code class="descname">clearReference</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L467-L507"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter.clearReference" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes any reference data currently assigned</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>None</strong></dt><dd></dd>
-</dl>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>None</strong></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt>None</dt><dd></dd>
-</dl>
-</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -117,7 +111,7 @@
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">seg1d</span>
-<span class="gp">&gt;&gt;&gt; </span>
+<span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">Segmenter</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">addReference</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">r</span>

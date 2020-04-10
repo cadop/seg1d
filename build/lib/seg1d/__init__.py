@@ -1,11 +1,8 @@
 '''
-seg1d:  Python module for automated data segmentation
+seg1d:  Python module for automated 1D subsequence segmentation
 Copyright (C) 2020  Mathew Schwartz
-Version: 0.0.8 (2020/3/20)
 '''
-
-__version__ = '0.0.8'
-
+from . _version import __version__
 import os
 
 from . segment import Segmenter, segmentData

@@ -1,7 +1,9 @@
+LICENSE.txt
 README.md
 setup.cfg
 setup.py
 seg1d/__init__.py
+seg1d/_version.py
 seg1d/algorithm.py
 seg1d/optimized_funcs.py
 seg1d/segment.py

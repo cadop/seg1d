@@ -87,40 +87,50 @@
 <h1>Simple Interface<a class="headerlink" href="#simple-interface" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt>
-<code class="descclassname">seg1d.</code><code class="descname">segmentData</code><span class="sig-paren">(</span><em>r</em>, <em>t</em>, <em>w</em>, <em>minS</em>, <em>maxS</em>, <em>step</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/..\seg1d\segment.py#L611-L683"><span class="viewcode-link">[source]</span></a></dt>
+<code class="descclassname">seg1d.</code><code class="descname">segmentData</code><span class="sig-paren">(</span><em>r</em>, <em>t</em>, <em>w</em>, <em>minS</em>, <em>maxS</em>, <em>step</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L611-L683"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Segmentation manager for interfacing with Segmenter class</p>
 <p>Find segments of a reference dataset in a target dataset using
-a rolling correlation of <em>n</em> number of reference examples with 
+a rolling correlation of <em>n</em> number of reference examples with
 a peak detection applied to the average of <em>m</em> reference features
 with weights applied to each feature.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>r</strong><span class="classifier">array of dicts or ndarray</span></dt><dd><p>reference data of form 
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>r</strong> : List[Dict[key,numpy.array]]</p>
+<blockquote>
+<div><p>reference data of form
 <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">{(feature</span> <span class="pre">Key):</span> <span class="pre">[data</span> <span class="pre">array]</span> <span class="pre">},</span> <span class="pre">{(feature</span> <span class="pre">Key):</span> <span class="pre">[data</span> <span class="pre">array]</span> <span class="pre">}</span> <span class="pre">]</span></code></p>
-</dd>
-<dt><strong>t</strong><span class="classifier">dict of features with arrays or ndarray</span></dt><dd><p>target data of form 
+</div></blockquote>
+<p><strong>t</strong> : Dict[key,numpy.array]</p>
+<blockquote>
+<div><p>target data of form
 <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">(feature</span> <span class="pre">Key):</span> <span class="pre">[data</span> <span class="pre">array]</span> <span class="pre">}</span></code></p>
-</dd>
-<dt><strong>w</strong><span class="classifier">dict or None</span></dt><dd><p>Weights of form 
+</div></blockquote>
+<p><strong>w</strong> : Dict[key,float] or None</p>
+<blockquote>
+<div><p>Weights of form
 <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">(feature</span> <span class="pre">key):float,(feature</span> <span class="pre">key):float</span> <span class="pre">}</span></code></p>
-</dd>
-<dt><strong>minS</strong><span class="classifier">int</span></dt><dd><p>Minimum scale to apply for reference data</p>
-</dd>
-<dt><strong>maxS</strong><span class="classifier">int</span></dt><dd><p>Maximum scale to apply for reference data</p>
-</dd>
-<dt><strong>step</strong><span class="classifier">int</span></dt><dd><p>Size of step to use in rolling correlation</p>
-</dd>
-</dl>
+</div></blockquote>
+<p><strong>minS</strong> : int</p>
+<blockquote>
+<div><p>Minimum scale to apply for reference data</p>
+</div></blockquote>
+<p><strong>maxS</strong> : int</p>
+<blockquote>
+<div><p>Maximum scale to apply for reference data</p>
+</div></blockquote>
+<p><strong>step</strong> : int</p>
+<blockquote>
+<div><p>Size of step to use in rolling correlation</p>
+</div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><em>3 x n</em> array</dt><dd><p>segments of form 
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><em>3 x n</em> array</p>
+<blockquote class="last">
+<div><p>segments of form
 <code class="docutils literal notranslate"><span class="pre">[start</span> <span class="pre">of</span> <span class="pre">segment,end</span> <span class="pre">of</span> <span class="pre">segment,correlation</span> <span class="pre">score]</span></code></p>
-</dd>
-</dl>
+</div></blockquote>
 </td>
 </tr>
 </tbody>
@@ -128,7 +138,7 @@ with weights applied to each feature.</p>
 <p class="rubric">Examples</p>
 <p>First we import sample data from the examples folder that has multiple
 features derived from motion capture data</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">seg1d</span> 
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">seg1d</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">w</span> <span class="o">=</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">sampleData</span><span class="p">()</span>
 </pre></div>
 </div>
