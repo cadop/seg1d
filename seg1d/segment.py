@@ -85,14 +85,14 @@ class Segmenter:
             keyword to use for aggregating feature correlations (default `w`).
             Options, w=weighted mean, m=mean, s=sum
         fScale : bool
-            scale the feature correlation by its weight before feature 
+            scale the feature correlation by its weight before feature
             aggregation (Default True)
 
         tSeg : []    
             the target data as segmented arrays
-    
+
         '''
-        #internal attributes
+        # internal attributes
         # tLen : int
         #     length of target data
         # rLen : int
@@ -626,7 +626,7 @@ def segmentData(r, t, w, minS, maxS, step):
         target data of form
         ``{ (feature Key): [data array] }``
 
-    w : dict or None
+    w : Dict[key,float] or None
         Weights of form
         ``{ (feature key):float,(feature key):float }``
 
