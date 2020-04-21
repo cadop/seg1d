@@ -1,4 +1,4 @@
-from seg1d._version import __version__
+from seg1d._about import __version__
 import setuptools
 
 with open("README.md", "r") as fh:

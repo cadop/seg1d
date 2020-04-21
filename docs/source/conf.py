@@ -24,7 +24,8 @@ copyright = '2020, Mathew Schwartz'
 author = 'Mathew Schwartz'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.1'
+from seg1d import _about
+release = _about.__version__
 
 
 # -- General configuration ---------------------------------------------------

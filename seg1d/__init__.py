@@ -2,7 +2,7 @@
 Copyright (C) 2020  Mathew Schwartz
 """
 
-from . _version import __version__
+from . _about import __version__
 import os
 
 from . segment import Segmenter, segmentData
