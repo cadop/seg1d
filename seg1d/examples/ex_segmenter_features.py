@@ -44,7 +44,7 @@
      [ 70.        112.          0.6670482]
      [340.        382.          0.6630886]]
 
-    >>> plt_t = s.masked_t #get a NaN masked array of the target data
+    >>> plt_t = s.t_masked #get a NaN masked array of the target data
 
     >>> # plot masked target
     >>> plt.figure(figsize=(15,4)) # doctest: +SKIP
@@ -69,7 +69,7 @@
      [ 72.        113.          0.9632458]
      [139.        180.          0.9624551]]
 
-    >>> plt_t = s.masked_t #get a NaN masked array of the target data
+    >>> plt_t = s.t_masked #get a NaN masked array of the target data
 
     >>> # plot masked target
     >>> plt.figure(figsize=(15,4)) # doctest: +SKIP
@@ -116,7 +116,7 @@ segments = s.segment()
 print(np.around(segments,decimals=7))
 #[204, 245, 0.7128945157976089], [70, 112, 0.6670481989688246], [340, 382, 0.6630885808206117]]
 
-plt_t = s.masked_t #get a NaN masked array of the target data
+plt_t = s.t_masked #get a NaN masked array of the target data
 
 # plot masked target
 plt.figure(figsize=(15,4))
@@ -135,7 +135,7 @@ print(np.around(segments,decimals=7))
 #[[2, 44, 0.9648465496220732], [341, 383, 0.9646419288668043], [203, 244, 0.9644605487326946], [273, 314, 0.9640177603696332], [72, 113, 0.9632458484884389], 
 #[139, 180, 0.9624551245103149]]
 
-plt_t = s.masked_t #get a NaN masked array of the target data
+plt_t = s.t_masked #get a NaN masked array of the target data
 
 # plot masked target
 plt.figure(figsize=(15,4))

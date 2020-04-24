@@ -195,7 +195,7 @@ class Segmenter:
 
 
     @property
-    def masked_t(self):
+    def t_masked(self):
         ''' The target data as ndarray masked with the non-defined
         segments as NaNs.
 
@@ -212,6 +212,66 @@ class Segmenter:
         _t[mask_arr] = np.NaN
 
         return _t
+
+
+    @property
+    def t_segments(self):
+        ''' Returns an array of segmented target data
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        Segments : List[Dict[str,numpy.array]]
+            applies the segment endpoints to the given target data *t* on all
+            features.
+
+        Examples
+        --------
+        >>> import numpy as np
+        >>> import seg1d
+
+        >>> #create an array of data
+        >>> x = np.linspace(-np.pi*2, np.pi*2, 500)
+        >>> #get an array of data from a sin function
+        >>> targ = np.sin(x)
+
+        >>> #Make an instance of the segmenter
+        >>> s = seg1d.Segmenter()
+        >>> #set scaling parameters
+        >>> s.minW,s.maxW,s.step = 98, 105, 1
+        >>> #Set target and reference data
+        >>> s.set_target(targ)
+
+        >>> #define a segment within the sine wave to use as reference
+        >>> s.add_reference(targ[75:100])
+        >>> #call the segmentation algorithm
+        >>> segments = s.segment()
+        >>> np.around(segments, decimals=7)
+        array([[ 75.       , 100.       ,   1.       ],
+               [324.       , 348.       ,   0.9999992]])
+
+        >>> s.t_segments
+        [{'0': array([0.94988243, 0.94170965, 0.93293968, 0.92357809, 0.91363079,
+               0.90310412, 0.89200474, 0.88033969, 0.86811636, 0.85534252,
+               0.84202625, 0.82817601, 0.81380058, 0.79890907, 0.78351093,
+               0.76761592, 0.75123412, 0.73437593, 0.71705202, 0.6992734 ,
+               0.68105132, 0.66239735, 0.64332332, 0.62384133, 0.60396372])}, {'0': array([0.95374324, 0.94587102, 0.93739898, 0.92833248, 0.91867727,
+               0.90843947, 0.89762559, 0.88624247, 0.87429733, 0.86179776,
+               0.84875167, 0.83516734, 0.82105338, 0.80641875, 0.79127273,
+               0.77562491, 0.75948523, 0.74286391, 0.72577151, 0.70821885,
+               0.69021707, 0.67177759, 0.6529121 , 0.63363256])}]
+        '''
+
+        self.tSeg = []
+
+        for c in self.clusters:
+            self.tSeg.append({ x: y[c[0]:c[1]] for x, y in self.t.items() })
+
+        return self.tSeg
+
 
     def _process_params(self):
         ''' Processes parameters
@@ -505,63 +565,6 @@ class Segmenter:
         self.rF = set()
         self.rLen = 0
         self._maxR = 0
-
-    def target_segments(self):
-        ''' Returns an array of segmented target data
-
-        Parameters
-        ----------
-        None
-
-        Returns
-        -------
-        Segments : List[Dict[str,numpy.array]]
-            applies the segment endpoints to the given target data *t* on all
-            features.
-
-        Examples
-        --------
-        >>> import numpy as np
-        >>> import seg1d
-
-        >>> #create an array of data
-        >>> x = np.linspace(-np.pi*2, np.pi*2, 500)
-        >>> #get an array of data from a sin function
-        >>> targ = np.sin(x)
-
-        >>> #Make an instance of the segmenter
-        >>> s = seg1d.Segmenter()
-        >>> #set scaling parameters
-        >>> s.minW,s.maxW,s.step = 98, 105, 1
-        >>> #Set target and reference data
-        >>> s.set_target(targ)
-
-        >>> #define a segment within the sine wave to use as reference
-        >>> s.add_reference(targ[75:100])
-        >>> #call the segmentation algorithm
-        >>> segments = s.segment()
-        >>> np.around(segments, decimals=7)
-        array([[ 75.       , 100.       ,   1.       ],
-               [324.       , 348.       ,   0.9999992]])
-
-        >>> s.target_segments()
-        [{'0': array([0.94988243, 0.94170965, 0.93293968, 0.92357809, 0.91363079,
-               0.90310412, 0.89200474, 0.88033969, 0.86811636, 0.85534252,
-               0.84202625, 0.82817601, 0.81380058, 0.79890907, 0.78351093,
-               0.76761592, 0.75123412, 0.73437593, 0.71705202, 0.6992734 ,
-               0.68105132, 0.66239735, 0.64332332, 0.62384133, 0.60396372])}, {'0': array([0.95374324, 0.94587102, 0.93739898, 0.92833248, 0.91867727,
-               0.90843947, 0.89762559, 0.88624247, 0.87429733, 0.86179776,
-               0.84875167, 0.83516734, 0.82105338, 0.80641875, 0.79127273,
-               0.77562491, 0.75948523, 0.74286391, 0.72577151, 0.70821885,
-               0.69021707, 0.67177759, 0.6529121 , 0.63363256])}]
-        '''
-
-        self.tSeg = []
-
-        for c in self.clusters:
-            self.tSeg.append({ x: y[c[0]:c[1]] for x, y in self.t.items() })
-
-        return self.tSeg
 
     def segment(self):
         ''' Method to run the segmentation algorithm on the current

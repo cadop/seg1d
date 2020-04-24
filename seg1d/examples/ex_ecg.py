@@ -56,12 +56,12 @@ In the second portion of the example, only one segment is used for the reference
 .. plot::
     :context: close-figs
 
-    The final segments are shown by calling the property ``masked_t`` which returns the 
+    The final segments are shown by calling the property ``t_masked`` which returns the 
     target data as an ndarray with NaN values for areas not found to be segments. 
 
 
     >>> plt.figure(figsize=(15,3))  # doctest: +SKIP
-    >>> plt.plot(s.masked_t.T)  # doctest: +SKIP
+    >>> plt.plot(s.t_masked.T)  # doctest: +SKIP
     >>> plt.show()  # doctest: +SKIP
 
 .. plot::
@@ -100,7 +100,7 @@ In the second portion of the example, only one segment is used for the reference
      [1.440000e+03 1.559000e+03 8.646669e-01]
      [1.730000e+02 3.060000e+02 8.029426e-01]]
 
-    >>> res = s.masked_t
+    >>> res = s.t_masked
 
     >>> plt.figure(figsize=(15,3))  # doctest: +SKIP
     >>> plt.plot(res.T)  # doctest: +SKIP
@@ -153,7 +153,7 @@ plt.plot(refs.T)
 plt.show()
 
 plt.figure(figsize=(15, 3))
-plt.plot(s.masked_t.T)
+plt.plot(s.t_masked.T)
 plt.show()
 
 # use only 1 reference
@@ -178,7 +178,7 @@ print(np.around(segments, decimals=7))
 #  [1.440000e+03 1.559000e+03 8.646669e-01]
 #  [1.730000e+02 3.060000e+02 8.029426e-01]]
 
-res = s.masked_t
+res = s.t_masked
 
 plt.figure(figsize=(15, 3))
 plt.plot(res.T)
