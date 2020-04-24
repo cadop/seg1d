@@ -5,9 +5,9 @@ Copyright (C) 2020  Mathew Schwartz
 from . _about import __version__
 import os
 
-from . segment import Segmenter, segmentData
+from . segment import Segmenter, segment_data
 
-__all__ = ['Segmenter', 'segmentData', 'sampleData']
+__all__ = ['Segmenter', 'segment_data', 'sampleData']
 
 
 def get_data_dir():
@@ -31,9 +31,9 @@ def sampleData(c=0.8):
 
     data_dir = get_data_dir()
 
-    refWeights = np.load(data_dir+os.sep+'w.npy', allow_pickle=True)[()]
-    refData = np.load(data_dir+os.sep+'r.npy', allow_pickle=True)
-    targData = np.load(data_dir+os.sep+'t.npy', allow_pickle=True)[()]
+    refWeights = np.load(os.path.join(data_dir, 'w.npy'), allow_pickle=True)[()]
+    refData = np.load(os.path.join(data_dir, 'r.npy'), allow_pickle=True)
+    targData = np.load(os.path.join(data_dir, 't.npy'), allow_pickle=True)[()]
 
     # define which weights to use
     refWeights = {x: y for x, y in refWeights.items() if y > c}

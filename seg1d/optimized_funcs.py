@@ -10,7 +10,7 @@ import numba
 
 
 @numba.jit(nopython=True, fastmath=True)
-def rCor(x, Y):
+def rcor(x, Y):
     '''
     Correlation of multiple arrays to a single array using a rolling
     window correlation.
@@ -43,7 +43,7 @@ def rCor(x, Y):
     >>> x = np.sin( np.linspace(-3, 3, 25) )
     >>> y = np.sin( np.linspace(-3, 3, 60) ).reshape(3,20)
 
-    >>> optF.rCor(x,y)
+    >>> optF.rcor(x,y)
     array([[-0.50743663, -0.66692675, -0.78849873, -0.87803067, -0.93682968,
             -0.96013818],
            [ 0.83362263,  0.91097751,  0.94663428,  0.94663428,  0.91097751,
@@ -62,12 +62,12 @@ def rCor(x, Y):
     for i in range(0, rSize):
         y = Y[i]
         # get the correlation between the values
-        rCorr[i] = vCor(x, y)
+        rCorr[i] = vcor(x, y)
 
     return rCorr
 
 @numba.jit(nopython=True, fastmath=True)
-def vCor(x, y):
+def vcor(x, y):
     ''' Rolling correlation between two arrays.
     Optimized by numba if available
 
@@ -100,7 +100,7 @@ def vCor(x, y):
     >>> x = np.sin( np.linspace(-3, 3, 25) )
     >>> y = np.sin( np.linspace(-3, 3, 20) )
 
-    >>> optF.vCor(x,y)
+    >>> optF.vcor(x,y)
     array([0.83212194, 0.90933756, 0.94493014, 0.94493014, 0.90933756,
            0.83212194])
 

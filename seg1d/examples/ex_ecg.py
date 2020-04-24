@@ -18,13 +18,13 @@ In the second portion of the example, only one segment is used for the reference
     >>> ecg = electrocardiogram() #get the scipy sample data 
     >>> ref_slices = [[927, 1057],[1111, 1229]] #pick sample endpoints
 
-    >>> S = seg1d.Segmenter()  #create the segmenter
+    >>> s = seg1d.Segmenter()  #create the segmenter
 
     >>> refs = [ ecg[x[0]:x[1]] for x in ref_slices ]
-    >>> for r in refs: S.addReference(r) #set reference data
+    >>> for r in refs: s.add_reference(r) #set reference data
 
-    >>> S.setTarget(ecg[1500:3500]) #set the target data to the ecg after ref
-    >>> segments = S.segment()  # run segmenter with defaults
+    >>> s.set_target(ecg[1500:3500]) #set the target data to the ecg after ref
+    >>> segments = s.segment()  # run segmenter with defaults
 
     >>> print(np.around(segments,decimals=7))
     [[1.607000e+03 1.729000e+03 8.169533e-01]
@@ -46,7 +46,7 @@ In the second portion of the example, only one segment is used for the reference
     This discrepency, due to the averaging of all reference data items, will be seen
     in the final segments of the target data later. 
 
-    >>> refs = S.r
+    >>> refs = s.r
     >>> refs = np.asarray( [ x[y] for x in refs for y in x ] )
 
     >>> plt.figure(figsize=(5,3))  # doctest: +SKIP
@@ -61,17 +61,17 @@ In the second portion of the example, only one segment is used for the reference
 
 
     >>> plt.figure(figsize=(15,3))  # doctest: +SKIP
-    >>> plt.plot(S.masked_t.T)  # doctest: +SKIP
+    >>> plt.plot(s.masked_t.T)  # doctest: +SKIP
     >>> plt.show()  # doctest: +SKIP
 
 .. plot::
     :context: close-figs
 
     >>> #use only 1 reference
-    >>> S.clearReference()
-    >>> S.addReference( ecg[927:1057] )
+    >>> s.clear_reference()
+    >>> s.add_reference( ecg[927:1057] )
 
-    >>> refs = S.r
+    >>> refs = s.r
     >>> refs = np.asarray( [ x[y] for x in refs for y in x ] )
 
     >>> plt.figure(figsize=(5,3))  # doctest: +SKIP
@@ -82,11 +82,11 @@ In the second portion of the example, only one segment is used for the reference
     :context: close-figs
 
     >>> #remove first part of data (contains reference)
-    >>> S.setTarget(ecg[1500:3500])
-    >>> S.nC = 2
-    >>> S.cMin = 0.7
+    >>> s.set_target(ecg[1500:3500])
+    >>> s.nC = 2
+    >>> s.cMin = 0.7
 
-    >>> segments = S.segment()
+    >>> segments = s.segment()
 
     >>> print(np.around(segments,decimals=7))
     [[7.350000e+02 8.540000e+02 9.462850e-01]
@@ -100,7 +100,7 @@ In the second portion of the example, only one segment is used for the reference
      [1.440000e+03 1.559000e+03 8.646669e-01]
      [1.730000e+02 3.060000e+02 8.029426e-01]]
 
-    >>> res = S.masked_t
+    >>> res = s.masked_t
 
     >>> plt.figure(figsize=(15,3))  # doctest: +SKIP
     >>> plt.plot(res.T)  # doctest: +SKIP
@@ -122,18 +122,18 @@ import seg1d
 # In the second portion of the example, only one segment is used for the reference data. 
 
 
-ecg = electrocardiogram() #get the scipy sample data 
-ref_slices = [[927, 1057],[1111, 1229]] #pick sample endpoints
+ecg = electrocardiogram()  # get the scipy sample data 
+ref_slices = [[927, 1057],[1111, 1229]]  # pick sample endpoints
 
-S = seg1d.Segmenter()  #create the segmenter
+s = seg1d.Segmenter()  # create the segmenter
 
 refs = [ ecg[x[0]:x[1]] for x in ref_slices ]
-for r in refs: S.addReference(r) #set reference data
+for r in refs: s.add_reference(r)  # set reference data
 
-S.setTarget(ecg[1500:3500]) #set the target data to the ecg after ref
-segments = S.segment()  # run segmenter with defaults
+s.set_target(ecg[1500:3500])  # set the target data to the ecg after ref
+segments = s.segment()  # run segmenter with defaults
 
-print(np.around(segments,decimals=7))
+print(np.around(segments, decimals=7))
 # [[1.607000e+03 1.729000e+03 8.169533e-01]
 #  [7.380000e+02 8.220000e+02 8.123868e-01]
 #  [9.190000e+02 1.003000e+03 8.120505e-01]
@@ -145,28 +145,28 @@ print(np.around(segments,decimals=7))
 #  [1.268000e+03 1.340000e+03 7.847107e-01]
 #  [5.540000e+02 6.280000e+02 7.802931e-01]]
 
-refs = S.r
+refs = s.r
 refs = np.asarray( [ x[y] for x in refs for y in x ] )
 
-plt.figure(figsize=(5,3))
+plt.figure(figsize=(5, 3))
 plt.plot(refs.T)
 plt.show()
 
-plt.figure(figsize=(15,3))
-plt.plot(S.masked_t.T)
+plt.figure(figsize=(15, 3))
+plt.plot(s.masked_t.T)
 plt.show()
 
-#use only 1 reference
-S.clearReference()
-S.addReference( ecg[927:1057] )
-#remove first part of data (contains reference)
-S.setTarget(ecg[1500:3500])
-S.nC = 2
-S.cMin = 0.7
+# use only 1 reference
+s.clear_reference()
+s.add_reference( ecg[927:1057] )
+# remove first part of data (contains reference)
+s.set_target(ecg[1500:3500])
+s.nC = 2
+s.cMin = 0.7
 
-segments = S.segment()
+segments = s.segment()
 
-print(np.around(segments,decimals=7))
+print(np.around(segments, decimals=7))
 # [[7.350000e+02 8.540000e+02 9.462850e-01]
 #  [1.093000e+03 1.213000e+03 9.242974e-01]
 #  [9.140000e+02 1.046000e+03 9.059727e-01]
@@ -178,9 +178,9 @@ print(np.around(segments,decimals=7))
 #  [1.440000e+03 1.559000e+03 8.646669e-01]
 #  [1.730000e+02 3.060000e+02 8.029426e-01]]
 
-res = S.masked_t
+res = s.masked_t
 
-plt.figure(figsize=(15,3))
+plt.figure(figsize=(15, 3))
 plt.plot(res.T)
 plt.show()
 

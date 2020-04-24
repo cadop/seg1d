@@ -10,7 +10,7 @@ Example using included sample data
 >>> maxW = 150 #maximum percent to scale up reference data
 >>> step = 1 #step to use for correlating reference to target data
 >>> #call the segmentation algorithm
->>> np.around( seg1d.segmentData(r,t,w,minW,maxW,step) , decimals=7 )
+>>> np.around( seg1d.segment_data(r,t,w,minW,maxW,step) , decimals=7 )
 array([[207.       , 240.       ,   0.9124224],
        [342.       , 381.       ,   0.8801901],
        [ 72.       , 112.       ,   0.8776795]])
@@ -28,7 +28,7 @@ maxW = 150 #maximum percent to scale up reference data
 step = 1 #step to use for correlating reference to target data
 
 #call the segmentation algorithm
-segments = seg1d.segmentData(r,t,w,minW,maxW,step)
+segments = seg1d.segment_data(r,t,w,minW,maxW,step)
 
 print(segments)
 

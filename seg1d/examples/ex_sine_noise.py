@@ -19,16 +19,17 @@ although a different SNR is used.
     Next an array of data is generated and a sine wave is created. 
     A signal-noise ratio of 30 is added to the sine wave. 
 
-    >>> #create an array of data
+    >>> # create an array of data
     >>> x = np.linspace(-np.pi*2, np.pi*2, 2000)
-    >>> #get an array of data from a sin function 
+    >>> # get an array of data from a sin function 
     >>> targ = np.sin(x)
-    >>> #add noise to the signal 
-    >>> targ = segnoise.noiseAdder(targ,snr=30)
+    >>> # add noise to the signal 
+    >>> np.random.seed(123)
+    >>> targ = segnoise.add_noise(targ,snr=30)
 
     The target data that is used for finding segments in looks like:
 
-    >>> #Plot the target
+    >>> # Plot the target
     >>> plt.figure(figsize=(10,3)) #doctest: +SKIP
     >>> plt.plot(x, targ,linewidth=4,alpha=0.5,label='Target')#doctest: +SKIP
     >>> plt.legend()#doctest: +SKIP
@@ -39,17 +40,18 @@ although a different SNR is used.
 
     Now another noisy sine wave is created and a segment of it is cut out.
 
-    >>> #define a segment within the sine wave to use as reference
+    >>> # define a segment within the sine wave to use as reference
     >>> t_s,t_e = 200,400
-    >>> #number of reference datasets to generate for the example
+    >>> # number of reference datasets to generate for the example
 
-    >>> #make reference data with different random noise on a segment of the original
-    >>> refData = segnoise.noiseAdder(np.sin(x),snr=45)[t_s:t_e] 
+    >>> # make reference data with different random noise on a segment of the original
+    >>> np.random.seed(123)
+    >>> refData = segnoise.add_noise(np.sin(x),snr=45)[t_s:t_e] 
 
     The reference data looks like:
 
     >>> plt.figure(figsize=(3,3)) #doctest: +SKIP
-    >>> #Plot the reference
+    >>> # Plot the reference
     >>> plt.plot(x[t_s:t_e], refData,linewidth=4,alpha=0.5,label='Reference')#doctest: +SKIP
     >>> plt.legend()#doctest: +SKIP
     >>> plt.show()#doctest: +SKIP
@@ -60,15 +62,15 @@ although a different SNR is used.
     To find the sub-series segment, an instance of the ``Segmenter`` class is created,
     basic scaling parameters, and the target and reference data are assigned.
 
-    >>> #Make an instance of the segmenter
-    >>> S = seg1d.Segmenter()
+    >>> # Make an instance of the segmenter
+    >>> s = seg1d.Segmenter()
     >>> #set scaling parameters
-    >>> S.minW,S.maxW,S.step = 90, 110, 1
+    >>> s.minW,s.maxW,s.step = 90, 110, 1
     >>> #Set target and reference data
-    >>> S.setTarget(targ)
-    >>> S.addReference(refData)
+    >>> s.set_target(targ)
+    >>> s.add_reference(refData)
     >>> #call the segmentation algorithm
-    >>> segments = S.segment()
+    >>> segments = s.segment()
     >>> np.around(segments, decimals=7)
     array([[1.200000e+03, 1.420000e+03, 9.916268e-01],
            [2.000000e+02, 4.000000e+02, 9.904041e-01],
@@ -87,9 +89,9 @@ although a different SNR is used.
     >>> plt.plot(x[t_s:t_e], targ[t_s:t_e],linewidth=6,alpha=0.7,label='Reference')#doctest: +SKIP
     >>> #plot all segments found
     >>> for seg in segments:
-    ...     s = seg[0]
+    ...     st = seg[0]
     ...     e = seg[1]
-    ...     plt.plot(x[s:e], targ[s:e],dashes=[1,1],linewidth=2,alpha=0.8,label='Segment')#doctest: +SKIP
+    ...     plt.plot(x[st:e], targ[st:e],dashes=[1,1],linewidth=2,alpha=0.8,label='Segment')#doctest: +SKIP
     >>> plt.legend()#doctest: +SKIP
     >>> plt.show()#doctest: +SKIP
 
@@ -100,7 +102,7 @@ although a different SNR is used.
     By accessing the ``Segmenter`` attributes, the algorithm and this error are better understood (and resolved). 
 
     >>> # First we look at the original segments before clustering
-    >>> np.around(S.groups, decimals=7)
+    >>> np.around(s.groups, decimals=7)
     array([[1.200000e+03, 1.420000e+03, 9.916268e-01],
            [2.000000e+02, 4.000000e+02, 9.904041e-01],
            [4.000000e+02, 5.820000e+02, 8.933443e-01],
@@ -116,8 +118,8 @@ although a different SNR is used.
     
     Modifying this attribute would then change the clusters, for example:
 
-    >>> S.cAdd = 0.8
-    >>> np.around(S.segment(), decimals=7)
+    >>> s.cAdd = 0.8
+    >>> np.around(s.segment(), decimals=7)
     array([[1.200000e+03, 1.420000e+03, 9.916268e-01],
            [2.000000e+02, 4.000000e+02, 9.904041e-01]])
 
@@ -125,8 +127,8 @@ although a different SNR is used.
     If the attribute is removed, then only the original segments are used in the clustering. 
     However, this results in the same cluster as the original where the default of ``cAdd`` was 0.5.
     
-    >>> S.cAdd = None
-    >>> np.around(S.segment(), decimals=7)
+    >>> s.cAdd = None
+    >>> np.around(s.segment(), decimals=7)
     array([[1.200000e+03, 1.420000e+03, 9.916268e-01],
            [2.000000e+02, 4.000000e+02, 9.904041e-01],
            [4.000000e+02, 5.820000e+02, 8.933443e-01],
@@ -134,8 +136,8 @@ although a different SNR is used.
 
     Alternatively, the minimum correlation for a given segment can be set with the ``Segmenter.cMin`` attribute.
     
-    >>> S.cMin = 0.9
-    >>> np.around(S.segment(),decimals=7)
+    >>> s.cMin = 0.9
+    >>> np.around(s.segment(),decimals=7)
     array([[1.200000e+03, 1.420000e+03, 9.916268e-01]])
 
 
@@ -144,8 +146,8 @@ although a different SNR is used.
 
     If ``cAdd`` is set back to the default, the segment is correct. 
 
-    >>> S.cAdd = 0.5
-    >>> segments = S.segment() 
+    >>> s.cAdd = 0.5
+    >>> segments = s.segment() 
     >>> np.around(segments, decimals=7)
     array([[1.200000e+03, 1.420000e+03, 9.916268e-01],
            [2.000000e+02, 4.000000e+02, 9.904041e-01]])
@@ -181,7 +183,8 @@ x = np.linspace(-np.pi*2, np.pi*2, 2000)
 #get an array of data from a sin function 
 targ = np.sin(x)
 #add noise to the signal 
-targ = segnoise.noiseAdder(targ,snr=30)
+np.random.seed(123)
+targ = segnoise.add_noise(targ,snr=30)
 
 #Plot the target
 plt.figure(figsize=(10,3)) #doctest: +SKIP
@@ -204,44 +207,45 @@ t_s,t_e = 200,400
 #number of reference datasets to generate for the example
 
 #make reference data with different random noise on a segment of the original
-refData = segnoise.noiseAdder(np.sin(x),snr=45)[t_s:t_e] 
+np.random.seed(123)
+refData = segnoise.add_noise(np.sin(x),snr=45)[t_s:t_e] 
 
-#Plot the reference
+# Plot the reference
 plt.plot(x[t_s:t_e], refData,linewidth=4,alpha=0.5,label='Reference')#doctest: +SKIP
-plt.legend()#doctest: +SKIP
-plt.show()#doctest: +SKIP
+plt.legend()  # doctest: +SKIP
+plt.show()  # doctest: +SKIP
 
-#Make an instance of the segmenter
-S = seg1d.Segmenter()
-#set scaling parameters
-S.minW,S.maxW,S.step = 90, 110, 1
-#Set target and reference data
-S.setTarget(targ)
-S.addReference(refData)
-#call the segmentation algorithm
-segments = S.segment()
+# Make an instance of the segmenter
+s = seg1d.Segmenter()
+# set scaling parameters
+s.minW,s.maxW,s.step = 90, 110, 1
+# Set target and reference data
+s.set_target(targ)
+s.add_reference(refData)
+# call the segmentation algorithm
+segments = s.segment()
 print(segments)
 
 
-plt.figure(figsize=(10,3))#doctest: +SKIP
+plt.figure(figsize=(10,3))  # doctest: +SKIP
 #plot the full sine wave
-plt.plot(x, targ,linewidth=4,alpha=0.2,label='Target')#doctest: +SKIP
+plt.plot(x, targ,linewidth=4,alpha=0.2,label='Target')  # doctest: +SKIP
 #plot the location of the original reference segment 
 # NOTE this is just the location, the actual reference data is shown above
-plt.plot(x[t_s:t_e], targ[t_s:t_e],linewidth=2,alpha=0.7,label='Reference')#doctest: +SKIP
+plt.plot(x[t_s:t_e], targ[t_s:t_e],linewidth=2,alpha=0.7,label='Reference')  # doctest: +SKIP
 #plot all segments found
 for seg in segments:
-    s = seg[0]
+    st = seg[0]
     e = seg[1]
-    plt.plot(x[s:e], targ[s:e],dashes=[1,1],linewidth=2,alpha=0.8,label='Segment')#doctest: +SKIP
-plt.legend()#doctest: +SKIP
-plt.show()#doctest: +SKIP
+    plt.plot(x[st:e], targ[st:e],dashes=[1,1],linewidth=2,alpha=0.8,label='Segment')  # doctest: +SKIP
+plt.legend()  # doctest: +SKIP
+plt.show()  # doctest: +SKIP
 
 # From the plot, it is clear there is a segment that doesn't belong. 
 # By accessing the Segmenter attributes, the algorithm and this error are better understood (and resolved). 
 
 # First we look at the original segments before clustering
-print(S.groups)
+print(s.groups)
 #[[1200, 1420, 0.9916267987946981], [200, 400, 0.990404095393343], [400, 582, 0.8933442691404018], [1421, 1601, 0.883324901611455], [583, 765, 0.7286635266077575], [1602, 1782, 0.6541974242077591]]
 
 
@@ -253,23 +257,23 @@ print(S.groups)
 # 
 # Modifying this attribute would then change the clusters, for example:
 
-S.cAdd = 0.8
-print( S.segment() )
+s.cAdd = 0.8
+print( s.segment() )
 #[[1200, 1420, 0.9916267987946981], [200, 400, 0.990404095393343]]
 
 
 # If the attribute is removed, then only the original segments are used in the clustering. 
 # However, this results in the same cluster as the original where the default of ``cAdd`` was 0.5.
 # 
-S.cAdd = None
-print( S.segment() )
+s.cAdd = None
+print( s.segment() )
 #[[1200, 1420, 0.9916267987946981], [200, 400, 0.990404095393343], [400, 582, 0.8933442691404018], [1421, 1601, 0.883324901611455]]
 
 # 
 # Alternatively, the minimum correlation for a given segment can be set with the ``Segmenter.cMin`` attribute.
 # 
-S.cMin = 0.9
-print( S.segment() )
+s.cMin = 0.9
+print( s.segment() )
 #[[1200, 1420, 0.9916267987946981]]
 
 
@@ -278,8 +282,8 @@ print( S.segment() )
 #
 # If ``cAdd`` is set back to the default, the segment is correct. 
 #
-S.cAdd = 0.5
-segments = S.segment() 
+s.cAdd = 0.5
+segments = s.segment() 
 print(segments)
 #[[1200, 1420, 0.9916267987946981], [200, 400, 0.990404095393343]]
 
