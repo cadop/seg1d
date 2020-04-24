@@ -1,6 +1,6 @@
-=========
-API Usage
-=========
+============
+API Examples
+============
 
 seg1d can be used through both the routines and through the ``Segmenter`` class,
 which provides various methods for constructing a segmenter by setting parameters and data. 

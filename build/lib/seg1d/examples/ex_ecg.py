@@ -21,9 +21,9 @@ In the second portion of the example, only one segment is used for the reference
     >>> S = seg1d.Segmenter()  #create the segmenter
 
     >>> refs = [ ecg[x[0]:x[1]] for x in ref_slices ]
-    >>> for r in refs: S.addReference(r) #set reference data
+    >>> for r in refs: S.add_reference(r) #set reference data
 
-    >>> S.setTarget(ecg[1500:3500]) #set the target data to the ecg after ref
+    >>> S.set_target(ecg[1500:3500]) #set the target data to the ecg after ref
     >>> segments = S.segment()  # run segmenter with defaults
 
     >>> print(np.around(segments,decimals=7))
@@ -68,8 +68,8 @@ In the second portion of the example, only one segment is used for the reference
     :context: close-figs
 
     >>> #use only 1 reference
-    >>> S.clearReference()
-    >>> S.addReference( ecg[927:1057] )
+    >>> S.clear_reference()
+    >>> S.add_reference( ecg[927:1057] )
 
     >>> refs = S.r
     >>> refs = np.asarray( [ x[y] for x in refs for y in x ] )
@@ -82,7 +82,7 @@ In the second portion of the example, only one segment is used for the reference
     :context: close-figs
 
     >>> #remove first part of data (contains reference)
-    >>> S.setTarget(ecg[1500:3500])
+    >>> S.set_target(ecg[1500:3500])
     >>> S.nC = 2
     >>> S.cMin = 0.7
 
@@ -128,9 +128,9 @@ ref_slices = [[927, 1057],[1111, 1229]] #pick sample endpoints
 S = seg1d.Segmenter()  #create the segmenter
 
 refs = [ ecg[x[0]:x[1]] for x in ref_slices ]
-for r in refs: S.addReference(r) #set reference data
+for r in refs: S.add_reference(r) #set reference data
 
-S.setTarget(ecg[1500:3500]) #set the target data to the ecg after ref
+S.set_target(ecg[1500:3500]) #set the target data to the ecg after ref
 segments = S.segment()  # run segmenter with defaults
 
 print(np.around(segments,decimals=7))
@@ -157,10 +157,10 @@ plt.plot(S.masked_t.T)
 plt.show()
 
 #use only 1 reference
-S.clearReference()
-S.addReference( ecg[927:1057] )
+S.clear_reference()
+S.add_reference( ecg[927:1057] )
 #remove first part of data (contains reference)
-S.setTarget(ecg[1500:3500])
+S.set_target(ecg[1500:3500])
 S.nC = 2
 S.cMin = 0.7
 

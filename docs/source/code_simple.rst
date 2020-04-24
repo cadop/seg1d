@@ -3,5 +3,5 @@ Simple Interface
 
 .. currentmodule:: seg1d
 
-.. autofunction:: segmentData
+.. autofunction:: segment_data
     :noindex:

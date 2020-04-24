@@ -14,11 +14,11 @@ seg1d.Segmenter
    .. autosummary::
    
       ~Segmenter.__init__
-      ~Segmenter.addReference
-      ~Segmenter.clearReference
-      ~Segmenter.makeSegments
+      ~Segmenter.add_reference
+      ~Segmenter.clear_reference
       ~Segmenter.segment
-      ~Segmenter.setTarget
+      ~Segmenter.set_target
+      ~Segmenter.target_segments
    
    
 
@@ -29,10 +29,10 @@ seg1d.Segmenter
    .. autosummary::
    
       ~Segmenter.clusters
-      ~Segmenter.featC
+      ~Segmenter.combined
+      ~Segmenter.corrs
       ~Segmenter.groups
       ~Segmenter.masked_t
-      ~Segmenter.meanC
       ~Segmenter.peaks
    
    

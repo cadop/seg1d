@@ -29,7 +29,7 @@ Sample using sine wave
     >>> sizeStep = 1 #step to use for correlating reference to target data
     >>> 
     >>> #call the segmentation algorithm
-    >>> segments = seg1d.segmentData(refData,targData,refWeights,minWin,maxWin,sizeStep)
+    >>> segments = seg1d.segment_data(refData,targData,refWeights,minWin,maxWin,sizeStep)
     >>> np.around(segments, decimals=7)
     array([[2.000000e+02, 4.000000e+02, 1.000000e+00],
            [1.200000e+03, 1.398000e+03, 9.999999e-01]])
@@ -72,7 +72,7 @@ maxWin   = 105 #maximum percent to scale up reference data
 sizeStep = 1 #step to use for correlating reference to target data
 
 #call the segmentation algorithm
-segments = seg1d.segmentData(refData,targData,refWeights,minWin,maxWin,sizeStep)
+segments = seg1d.segment_data(refData,targData,refWeights,minWin,maxWin,sizeStep)
 print(segments)
 
 plt.figure(figsize=(10,3))

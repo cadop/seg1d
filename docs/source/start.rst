@@ -26,7 +26,7 @@ Sine Wave
 Gauss
 =====
 
-In this example a gauss signal is used to show segmentation on the varying shape of different amplitude. 
+In this example a Gaussian pulse is used to show segmentation on the varying shape of different amplitude. 
 As the center arc is given as reference, the multiple extending arcs are found as well. Through 
 the output of the segments, the correlation values can be seen to decrease, although still
 clustered within the group. 

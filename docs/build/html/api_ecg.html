@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>ECG &mdash; seg1d 0.0.1 documentation</title>
+    <title>ECG &mdash; seg1d 0.0.13 documentation</title>
     
     <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.1',
+        VERSION:     '0.0.13',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false
@@ -27,8 +27,8 @@
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" >
     <link rel="search" title="Search" href="search.html" >
-    <link rel="top" title="seg1d 0.0.1 documentation" href="index.html" >
-    <link rel="up" title="API Usage" href="api.html" >
+    <link rel="top" title="seg1d 0.0.13 documentation" href="index.html" >
+    <link rel="up" title="API Examples" href="api.html" >
     <link rel="next" title="Feature Inclusion" href="api_feat.html" >
     <link rel="prev" title="Basic Use" href="api_basic.html" > 
   </head>
@@ -51,9 +51,9 @@
         <li class="active"><a href="http://github.com/cadop/seg1d">Github</a></li>
         <li class="active"><a href="http://">Paper</a></li>
 	
-        <li class="active"><a href="index.html">seg1d 0.0.1 documentation</a></li>
+        <li class="active"><a href="index.html">seg1d 0.0.13 documentation</a></li>
 	
-          <li class="active"><a href="api.html" accesskey="U">API Usage</a></li> 
+          <li class="active"><a href="api.html" accesskey="U">API Examples</a></li> 
     </ul>
               
               
@@ -101,15 +101,15 @@ In the second portion of the example, only one segment is used for the reference
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ref_slices</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">927</span><span class="p">,</span> <span class="mi">1057</span><span class="p">],[</span><span class="mi">1111</span><span class="p">,</span> <span class="mi">1229</span><span class="p">]]</span> <span class="c1">#pick sample endpoints</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">Segmenter</span><span class="p">()</span>  <span class="c1">#create the segmenter</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">Segmenter</span><span class="p">()</span>  <span class="c1">#create the segmenter</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">refs</span> <span class="o">=</span> <span class="p">[</span> <span class="n">ecg</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ref_slices</span> <span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">refs</span><span class="p">:</span> <span class="n">S</span><span class="o">.</span><span class="n">addReference</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="c1">#set reference data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">refs</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">add_reference</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="c1">#set reference data</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">setTarget</span><span class="p">(</span><span class="n">ecg</span><span class="p">[</span><span class="mi">1500</span><span class="p">:</span><span class="mi">3500</span><span class="p">])</span> <span class="c1">#set the target data to the ecg after ref</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">segments</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">segment</span><span class="p">()</span>  <span class="c1"># run segmenter with defaults</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_target</span><span class="p">(</span><span class="n">ecg</span><span class="p">[</span><span class="mi">1500</span><span class="p">:</span><span class="mi">3500</span><span class="p">])</span> <span class="c1">#set the target data to the ecg after ref</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">segments</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">segment</span><span class="p">()</span>  <span class="c1"># run segmenter with defaults</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span><span class="n">decimals</span><span class="o">=</span><span class="mi">7</span><span class="p">))</span>
@@ -131,7 +131,7 @@ we can plot what the reference set looks like when the lengths are normalized.</
 <p>In the example, it is clear the peaks of the reference segments are not aligned. 
 This discrepency, due to the averaging of all reference data items, will be seen
 in the final segments of the target data later.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">refs</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">r</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">refs</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">r</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">refs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span> <span class="p">[</span> <span class="n">x</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">refs</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span> <span class="p">]</span> <span class="p">)</span>
 </pre></div>
 </div>
@@ -147,7 +147,7 @@ in the final segments of the target data later.</p>
 <p>The final segments are shown by calling the property <code class="docutils literal notranslate"><span class="pre">masked_t</span></code> which returns the 
 target data as an ndarray with NaN values for areas not found to be segments.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>  
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">masked_t</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">masked_t</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>  
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  
 </pre></div>
 </div>
@@ -156,11 +156,11 @@ target data as an ndarray with NaN values for areas not found to be segments.</p
 <img alt="_images/api_ecg-2.png" src="_images/api_ecg-2.png" />
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#use only 1 reference</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">clearReference</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">addReference</span><span class="p">(</span> <span class="n">ecg</span><span class="p">[</span><span class="mi">927</span><span class="p">:</span><span class="mi">1057</span><span class="p">]</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">clear_reference</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">add_reference</span><span class="p">(</span> <span class="n">ecg</span><span class="p">[</span><span class="mi">927</span><span class="p">:</span><span class="mi">1057</span><span class="p">]</span> <span class="p">)</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">refs</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">r</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">refs</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">r</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">refs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span> <span class="p">[</span> <span class="n">x</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">refs</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span> <span class="p">]</span> <span class="p">)</span>
 </pre></div>
 </div>
@@ -174,12 +174,12 @@ target data as an ndarray with NaN values for areas not found to be segments.</p
 <img alt="_images/api_ecg-3.png" src="_images/api_ecg-3.png" />
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#remove first part of data (contains reference)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">setTarget</span><span class="p">(</span><span class="n">ecg</span><span class="p">[</span><span class="mi">1500</span><span class="p">:</span><span class="mi">3500</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">nC</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">cMin</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_target</span><span class="p">(</span><span class="n">ecg</span><span class="p">[</span><span class="mi">1500</span><span class="p">:</span><span class="mi">3500</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">nC</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">cMin</span> <span class="o">=</span> <span class="mf">0.7</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">segments</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">segment</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">segments</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">segment</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span><span class="n">decimals</span><span class="o">=</span><span class="mi">7</span><span class="p">))</span>
@@ -195,7 +195,7 @@ target data as an ndarray with NaN values for areas not found to be segments.</p
 <span class="go"> [1.730000e+02 3.060000e+02 8.029426e-01]]</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">masked_t</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">masked_t</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>  

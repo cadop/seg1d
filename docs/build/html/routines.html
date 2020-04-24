@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Algorithm Methods &mdash; seg1d 0.0.1 documentation</title>
+    <title>Algorithm Methods &mdash; seg1d 0.0.13 documentation</title>
     
     <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.1',
+        VERSION:     '0.0.13',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false
@@ -27,9 +27,9 @@
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" >
     <link rel="search" title="Search" href="search.html" >
-    <link rel="top" title="seg1d 0.0.1 documentation" href="index.html" >
+    <link rel="top" title="seg1d 0.0.13 documentation" href="index.html" >
     <link rel="up" title="Code Reference" href="code.html" >
-    <link rel="next" title="seg1d.algorithm.rollingWinCorr" href="generated/seg1d.algorithm.rollingWinCorr.html" >
+    <link rel="next" title="seg1d.algorithm.rolling_corr" href="generated/seg1d.algorithm.rolling_corr.html" >
     <link rel="prev" title="seg1d.Segmenter.segment" href="generated/seg1d.Segmenter.segment.html" > 
   </head>
   <body>
@@ -51,7 +51,7 @@
         <li class="active"><a href="http://github.com/cadop/seg1d">Github</a></li>
         <li class="active"><a href="http://">Paper</a></li>
 	
-        <li class="active"><a href="index.html">seg1d 0.0.1 documentation</a></li>
+        <li class="active"><a href="index.html">seg1d 0.0.13 documentation</a></li>
 	
           <li class="active"><a href="code.html" accesskey="U">Code Reference</a></li> 
     </ul>
@@ -63,7 +63,7 @@
            accesskey="I">index</a>
       </li>
       <li class="active">
-        <a href="generated/seg1d.algorithm.rollingWinCorr.html" title="seg1d.algorithm.rollingWinCorr"
+        <a href="generated/seg1d.algorithm.rolling_corr.html" title="seg1d.algorithm.rolling_corr"
            accesskey="N">next</a>
       </li>
       <li class="active">
@@ -92,19 +92,19 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/seg1d.algorithm.rollingWinCorr.html#seg1d.algorithm.rollingWinCorr" title="seg1d.algorithm.rollingWinCorr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rollingWinCorr</span></code></a>(x,&nbsp;yData,&nbsp;winSize[,&nbsp;cMax])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/seg1d.algorithm.rolling_corr.html#seg1d.algorithm.rolling_corr" title="seg1d.algorithm.rolling_corr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rolling_corr</span></code></a>(x,&nbsp;yData,&nbsp;winSize[,&nbsp;cMax])</td>
 <td>Rolling Correlation</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/seg1d.algorithm.avrCorrelate.html#seg1d.algorithm.avrCorrelate" title="seg1d.algorithm.avrCorrelate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">avrCorrelate</span></code></a>(x,&nbsp;w[,&nbsp;method,&nbsp;scale])</td>
-<td>Average Weighted Correlation</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/seg1d.algorithm.combine_corr.html#seg1d.algorithm.combine_corr" title="seg1d.algorithm.combine_corr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">combine_corr</span></code></a>(x,&nbsp;w[,&nbsp;method,&nbsp;scale])</td>
+<td>Combines Weighted Correlation</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/seg1d.algorithm.uniqSegments.html#seg1d.algorithm.uniqSegments" title="seg1d.algorithm.uniqSegments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">uniqSegments</span></code></a>(sortedPeaks,&nbsp;srcLen)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/seg1d.algorithm.uniques.html#seg1d.algorithm.uniques" title="seg1d.algorithm.uniques"><code class="xref py py-obj docutils literal notranslate"><span class="pre">uniques</span></code></a>(sortedPeaks,&nbsp;srcLen)</td>
 <td>Unique Segment Identification</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/seg1d.algorithm.getPeaks.html#seg1d.algorithm.getPeaks" title="seg1d.algorithm.getPeaks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getPeaks</span></code></a>(x[,&nbsp;minC,&nbsp;dst])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/seg1d.algorithm.get_peaks.html#seg1d.algorithm.get_peaks" title="seg1d.algorithm.get_peaks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_peaks</span></code></a>(x[,&nbsp;minC,&nbsp;dst])</td>
 <td>Peak Detection</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/seg1d.algorithm.clusterSegments.html#seg1d.algorithm.clusterSegments" title="seg1d.algorithm.clusterSegments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clusterSegments</span></code></a>(segGroups[,&nbsp;segAdder,&nbsp;nClust])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/seg1d.algorithm.cluster.html#seg1d.algorithm.cluster" title="seg1d.algorithm.cluster"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cluster</span></code></a>(segGroups[,&nbsp;segAdder,&nbsp;nClust])</td>
 <td>Clustering</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/seg1d.algorithm.resample.html#seg1d.algorithm.resample" title="seg1d.algorithm.resample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resample</span></code></a>(x,&nbsp;s)</td>
@@ -119,10 +119,10 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/seg1d.optimized_funcs.rCor.html#seg1d.optimized_funcs.rCor" title="seg1d.optimized_funcs.rCor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rCor</span></code></a>(x,&nbsp;Y)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/seg1d.optimized_funcs.rcor.html#seg1d.optimized_funcs.rcor" title="seg1d.optimized_funcs.rcor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rcor</span></code></a>(x,&nbsp;Y)</td>
 <td>Correlation of multiple arrays to a single array using a rolling window correlation.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/seg1d.optimized_funcs.vCor.html#seg1d.optimized_funcs.vCor" title="seg1d.optimized_funcs.vCor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vCor</span></code></a>(x,&nbsp;y)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/seg1d.optimized_funcs.vcor.html#seg1d.optimized_funcs.vcor" title="seg1d.optimized_funcs.vcor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vcor</span></code></a>(x,&nbsp;y)</td>
 <td>Rolling correlation between two arrays.</td>
 </tr>
 </tbody>
@@ -139,8 +139,8 @@
   <p class="topless"><a href="generated/seg1d.Segmenter.segment.html"
                         title="previous chapter">seg1d.Segmenter.segment</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="generated/seg1d.algorithm.rollingWinCorr.html"
-                        title="next chapter">seg1d.algorithm.rollingWinCorr</a></p>
+  <p class="topless"><a href="generated/seg1d.algorithm.rolling_corr.html"
+                        title="next chapter">seg1d.algorithm.rolling_corr</a></p>
 
         </div>
       </div>

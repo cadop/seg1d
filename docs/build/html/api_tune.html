@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Parameter Tuning &mdash; seg1d 0.0.1 documentation</title>
+    <title>Parameter Tuning &mdash; seg1d 0.0.13 documentation</title>
     
     <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.1',
+        VERSION:     '0.0.13',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false
@@ -27,8 +27,8 @@
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" >
     <link rel="search" title="Search" href="search.html" >
-    <link rel="top" title="seg1d 0.0.1 documentation" href="index.html" >
-    <link rel="up" title="API Usage" href="api.html" >
+    <link rel="top" title="seg1d 0.0.13 documentation" href="index.html" >
+    <link rel="up" title="API Examples" href="api.html" >
     <link rel="next" title="Code Reference" href="code.html" >
     <link rel="prev" title="Feature Inclusion" href="api_feat.html" > 
   </head>
@@ -51,9 +51,9 @@
         <li class="active"><a href="http://github.com/cadop/seg1d">Github</a></li>
         <li class="active"><a href="http://">Paper</a></li>
 	
-        <li class="active"><a href="index.html">seg1d 0.0.1 documentation</a></li>
+        <li class="active"><a href="index.html">seg1d 0.0.13 documentation</a></li>
 	
-          <li class="active"><a href="api.html" accesskey="U">API Usage</a></li> 
+          <li class="active"><a href="api.html" accesskey="U">API Examples</a></li> 
     </ul>
               
               
@@ -103,16 +103,17 @@ although a different SNR is used.</p>
 </div>
 <p>Next an array of data is generated and a sine wave is created. 
 A signal-noise ratio of 30 is added to the sine wave.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#create an array of data</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># create an array of data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#get an array of data from a sin function </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># get an array of data from a sin function </span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">targ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#add noise to the signal </span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">targ</span> <span class="o">=</span> <span class="n">segnoise</span><span class="o">.</span><span class="n">noiseAdder</span><span class="p">(</span><span class="n">targ</span><span class="p">,</span><span class="n">snr</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># add noise to the signal </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">targ</span> <span class="o">=</span> <span class="n">segnoise</span><span class="o">.</span><span class="n">add_noise</span><span class="p">(</span><span class="n">targ</span><span class="p">,</span><span class="n">snr</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The target data that is used for finding segments in looks like:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#Plot the target</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Plot the target</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">targ</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Target&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -124,18 +125,19 @@ A signal-noise ratio of 30 is added to the sine wave.</p>
 <img alt="_images/api_tune-1.png" src="_images/api_tune-1.png" />
 </div>
 <p>Now another noisy sine wave is created and a segment of it is cut out.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#define a segment within the sine wave to use as reference</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># define a segment within the sine wave to use as reference</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t_s</span><span class="p">,</span><span class="n">t_e</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span><span class="mi">400</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#number of reference datasets to generate for the example</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># number of reference datasets to generate for the example</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#make reference data with different random noise on a segment of the original</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">refData</span> <span class="o">=</span> <span class="n">segnoise</span><span class="o">.</span><span class="n">noiseAdder</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">snr</span><span class="o">=</span><span class="mi">45</span><span class="p">)[</span><span class="n">t_s</span><span class="p">:</span><span class="n">t_e</span><span class="p">]</span> 
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># make reference data with different random noise on a segment of the original</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">refData</span> <span class="o">=</span> <span class="n">segnoise</span><span class="o">.</span><span class="n">add_noise</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">snr</span><span class="o">=</span><span class="mi">45</span><span class="p">)[</span><span class="n">t_s</span><span class="p">:</span><span class="n">t_e</span><span class="p">]</span> 
 </pre></div>
 </div>
 <p>The reference data looks like:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> 
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#Plot the reference</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Plot the reference</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">t_s</span><span class="p">:</span><span class="n">t_e</span><span class="p">],</span> <span class="n">refData</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Reference&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -147,15 +149,15 @@ A signal-noise ratio of 30 is added to the sine wave.</p>
 </div>
 <p>To find the sub-series segment, an instance of the <code class="docutils literal notranslate"><span class="pre">Segmenter</span></code> class is created,
 basic scaling parameters, and the target and reference data are assigned.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#Make an instance of the segmenter</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">Segmenter</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Make an instance of the segmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">Segmenter</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#set scaling parameters</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">minW</span><span class="p">,</span><span class="n">S</span><span class="o">.</span><span class="n">maxW</span><span class="p">,</span><span class="n">S</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">minW</span><span class="p">,</span><span class="n">s</span><span class="o">.</span><span class="n">maxW</span><span class="p">,</span><span class="n">s</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#Set target and reference data</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">setTarget</span><span class="p">(</span><span class="n">targ</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">addReference</span><span class="p">(</span><span class="n">refData</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_target</span><span class="p">(</span><span class="n">targ</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">add_reference</span><span class="p">(</span><span class="n">refData</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#call the segmentation algorithm</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">segments</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">segment</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">segments</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">segment</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
 <span class="go">array([[1.200000e+03, 1.420000e+03, 9.916268e-01],</span>
 <span class="go">       [2.000000e+02, 4.000000e+02, 9.904041e-01],</span>
@@ -173,9 +175,9 @@ data should be located, along with the segments that were found.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">t_s</span><span class="p">:</span><span class="n">t_e</span><span class="p">],</span> <span class="n">targ</span><span class="p">[</span><span class="n">t_s</span><span class="p">:</span><span class="n">t_e</span><span class="p">],</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Reference&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#plot all segments found</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">seg</span> <span class="ow">in</span> <span class="n">segments</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="n">s</span> <span class="o">=</span> <span class="n">seg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">st</span> <span class="o">=</span> <span class="n">seg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">... </span>    <span class="n">e</span> <span class="o">=</span> <span class="n">seg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="gp">... </span>    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">],</span> <span class="n">targ</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">],</span><span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Segment&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">st</span><span class="p">:</span><span class="n">e</span><span class="p">],</span> <span class="n">targ</span><span class="p">[</span><span class="n">st</span><span class="p">:</span><span class="n">e</span><span class="p">],</span><span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Segment&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -187,7 +189,7 @@ data should be located, along with the segments that were found.</p>
 <p>From the plot, it is clear there are segments that do not belong. 
 By accessing the <code class="docutils literal notranslate"><span class="pre">Segmenter</span></code> attributes, the algorithm and this error are better understood (and resolved).</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># First we look at the original segments before clustering</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">groups</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">groups</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
 <span class="go">array([[1.200000e+03, 1.420000e+03, 9.916268e-01],</span>
 <span class="go">       [2.000000e+02, 4.000000e+02, 9.904041e-01],</span>
 <span class="go">       [4.000000e+02, 5.820000e+02, 8.933443e-01],</span>
@@ -201,16 +203,16 @@ By accessing the <code class="docutils literal notranslate"><span class="pre">Se
 the attribute, <code class="docutils literal notranslate"><span class="pre">Segmenter.cAdd</span></code>, (defaults to 0.5) that is added for forcing clusters 
 only combines the last two values, 0.72 and 0.65 in the lower cluser.</p>
 <p>Modifying this attribute would then change the clusters, for example:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">cAdd</span> <span class="o">=</span> <span class="mf">0.8</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">segment</span><span class="p">(),</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">cAdd</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">segment</span><span class="p">(),</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
 <span class="go">array([[1.200000e+03, 1.420000e+03, 9.916268e-01],</span>
 <span class="go">       [2.000000e+02, 4.000000e+02, 9.904041e-01]])</span>
 </pre></div>
 </div>
 <p>If the attribute is removed, then only the original segments are used in the clustering. 
 However, this results in the same cluster as the original where the default of <code class="docutils literal notranslate"><span class="pre">cAdd</span></code> was 0.5.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">cAdd</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">segment</span><span class="p">(),</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">cAdd</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">segment</span><span class="p">(),</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
 <span class="go">array([[1.200000e+03, 1.420000e+03, 9.916268e-01],</span>
 <span class="go">       [2.000000e+02, 4.000000e+02, 9.904041e-01],</span>
 <span class="go">       [4.000000e+02, 5.820000e+02, 8.933443e-01],</span>
@@ -218,16 +220,16 @@ However, this results in the same cluster as the original where the default of <
 </pre></div>
 </div>
 <p>Alternatively, the minimum correlation for a given segment can be set with the <code class="docutils literal notranslate"><span class="pre">Segmenter.cMin</span></code> attribute.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">cMin</span> <span class="o">=</span> <span class="mf">0.9</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">segment</span><span class="p">(),</span><span class="n">decimals</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">cMin</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">segment</span><span class="p">(),</span><span class="n">decimals</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
 <span class="go">array([[1.200000e+03, 1.420000e+03, 9.916268e-01]])</span>
 </pre></div>
 </div>
 <p>Since the <code class="docutils literal notranslate"><span class="pre">cAdd</span></code> was removed, the only segments available (higher than 0.9 correlation) 
 were both 0.99, making the clustering result in a single segment.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">cAdd</span></code> is set back to the default, the segment is correct.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">cAdd</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">segments</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">segment</span><span class="p">()</span> 
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">cAdd</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">segments</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">segment</span><span class="p">()</span> 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
 <span class="go">array([[1.200000e+03, 1.420000e+03, 9.916268e-01],</span>
 <span class="go">       [2.000000e+02, 4.000000e+02, 9.904041e-01]])</span>

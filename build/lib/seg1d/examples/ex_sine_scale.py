@@ -25,7 +25,7 @@ maxWin   = 200 #maximum percent to scale up reference data
 sizeStep = 1 #step to use for correlating reference to target data
 
 #call the segmentation algorithm
-segments = seg1d.segmentData(refData,targData,refWeights,minWin,maxWin,sizeStep)
+segments = seg1d.segment_data(refData,targData,refWeights,minWin,maxWin,sizeStep)
 print(segments)
 
 #plot the part of the reference data 

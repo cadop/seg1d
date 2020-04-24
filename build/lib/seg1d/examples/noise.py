@@ -1,6 +1,6 @@
 import numpy as np
 
-def noiseAdder(a, snr = 20,seed = 123):
+def add_noise(a, snr = 20,seed = 123):
     x_watts = a ** 2
     # Set a target SNR
     target_snr_db = snr

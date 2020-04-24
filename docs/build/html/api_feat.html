@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Feature Inclusion &mdash; seg1d 0.0.1 documentation</title>
+    <title>Feature Inclusion &mdash; seg1d 0.0.13 documentation</title>
     
     <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.1',
+        VERSION:     '0.0.13',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false
@@ -27,8 +27,8 @@
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" >
     <link rel="search" title="Search" href="search.html" >
-    <link rel="top" title="seg1d 0.0.1 documentation" href="index.html" >
-    <link rel="up" title="API Usage" href="api.html" >
+    <link rel="top" title="seg1d 0.0.13 documentation" href="index.html" >
+    <link rel="up" title="API Examples" href="api.html" >
     <link rel="next" title="Parameter Tuning" href="api_tune.html" >
     <link rel="prev" title="ECG" href="api_ecg.html" > 
   </head>
@@ -51,9 +51,9 @@
         <li class="active"><a href="http://github.com/cadop/seg1d">Github</a></li>
         <li class="active"><a href="http://">Paper</a></li>
 	
-        <li class="active"><a href="index.html">seg1d 0.0.1 documentation</a></li>
+        <li class="active"><a href="index.html">seg1d 0.0.13 documentation</a></li>
 	
-          <li class="active"><a href="api.html" accesskey="U">API Usage</a></li> 
+          <li class="active"><a href="api.html" accesskey="U">API Examples</a></li> 
     </ul>
               
               
@@ -122,20 +122,20 @@ what this offset is.</p>
 <img alt="_images/api_feat-2.png" src="_images/api_feat-2.png" />
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#Make an instance of the segmenter</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">Segmenter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">Segmenter</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#set scaling parameters</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">minW</span><span class="p">,</span><span class="n">S</span><span class="o">.</span><span class="n">maxW</span><span class="p">,</span><span class="n">S</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">minW</span><span class="p">,</span><span class="n">s</span><span class="o">.</span><span class="n">maxW</span><span class="p">,</span><span class="n">s</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#Set target and reference data</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">t</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">w</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">t</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">w</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#call the segmentation algorithm</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">segments</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">segment</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">segments</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">segment</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span><span class="n">decimals</span><span class="o">=</span><span class="mi">7</span><span class="p">))</span>
 <span class="go">[[204.        245.          0.7128945]</span>
 <span class="go"> [ 70.        112.          0.6670482]</span>
 <span class="go"> [340.        382.          0.6630886]]</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt_t</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">masked_t</span> <span class="c1">#get a NaN masked array of the target data</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt_t</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">masked_t</span> <span class="c1">#get a NaN masked array of the target data</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot masked target</span>
@@ -151,8 +151,8 @@ what this offset is.</p>
 <p>To use a subset of the features, the weights can be redefined, 
 which may result in a different segmentation result</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sub</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;C7&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">),(</span><span class="s1">&#39;T10&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">),(</span><span class="s1">&#39;CLAV&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">)]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="p">{</span> <span class="n">x</span><span class="p">:</span> <span class="n">w</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sub</span> <span class="p">}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">segments</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">segment</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="p">{</span> <span class="n">x</span><span class="p">:</span> <span class="n">w</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sub</span> <span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">segments</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">segment</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span><span class="n">decimals</span><span class="o">=</span><span class="mi">7</span><span class="p">))</span>
@@ -164,7 +164,7 @@ which may result in a different segmentation result</p>
 <span class="go"> [139.        180.          0.9624551]]</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt_t</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">masked_t</span> <span class="c1">#get a NaN masked array of the target data</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt_t</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">masked_t</span> <span class="c1">#get a NaN masked array of the target data</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot masked target</span>

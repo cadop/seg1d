@@ -9,13 +9,13 @@ import seg1d
 ecg = electrocardiogram() #get the scipy sample data 
 ref_slices = [[927, 1057],[1111, 1229]] #pick sample endpoints
 
-S = seg1d.Segmenter()  #create the segmenter
+s = seg1d.Segmenter()  #create the segmenter
 
 refs = [ ecg[x[0]:x[1]] for x in ref_slices ]
-for r in refs: S.addReference(r) #set reference data
+for r in refs: s.add_reference(r) #set reference data
 
-S.setTarget(ecg[1500:3500]) #set the target data to the ecg after ref
-segments = S.segment()  # run segmenter with defaults
+s.set_target(ecg[1500:3500]) #set the target data to the ecg after ref
+segments = s.segment()  # run segmenter with defaults
 
 print(np.around(segments,decimals=7))
 # [[1.607000e+03 1.729000e+03 8.169533e-01]
@@ -37,7 +37,7 @@ print(np.around(segments,decimals=7))
 # This discrepency, due to the averaging of all reference data items, will be seen
 # in the final segments of the target data later.
 
-refs = S.r
+refs = s.r
 refs = np.asarray( [ x[y] for x in refs for y in x ] )
 
 plt.figure(figsize=(5,3))  # doctest: +SKIP

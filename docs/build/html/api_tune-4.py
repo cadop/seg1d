@@ -2,7 +2,7 @@
 # By accessing the ``Segmenter`` attributes, the algorithm and this error are better understood (and resolved).
 
 # First we look at the original segments before clustering
-np.around(S.groups, decimals=7)
+np.around(s.groups, decimals=7)
 # array([[1.200000e+03, 1.420000e+03, 9.916268e-01],
 # [2.000000e+02, 4.000000e+02, 9.904041e-01],
 # [4.000000e+02, 5.820000e+02, 8.933443e-01],
@@ -18,8 +18,8 @@ np.around(S.groups, decimals=7)
 
 # Modifying this attribute would then change the clusters, for example:
 
-S.cAdd = 0.8
-np.around(S.segment(), decimals=7)
+s.cAdd = 0.8
+np.around(s.segment(), decimals=7)
 # array([[1.200000e+03, 1.420000e+03, 9.916268e-01],
 # [2.000000e+02, 4.000000e+02, 9.904041e-01]])
 
@@ -27,8 +27,8 @@ np.around(S.segment(), decimals=7)
 # If the attribute is removed, then only the original segments are used in the clustering.
 # However, this results in the same cluster as the original where the default of ``cAdd`` was 0.5.
 
-S.cAdd = None
-np.around(S.segment(), decimals=7)
+s.cAdd = None
+np.around(s.segment(), decimals=7)
 # array([[1.200000e+03, 1.420000e+03, 9.916268e-01],
 # [2.000000e+02, 4.000000e+02, 9.904041e-01],
 # [4.000000e+02, 5.820000e+02, 8.933443e-01],
@@ -36,8 +36,8 @@ np.around(S.segment(), decimals=7)
 
 # Alternatively, the minimum correlation for a given segment can be set with the ``Segmenter.cMin`` attribute.
 
-S.cMin = 0.9
-np.around(S.segment(),decimals=7)
+s.cMin = 0.9
+np.around(s.segment(),decimals=7)
 # array([[1.200000e+03, 1.420000e+03, 9.916268e-01]])
 
 
@@ -46,8 +46,8 @@ np.around(S.segment(),decimals=7)
 
 # If ``cAdd`` is set back to the default, the segment is correct.
 
-S.cAdd = 0.5
-segments = S.segment() 
+s.cAdd = 0.5
+segments = s.segment() 
 np.around(segments, decimals=7)
 # array([[1.200000e+03, 1.420000e+03, 9.916268e-01],
 # [2.000000e+02, 4.000000e+02, 9.904041e-01]])

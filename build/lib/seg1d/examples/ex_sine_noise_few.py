@@ -8,7 +8,7 @@ x = np.linspace(-np.pi*2, np.pi*2, 2000)
 #get an array of data from a sin function 
 targ = np.sin(x)
 #add noise to the signal 
-targ = segnoise.noiseAdder(targ,snr=40)
+targ = segnoise.add_noise(targ,snr=40)
 
 #Plot the target
 plt.figure(figsize=(10,3)) #doctest: +SKIP
@@ -21,7 +21,7 @@ t_s,t_e = 200,400
 #number of reference datasets to generate for the example
 
 #make reference data with different random noise on a segment of the original
-refData = segnoise.noiseAdder(np.sin(x),snr=45)[t_s:t_e] 
+refData = segnoise.add_noise(np.sin(x),snr=45)[t_s:t_e] 
 
 #Plot the reference
 plt.plot(x[t_s:t_e], refData,linewidth=4,alpha=0.5,label='Reference')#doctest: +SKIP
@@ -33,8 +33,8 @@ S = seg1d.Segmenter()
 #set scaling parameters
 S.minW,S.maxW,S.step = 90, 110, 1
 #Set target and reference data
-S.setTarget(targ)
-S.addReference(refData)
+S.set_target(targ)
+S.add_reference(refData)
 #call the segmentation algorithm
 segments = S.segment()
 print(segments)

@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Getting Started &mdash; seg1d 0.0.1 documentation</title>
+    <title>Getting Started &mdash; seg1d 0.0.13 documentation</title>
     
     <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.1',
+        VERSION:     '0.0.13',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false
@@ -27,8 +27,8 @@
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" >
     <link rel="search" title="Search" href="search.html" >
-    <link rel="top" title="seg1d 0.0.1 documentation" href="index.html" >
-    <link rel="next" title="API Usage" href="api.html" >
+    <link rel="top" title="seg1d 0.0.13 documentation" href="index.html" >
+    <link rel="next" title="API Examples" href="api.html" >
     <link rel="prev" title="Installation" href="install.html" > 
   </head>
   <body>
@@ -50,7 +50,7 @@
         <li class="active"><a href="http://github.com/cadop/seg1d">Github</a></li>
         <li class="active"><a href="http://">Paper</a></li>
 	
-        <li class="active"><a href="index.html">seg1d 0.0.1 documentation</a></li>
+        <li class="active"><a href="index.html">seg1d 0.0.13 documentation</a></li>
 	 
     </ul>
               
@@ -61,7 +61,7 @@
            accesskey="I">index</a>
       </li>
       <li class="active">
-        <a href="api.html" title="API Usage"
+        <a href="api.html" title="API Examples"
            accesskey="N">next</a>
       </li>
       <li class="active">
@@ -100,7 +100,7 @@ the data related parameters such as scaling and step size for the matching proce
 <span class="gp">&gt;&gt;&gt; </span><span class="n">maxW</span> <span class="o">=</span> <span class="mi">150</span> <span class="c1">#maximum percent to scale up reference data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">step</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#step to use for correlating reference to target data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#call the segmentation algorithm</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">segmentData</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">minW</span><span class="p">,</span><span class="n">maxW</span><span class="p">,</span><span class="n">step</span><span class="p">)</span> <span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">7</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">segment_data</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">minW</span><span class="p">,</span><span class="n">maxW</span><span class="p">,</span><span class="n">step</span><span class="p">)</span> <span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">7</span> <span class="p">)</span>
 <span class="go">array([[207.       , 240.       ,   0.9124224],</span>
 <span class="go">       [342.       , 381.       ,   0.8801901],</span>
 <span class="go">       [ 72.       , 112.       ,   0.8776795]])</span>
@@ -116,16 +116,16 @@ the data related parameters such as scaling and step size for the matching proce
 </pre></div>
 </div>
 <p>Data can be constructed as a numpy array</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#create an array of data</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># create an array of data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#get an array of data from a sin function </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># get an array of data from a sin function </span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">targ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To use the basic method interface, the data must be labeled</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#define a segment within the sine wave to use as reference</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># define a segment within the sine wave to use as reference</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t_s</span><span class="p">,</span><span class="n">t_e</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span><span class="mi">400</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#cut a segment out to use as a reference data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># cut a segment out to use as a reference data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">refData</span> <span class="o">=</span> <span class="p">[</span> <span class="p">{</span> <span class="s1">&#39;0&#39;</span> <span class="p">:</span> <span class="n">targ</span><span class="p">[</span><span class="n">t_s</span><span class="p">:</span><span class="n">t_e</span><span class="p">]</span> <span class="p">}</span> <span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">targData</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;0&#39;</span> <span class="p">:</span> <span class="n">targ</span><span class="p">}</span> 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">refWeights</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;0&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
@@ -136,7 +136,7 @@ the data related parameters such as scaling and step size for the matching proce
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sizeStep</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#step to use for correlating reference to target data</span>
 <span class="gp">&gt;&gt;&gt; </span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#call the segmentation algorithm</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">segments</span> <span class="o">=</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">segmentData</span><span class="p">(</span><span class="n">refData</span><span class="p">,</span><span class="n">targData</span><span class="p">,</span><span class="n">refWeights</span><span class="p">,</span><span class="n">minWin</span><span class="p">,</span><span class="n">maxWin</span><span class="p">,</span><span class="n">sizeStep</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">segments</span> <span class="o">=</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">segment_data</span><span class="p">(</span><span class="n">refData</span><span class="p">,</span><span class="n">targData</span><span class="p">,</span><span class="n">refWeights</span><span class="p">,</span><span class="n">minWin</span><span class="p">,</span><span class="n">maxWin</span><span class="p">,</span><span class="n">sizeStep</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
 <span class="go">array([[2.000000e+02, 4.000000e+02, 1.000000e+00],</span>
 <span class="go">       [1.200000e+03, 1.398000e+03, 9.999999e-01]])</span>
@@ -144,12 +144,12 @@ the data related parameters such as scaling and step size for the matching proce
 </div>
 <p>Using matplotlib we can visualize the results</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> 
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#plot the full sine wave</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot the full sine wave</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">targ</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Target&#39;</span><span class="p">)</span> 
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#plot the original reference segment</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot the original reference segment</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">t_s</span><span class="p">:</span><span class="n">t_e</span><span class="p">],</span> <span class="n">targ</span><span class="p">[</span><span class="n">t_s</span><span class="p">:</span><span class="n">t_e</span><span class="p">],</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Reference&#39;</span><span class="p">)</span> 
 <span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#plot all segments found</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot all segments found</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">s</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="n">segments</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">],</span> <span class="n">targ</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">],</span><span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Segment&#39;</span><span class="p">)</span> 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span> 
@@ -163,7 +163,7 @@ the data related parameters such as scaling and step size for the matching proce
 </div>
 <div class="section" id="gauss">
 <h2>Gauss<a class="headerlink" href="#gauss" title="Permalink to this headline">¶</a></h2>
-<p>In this example a gauss signal is used to show segmentation on the varying shape of different amplitude.
+<p>In this example a Gaussian pulse is used to show segmentation on the varying shape of different amplitude.
 As the center arc is given as reference, the multiple extending arcs are found as well. Through
 the output of the segments, the correlation values can be seen to decrease, although still
 clustered within the group.</p>
@@ -173,15 +173,15 @@ clustered within the group.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">signal</span> 
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#create an array of data</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># create an array of data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#get an array of data from a sawtooth function </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># get an array of data from a Gaussian pulse </span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">targ</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">gausspulse</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#define a segment within the sine wave to use as reference</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># define a segment within the sine wave to use as reference</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t_s</span><span class="p">,</span><span class="n">t_e</span>    <span class="o">=</span> <span class="mi">950</span><span class="p">,</span><span class="mi">1050</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#cut a segment out to use as a reference data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># cut a segment out to use as a reference data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">refData</span>    <span class="o">=</span> <span class="p">[</span> <span class="p">{</span> <span class="s1">&#39;gauss&#39;</span> <span class="p">:</span> <span class="n">targ</span><span class="p">[</span><span class="n">t_s</span><span class="p">:</span><span class="n">t_e</span><span class="p">]</span> <span class="p">}</span> <span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">targData</span>   <span class="o">=</span>   <span class="p">{</span> <span class="s1">&#39;gauss&#39;</span> <span class="p">:</span> <span class="n">targ</span> <span class="p">}</span> 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">refWeights</span> <span class="o">=</span>   <span class="p">{</span> <span class="s1">&#39;gauss&#39;</span> <span class="p">:</span> <span class="mi">1</span> <span class="p">}</span>
@@ -193,8 +193,8 @@ clustered within the group.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sizeStep</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#step to use for correlating reference to target data</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#call the segmentation algorithm</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">segments</span> <span class="o">=</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">segmentData</span><span class="p">(</span><span class="n">refData</span><span class="p">,</span><span class="n">targData</span><span class="p">,</span><span class="n">refWeights</span><span class="p">,</span><span class="n">minWin</span><span class="p">,</span><span class="n">maxWin</span><span class="p">,</span><span class="n">sizeStep</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># call the segmentation algorithm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">segments</span> <span class="o">=</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">segment_data</span><span class="p">(</span><span class="n">refData</span><span class="p">,</span><span class="n">targData</span><span class="p">,</span><span class="n">refWeights</span><span class="p">,</span><span class="n">minWin</span><span class="p">,</span><span class="n">maxWin</span><span class="p">,</span><span class="n">sizeStep</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span><span class="n">decimals</span><span class="o">=</span><span class="mi">7</span><span class="p">))</span>
 <span class="go">[[9.500000e+02 1.050000e+03 1.000000e+00]</span>
 <span class="go"> [7.550000e+02 8.540000e+02 9.867665e-01]</span>
@@ -208,11 +208,11 @@ clustered within the group.</p>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span> 
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#plot the full sine wave</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot the full pulse</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">targ</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Target&#39;</span><span class="p">)</span> 
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#plot the original reference segment</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot the original reference segment</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">t_s</span><span class="p">:</span><span class="n">t_e</span><span class="p">],</span> <span class="n">targ</span><span class="p">[</span><span class="n">t_s</span><span class="p">:</span><span class="n">t_e</span><span class="p">],</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Reference&#39;</span><span class="p">)</span> 
-<span class="gp">&gt;&gt;&gt; </span><span class="c1">#plot all segments found</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot all segments found</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">s</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="n">segments</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">],</span> <span class="n">targ</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">],</span><span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">],</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Segments&#39;</span><span class="p">)</span> 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span> 
@@ -247,7 +247,7 @@ clustered within the group.</p>
                         title="previous chapter">Installation</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="api.html"
-                        title="next chapter">API Usage</a></p>
+                        title="next chapter">API Examples</a></p>
 
         </div>
       </div>

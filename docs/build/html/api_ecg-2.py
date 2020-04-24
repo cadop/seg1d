@@ -3,5 +3,5 @@
 
 
 plt.figure(figsize=(15,3))  # doctest: +SKIP
-plt.plot(S.masked_t.T)  # doctest: +SKIP
+plt.plot(s.masked_t.T)  # doctest: +SKIP
 plt.show()  # doctest: +SKIP

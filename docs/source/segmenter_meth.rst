@@ -8,10 +8,10 @@ These methods are used to handle data and run the segmentation process.
 .. autosummary::
    :toctree: generated/
 
-    setTarget
-    addReference
-    clearReference
-    makeSegments
+    set_target
+    add_reference
+    clear_reference
+    target_segments
     segment
 
 

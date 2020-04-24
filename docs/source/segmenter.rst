@@ -13,8 +13,8 @@ Segmenter Class
 .. autosummary::
 	:toctree: generated/
 		Segmenter.clusters
-		Segmenter.featC
+		Segmenter.corrs
 		Segmenter.groups
-		Segmenter.meanC
+		Segmenter.combined
 		Segmenter.peaks
 		Segmenter.masked_t

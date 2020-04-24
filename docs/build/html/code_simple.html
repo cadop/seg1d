@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Simple Interface &mdash; seg1d 0.0.1 documentation</title>
+    <title>Simple Interface &mdash; seg1d 0.0.13 documentation</title>
     
     <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.1',
+        VERSION:     '0.0.13',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false
@@ -27,7 +27,7 @@
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" >
     <link rel="search" title="Search" href="search.html" >
-    <link rel="top" title="seg1d 0.0.1 documentation" href="index.html" >
+    <link rel="top" title="seg1d 0.0.13 documentation" href="index.html" >
     <link rel="up" title="Code Reference" href="code.html" >
     <link rel="next" title="Segmenter Class" href="segmenter.html" >
     <link rel="prev" title="Code Reference" href="code.html" > 
@@ -51,7 +51,7 @@
         <li class="active"><a href="http://github.com/cadop/seg1d">Github</a></li>
         <li class="active"><a href="http://">Paper</a></li>
 	
-        <li class="active"><a href="index.html">seg1d 0.0.1 documentation</a></li>
+        <li class="active"><a href="index.html">seg1d 0.0.13 documentation</a></li>
 	
           <li class="active"><a href="code.html" accesskey="U">Code Reference</a></li> 
     </ul>
@@ -87,7 +87,7 @@
 <h1>Simple Interface<a class="headerlink" href="#simple-interface" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt>
-<code class="descclassname">seg1d.</code><code class="descname">segmentData</code><span class="sig-paren">(</span><em>r</em>, <em>t</em>, <em>w</em>, <em>minS</em>, <em>maxS</em>, <em>step</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L611-L683"><span class="viewcode-link">[source]</span></a></dt>
+<code class="descclassname">seg1d.</code><code class="descname">segment_data</code><span class="sig-paren">(</span><em>r</em>, <em>t</em>, <em>w</em>, <em>minS</em>, <em>maxS</em>, <em>step</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L611-L683"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Segmentation manager for interfacing with Segmenter class</p>
 <p>Find segments of a reference dataset in a target dataset using
 a rolling correlation of <em>n</em> number of reference examples with
@@ -150,7 +150,7 @@ of the reference data and index stepping to use in rolling correlation</p>
 </pre></div>
 </div>
 <p>Finally we call the segmentation algorithm</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seg1d</span><span class="o">.</span><span class="n">segmentData</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">minW</span><span class="p">,</span><span class="n">maxW</span><span class="p">,</span><span class="n">step</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seg1d</span><span class="o">.</span><span class="n">segment_data</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">minW</span><span class="p">,</span><span class="n">maxW</span><span class="p">,</span><span class="n">step</span><span class="p">)</span>
 <span class="go">[[207, 240, 0.9124223704844657], [342, 381, 0.880190111545897], [72, 112, 0.8776795468035664]]</span>
 </pre></div>
 </div>

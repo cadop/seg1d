@@ -25,7 +25,7 @@
     >>> sizeStep = 1 #step to use for correlating reference to target data
 
     >>> #call the segmentation algorithm
-    >>> segments = seg1d.segmentData(refData,targData,refWeights,minWin,maxWin,sizeStep)
+    >>> segments = seg1d.segment_data(refData,targData,refWeights,minWin,maxWin,sizeStep)
     >>> print(np.around(segments,decimals=7))
     [[9.500000e+02 1.050000e+03 1.000000e+00]
      [7.550000e+02 8.540000e+02 9.867665e-01]
@@ -73,7 +73,7 @@ maxWin   = 105 #maximum percent to scale up reference data
 sizeStep = 1 #step to use for correlating reference to target data
 
 #call the segmentation algorithm
-segments = seg1d.segmentData(refData,targData,refWeights,minWin,maxWin,sizeStep)
+segments = seg1d.segment_data(refData,targData,refWeights,minWin,maxWin,sizeStep)
 print(np.around(segments,decimals=7))
 
 plt.figure(figsize=(15,4))

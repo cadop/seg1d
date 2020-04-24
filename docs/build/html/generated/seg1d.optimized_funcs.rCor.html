@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>seg1d.optimized_funcs.rCor &mdash; seg1d 0.0.1 documentation</title>
+    <title>seg1d.optimized_funcs.rcor &mdash; seg1d 0.0.13 documentation</title>
     
     <link rel="stylesheet" type="text/css" href="../_static/css/spc-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../_static/css/spc-extend.css">
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.0.1',
+        VERSION:     '0.0.13',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false
@@ -27,9 +27,9 @@
     <script type="text/javascript" src="../_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" >
     <link rel="search" title="Search" href="../search.html" >
-    <link rel="top" title="seg1d 0.0.1 documentation" href="../index.html" >
+    <link rel="top" title="seg1d 0.0.13 documentation" href="../index.html" >
     <link rel="up" title="Algorithm Methods" href="../routines.html" >
-    <link rel="next" title="seg1d.optimized_funcs.vCor" href="seg1d.optimized_funcs.vCor.html" >
+    <link rel="next" title="seg1d.optimized_funcs.vcor" href="seg1d.optimized_funcs.vcor.html" >
     <link rel="prev" title="seg1d.algorithm.resample" href="seg1d.algorithm.resample.html" > 
   </head>
   <body>
@@ -51,7 +51,7 @@
         <li class="active"><a href="http://github.com/cadop/seg1d">Github</a></li>
         <li class="active"><a href="http://">Paper</a></li>
 	
-        <li class="active"><a href="../index.html">seg1d 0.0.1 documentation</a></li>
+        <li class="active"><a href="../index.html">seg1d 0.0.13 documentation</a></li>
 	
           <li class="active"><a href="../code.html" >Code Reference</a></li>
           <li class="active"><a href="../routines.html" accesskey="U">Algorithm Methods</a></li> 
@@ -64,7 +64,7 @@
            accesskey="I">index</a>
       </li>
       <li class="active">
-        <a href="seg1d.optimized_funcs.vCor.html" title="seg1d.optimized_funcs.vCor"
+        <a href="seg1d.optimized_funcs.vcor.html" title="seg1d.optimized_funcs.vcor"
            accesskey="N">next</a>
       </li>
       <li class="active">
@@ -85,10 +85,10 @@
           <div class="body" id="spc-section-body">
             
   <div class="section" id="seg1d-optimized-funcs-rcor">
-<h1>seg1d.optimized_funcs.rCor<a class="headerlink" href="#seg1d-optimized-funcs-rcor" title="Permalink to this headline">¶</a></h1>
+<h1>seg1d.optimized_funcs.rcor<a class="headerlink" href="#seg1d-optimized-funcs-rcor" title="Permalink to this headline">¶</a></h1>
 <dl class="attribute">
-<dt id="seg1d.optimized_funcs.rCor">
-<code class="descclassname">optimized_funcs.</code><code class="descname">rCor</code><span class="sig-paren">(</span><em>x</em>, <em>Y</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/optimized_funcs.py#L12-L67"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.optimized_funcs.rCor" title="Permalink to this definition">¶</a></dt>
+<dt id="seg1d.optimized_funcs.rcor">
+<code class="descclassname">optimized_funcs.</code><code class="descname">rcor</code><span class="sig-paren">(</span><em>x</em>, <em>Y</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/optimized_funcs.py#L12-L67"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.optimized_funcs.rcor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Correlation of multiple arrays to a single array using a rolling
 window correlation.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -124,7 +124,7 @@ window correlation.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span> <span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">optF</span><span class="o">.</span><span class="n">rCor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">optF</span><span class="o">.</span><span class="n">rcor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 <span class="go">array([[-0.50743663, -0.66692675, -0.78849873, -0.87803067, -0.93682968,</span>
 <span class="go">        -0.96013818],</span>
 <span class="go">       [ 0.83362263,  0.91097751,  0.94663428,  0.94663428,  0.91097751,</span>
@@ -147,8 +147,8 @@ window correlation.</p>
   <p class="topless"><a href="seg1d.algorithm.resample.html"
                         title="previous chapter">seg1d.algorithm.resample</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="seg1d.optimized_funcs.vCor.html"
-                        title="next chapter">seg1d.optimized_funcs.vCor</a></p>
+  <p class="topless"><a href="seg1d.optimized_funcs.vcor.html"
+                        title="next chapter">seg1d.optimized_funcs.vcor</a></p>
 
         </div>
       </div>

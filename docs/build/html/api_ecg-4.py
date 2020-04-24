@@ -1,9 +1,9 @@
 #remove first part of data (contains reference)
-S.setTarget(ecg[1500:3500])
-S.nC = 2
-S.cMin = 0.7
+s.set_target(ecg[1500:3500])
+s.nC = 2
+s.cMin = 0.7
 
-segments = S.segment()
+segments = s.segment()
 
 print(np.around(segments,decimals=7))
 # [[7.350000e+02 8.540000e+02 9.462850e-01]
@@ -17,7 +17,7 @@ print(np.around(segments,decimals=7))
 # [1.440000e+03 1.559000e+03 8.646669e-01]
 # [1.730000e+02 3.060000e+02 8.029426e-01]]
 
-res = S.masked_t
+res = s.masked_t
 
 plt.figure(figsize=(15,3))  # doctest: +SKIP
 plt.plot(res.T)  # doctest: +SKIP

@@ -8,11 +8,11 @@ Algorithm Methods
 .. autosummary::
    :toctree: generated/
 
-   rollingWinCorr
-   avrCorrelate
-   uniqSegments
-   getPeaks
-   clusterSegments
+   rolling_corr
+   combine_corr
+   uniques
+   get_peaks
+   cluster
    resample
 
 
@@ -23,5 +23,5 @@ Algorithm Methods
 .. autosummary::
    :toctree: generated/
 
-   rCor
-   vCor
+   rcor
+   vcor
