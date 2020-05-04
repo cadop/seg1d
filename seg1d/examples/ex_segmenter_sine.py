@@ -10,7 +10,7 @@ An example of instancing the Segmenter class to use the convenience methods on a
     Then we generate some data
 
     >>> x = np.linspace(-np.pi*2, np.pi*2, 2000) #create an array of data
-    >>> targ = np.sin(x)  # target data from a sin function 
+    >>> targ = np.sin(x)  # target data from a sin function
     >>> t_s,t_e = 200,400 # define a sub-series
     
     To assign the data to the Segmenter, first we create an instance of it and then
@@ -34,14 +34,21 @@ An example of instancing the Segmenter class to use the convenience methods on a
     >>> plt.plot(x[t_s:t_e], targ[t_s:t_e],linewidth=6,alpha=0.7,label='Reference') #doctest: +SKIP
     >>>
     >>> #plot all segments found
+    >>> seg_num = 1
     >>> for s,e,c in segments:
-    ...     plt.plot(x[s:e], targ[s:e],dashes=[1,1],linewidth=4,alpha=0.8,label='Segment') #doctest: +SKIP
+    ...     plt.plot(x[s:e], targ[s:e],dashes=[1,1],linewidth=4,alpha=0.8, #doctest: +SKIP
+    ...     label='Segment {}'.format(seg_num)) #doctest: +SKIP
+    ...     seg_num += 1 #doctest: +SKIP
+    >>> plt.xlabel('Angle [rad]') #doctest: +SKIP
+    >>> plt.ylabel('sin(x)') #doctest: +SKIP
     >>> plt.legend() #doctest: +SKIP
+    >>> plt.tight_layout() #doctest: +SKIP
     >>> plt.show() #doctest: +SKIP
 
 '''
 
-if __name__ == '__main__':
+
+def run():
         
     import seg1d
     import numpy as np
@@ -73,7 +80,17 @@ if __name__ == '__main__':
     # plot the original reference segment
     plt.plot(x[t_s:t_e], targ[t_s:t_e], linewidth=6, alpha=0.7, label='Reference')
     # plot all segments found
+    seg_num = 1
     for s, e, c in segments:
-        plt.plot(x[s:e], targ[s:e],dashes=[1,1],linewidth=4,alpha=0.8,label='Segment')
+        plt.plot(x[s:e], targ[s:e], dashes=[1, 1], linewidth=4, alpha=0.8,
+                 label='Segment {}'.format(seg_num))
+        seg_num += 1
+    plt.xlabel('Angle [rad]')
+    plt.ylabel('sin(x)')
     plt.legend()
+    plt.tight_layout()
     plt.show()
+
+
+if __name__ == '__main__':
+    run()

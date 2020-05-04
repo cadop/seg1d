@@ -43,15 +43,21 @@ Sample using sine wave
     >>> plt.plot(x[t_s:t_e], targ[t_s:t_e],linewidth=8,alpha=0.7,label='Reference') #doctest: +SKIP
     >>>
     >>> # plot all segments found
+    >>> seg_num = 1
     >>> for s,e,c in segments:
-    ...     plt.plot(x[s:e], targ[s:e],dashes=[1,1],linewidth=4,alpha=0.8,label='Segment') #doctest: +SKIP
+    ...     plt.plot(x[s:e], targ[s:e],dashes=[1,1],linewidth=4,alpha=0.8, #doctest: +SKIP
+    ...     label='Segment {}'.format(seg_num)) #doctest: +SKIP
+    ...     seg_num += 1 #doctest: +SKIP
+    >>> plt.xlabel('Angle [rad]') #doctest: +SKIP
+    >>> plt.ylabel('sin(x)') #doctest: +SKIP
     >>> plt.legend() #doctest: +SKIP
+    >>> plt.tight_layout() #doctest: +SKIP
     >>> plt.show() #doctest: +SKIP
 
 '''
 
 
-if __name__ == "__main__":
+def run():
 
     import seg1d
     import numpy as np
@@ -84,8 +90,15 @@ if __name__ == "__main__":
     # plot the original reference segment
     plt.plot(x[t_s:t_e], targ[t_s:t_e],linewidth=6,alpha=0.7,label='Reference')
     # plot all segments found
+    seg_num = 1
     for s,e,c in segments:
-        plt.plot(x[s:e], targ[s:e],dashes=[1,1],linewidth=4,alpha=0.8,label='Segment')
+        plt.plot(x[s:e], targ[s:e], dashes=[1, 1], linewidth=4, alpha=0.8,
+                 label='Segment {}'.format(seg_num))
+    plt.xlabel('Angle [rad]')
+    plt.ylabel('sin(x)')
     plt.legend()
+    plt.tight_layout()
     plt.show()
 
+if __name__ == "__main__":
+    run()

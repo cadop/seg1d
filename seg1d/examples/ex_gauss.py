@@ -43,17 +43,18 @@
     >>> # plot the original reference segment
     >>> plt.plot(x[t_s:t_e], targ[t_s:t_e],linewidth=8,alpha=0.5,label='Reference') # doctest: +SKIP
     >>> # plot all segments found
+    >>> seg_num = 1
     >>> for s,e,c in segments:
-    ...     plt.plot(x[s:e], targ[s:e],dashes=[0.5,0.5],linewidth=4,alpha=0.8,label='Segments') # doctest: +SKIP
+    ...     plt.plot(x[s:e], targ[s:e],dashes=[0.5,0.5],linewidth=4,alpha=0.8, #doctest: +SKIP
+    ...     label='Segment {}'.format(seg_num)) #doctest: +SKIP
+    ...     seg_num += 1 #doctest: +SKIP
     >>> plt.legend() # doctest: +SKIP
     >>> plt.show() # doctest: +SKIP
 
 '''
 
 
-
-if __name__ == "__main__":
-
+def run():
         
     import seg1d 
     import numpy as np
@@ -87,8 +88,13 @@ if __name__ == "__main__":
     # plot the original reference segment
     plt.plot(x[t_s:t_e], targ[t_s:t_e], linewidth=8, alpha=0.5, label='Reference')
     # plot all segments found
+    seg_num = 1
     for s, e, c in segments:
-        plt.plot(x[s:e], targ[s:e],dashes=[0.5,0.5],linewidth=4,alpha=0.8,label='Segments')
+        plt.plot(x[s:e], targ[s:e],dashes=[0.5,0.5],linewidth=4,alpha=0.8,
+                 label='Segment {}'.format(seg_num))
     plt.legend()
     plt.show()
 
+
+if __name__ == "__main__":
+    run()
