@@ -9,6 +9,7 @@ seg1d is an open-source Python package for the automated segmentation of one-dim
 
 ![seg1d](https://raw.githubusercontent.com/cadop/seg1d/master/docs/build/plot_directive/api_basic-1.png)
 
+Example of the segmentation algorithm using a portion of a sine wave. The initial reference segment is found, along with any additional segments. 
 
 ### Documentation
 
