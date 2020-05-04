@@ -50,40 +50,45 @@
 
 '''
 
-import seg1d 
-import numpy as np
-import matplotlib.pylab as plt
-import scipy.signal as signal 
 
-# create an array of data
-x = np.linspace(-1, 1, 2000)
-# get an array of data from a Gaussian pulse
-targ = signal.gausspulse(x, fc=5)
 
-# define a segment within the pulse to use as reference
-t_s, t_e    = 950, 1050
-# cut a segment out to use as a reference data
-refData    = [{'gauss' : targ[t_s:t_e]}]
-targData   =  {'gauss' : targ} 
-refWeights =  {'gauss' : 1}
+if __name__ == "__main__":
 
-### define some test parameters
-minWin   = 98  # minimum percent to scale down reference data
-maxWin   = 105 # maximum percent to scale up reference data
-sizeStep = 1   # step to use for correlating reference to target data
+        
+    import seg1d 
+    import numpy as np
+    import matplotlib.pylab as plt
+    import scipy.signal as signal 
 
-# call the segmentation algorithm
-segments = seg1d.segment_data(refData,targData,refWeights,minWin,maxWin,sizeStep)
-print(np.around(segments, decimals=7))
+    # create an array of data
+    x = np.linspace(-1, 1, 2000)
+    # get an array of data from a Gaussian pulse
+    targ = signal.gausspulse(x, fc=5)
 
-plt.figure(figsize=(15, 4))
-# plot the full pulse
-plt.plot(x, targ, linewidth=6, alpha=0.2, label='Target')
-# plot the original reference segment
-plt.plot(x[t_s:t_e], targ[t_s:t_e], linewidth=8, alpha=0.5, label='Reference')
-# plot all segments found
-for s, e, c in segments:
-    plt.plot(x[s:e], targ[s:e],dashes=[0.5,0.5],linewidth=4,alpha=0.8,label='Segments')
-plt.legend()
-plt.show()
+    # define a segment within the pulse to use as reference
+    t_s, t_e    = 950, 1050
+    # cut a segment out to use as a reference data
+    refData    = [{'gauss' : targ[t_s:t_e]}]
+    targData   =  {'gauss' : targ} 
+    refWeights =  {'gauss' : 1}
+
+    ### define some test parameters
+    minWin   = 98  # minimum percent to scale down reference data
+    maxWin   = 105 # maximum percent to scale up reference data
+    sizeStep = 1   # step to use for correlating reference to target data
+
+    # call the segmentation algorithm
+    segments = seg1d.segment_data(refData,targData,refWeights,minWin,maxWin,sizeStep)
+    print(np.around(segments, decimals=7))
+
+    plt.figure(figsize=(15, 4))
+    # plot the full pulse
+    plt.plot(x, targ, linewidth=6, alpha=0.2, label='Target')
+    # plot the original reference segment
+    plt.plot(x[t_s:t_e], targ[t_s:t_e], linewidth=8, alpha=0.5, label='Reference')
+    # plot all segments found
+    for s, e, c in segments:
+        plt.plot(x[s:e], targ[s:e],dashes=[0.5,0.5],linewidth=4,alpha=0.8,label='Segments')
+    plt.legend()
+    plt.show()
 
