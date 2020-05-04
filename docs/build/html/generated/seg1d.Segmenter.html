@@ -88,7 +88,7 @@
 <h1>seg1d.Segmenter<a class="headerlink" href="#seg1d-segmenter" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="seg1d.Segmenter">
-<em class="property">class </em><code class="descclassname">seg1d.</code><code class="descname">Segmenter</code><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L15-L608"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">seg1d.</code><code class="descname">Segmenter</code><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L15-L611"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Segmentation class that exposes all algorithm parameters and attributes for
 advanced access and tuning of segmentation.</p>
 <p>Additional convenience methods for adding reference and target data as
@@ -199,9 +199,6 @@ using sample data included with this package.</p>
 <tr class="row-odd"><td><a class="reference internal" href="seg1d.Segmenter.set_target.html#seg1d.Segmenter.set_target" title="seg1d.Segmenter.set_target"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_target</span></code></a>(t[,&nbsp;copy])</td>
 <td>Sets the target data by overiding any existing target.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="seg1d.Segmenter.target_segments.html#seg1d.Segmenter.target_segments" title="seg1d.Segmenter.target_segments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">target_segments</span></code></a>()</td>
-<td>Returns an array of segmented target data</td>
-</tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
@@ -223,11 +220,14 @@ using sample data included with this package.</p>
 <tr class="row-even"><td><a class="reference internal" href="seg1d.Segmenter.groups.html#seg1d.Segmenter.groups" title="seg1d.Segmenter.groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">groups</span></code></a></td>
 <td>Possible segments through parsing overlapping segment locations defined by <a class="reference internal" href="seg1d.algorithm.uniques.html#seg1d.algorithm.uniques" title="seg1d.algorithm.uniques"><code class="xref py py-func docutils literal notranslate"><span class="pre">algorithm.uniques()</span></code></a></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="seg1d.Segmenter.masked_t.html#seg1d.Segmenter.masked_t" title="seg1d.Segmenter.masked_t"><code class="xref py py-obj docutils literal notranslate"><span class="pre">masked_t</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="seg1d.Segmenter.peaks.html#seg1d.Segmenter.peaks" title="seg1d.Segmenter.peaks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">peaks</span></code></a></td>
+<td>Peaks of the correlations created by <a class="reference internal" href="seg1d.algorithm.get_peaks.html#seg1d.algorithm.get_peaks" title="seg1d.algorithm.get_peaks"><code class="xref py py-func docutils literal notranslate"><span class="pre">algorithm.get_peaks()</span></code></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="seg1d.Segmenter.t_masked.html#seg1d.Segmenter.t_masked" title="seg1d.Segmenter.t_masked"><code class="xref py py-obj docutils literal notranslate"><span class="pre">t_masked</span></code></a></td>
 <td>The target data as ndarray masked with the non-defined segments as NaNs.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="seg1d.Segmenter.peaks.html#seg1d.Segmenter.peaks" title="seg1d.Segmenter.peaks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">peaks</span></code></a></td>
-<td>Peaks of the correlations created by <a class="reference internal" href="seg1d.algorithm.get_peaks.html#seg1d.algorithm.get_peaks" title="seg1d.algorithm.get_peaks"><code class="xref py py-func docutils literal notranslate"><span class="pre">algorithm.get_peaks()</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="seg1d.Segmenter.t_segments.html#seg1d.Segmenter.t_segments" title="seg1d.Segmenter.t_segments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">t_segments</span></code></a></td>
+<td>Returns an array of segmented target data</td>
 </tr>
 </tbody>
 </table>

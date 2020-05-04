@@ -17,4 +17,5 @@ Segmenter Class
 		Segmenter.groups
 		Segmenter.combined
 		Segmenter.peaks
-		Segmenter.masked_t
+		Segmenter.t_masked
+		Segmenter.t_segments

@@ -13,7 +13,7 @@ print(np.around(segments,decimals=7))
 # [ 72.        113.          0.9632458]
 # [139.        180.          0.9624551]]
 
-plt_t = s.masked_t #get a NaN masked array of the target data
+plt_t = s.t_masked #get a NaN masked array of the target data
 
 # plot masked target
 plt.figure(figsize=(15,4)) # doctest: +SKIP

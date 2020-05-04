@@ -18,7 +18,6 @@ seg1d.Segmenter
       ~Segmenter.clear_reference
       ~Segmenter.segment
       ~Segmenter.set_target
-      ~Segmenter.target_segments
    
    
 
@@ -32,7 +31,8 @@ seg1d.Segmenter
       ~Segmenter.combined
       ~Segmenter.corrs
       ~Segmenter.groups
-      ~Segmenter.masked_t
       ~Segmenter.peaks
+      ~Segmenter.t_masked
+      ~Segmenter.t_segments
    
    

@@ -17,7 +17,7 @@ print(np.around(segments,decimals=7))
 # [1.440000e+03 1.559000e+03 8.646669e-01]
 # [1.730000e+02 3.060000e+02 8.029426e-01]]
 
-res = s.masked_t
+res = s.t_masked
 
 plt.figure(figsize=(15,3))  # doctest: +SKIP
 plt.plot(res.T)  # doctest: +SKIP
