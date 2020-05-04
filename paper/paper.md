@@ -1,5 +1,5 @@
 ---
-title: 'seg1d: A Python package for 1-dimensional data segmentation'
+title: 'seg1d: A Python package for Automated segmentation of one-dimensional (1D) data'
 tags:
   - Python
   - biomechanics
