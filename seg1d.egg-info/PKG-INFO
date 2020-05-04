@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: seg1d
-Version: 0.0.13
+Version: 0.0.16
 Summary: Automated one-dimensional subsequence segmentation
 Home-page: https://github.com/cadop/seg1d
 Author: Mathew Schwartz
@@ -8,27 +8,28 @@ Author-email: umcadop@gmail.com
 License: UNKNOWN
 Description: # seg1d
         
-        Automated one-dimensional subsequence segmentation
+        Automated segmentation of one-dimensional (1D) data
         
         
         ## Overview
         
-        seg1d is an open-source python package for the automated segmentation and extraction of time series data using one or more reference sequences. The segmentation process allows users to apply various methods and parameters for the process through weighted reference features in a rolling correlation size-varying window. Correlations can be averaged across the references and a peak detection algorithm finds individual segments. Non-overlapping segments are identified and a clustering algorithm groups the most similar subsequence movements within the target. The package was developed for movement sciences but should be useful to anyone interested in extracting correlated subsequences from a dataset. 
+        seg1d is an open-source Python package for the automated segmentation of one-dimensional data using one or more reference segments. The segmentation process allows users to apply various methods and parameters for the process through weighted features (i.e., additional data attributed to the same set) in a rolling correlation size-varying window of a reference(s) to a target. Correlations can be averaged across the references and a peak detection algorithm finds the most prominent segments. Non-overlapping segments are identified and a clustering algorithm groups the most similar segments within the target. The package was developed for movement sciences but should be useful to anyone interested in extracting correlated subsequences from a dataset. 
         
         ![seg1d](https://raw.githubusercontent.com/cadop/seg1d/master/docs/build/plot_directive/api_basic-1.png)
         
         
         ### Documentation
         
-        Full Documentation Available Online: https://cadop.github.io/seg1d/
+        Full documentation available online: https://cadop.github.io/seg1d/
         
         
         ### Alternatives
         
         There are existing libraries that provide clustering and similarity measures for querying subseries data. 
         
-          * https://www.cs.ucr.edu/~eamonn/UCRsuite.html (UCR Suite, "Ultrafast subsequence search under both Dynamic Time Warping (DTW) and Euclidean Distance (ED)"
-          * https://github.com/rtavenar/tslearn (tslearn, "Machine learning tools for the analysis of time series")
+          * [The UCR Suite](https://www.cs.ucr.edu/~eamonn/UCRsuite.html) (Ultrafast subsequence search under both Dynamic Time Warping (DTW) and Euclidean Distance (ED))
+        
+          * [tslearn](https://github.com/rtavenar/tslearn)(Machine learning tools for the analysis of time series)
         
         
         ## Quickstart 
@@ -66,12 +67,13 @@ Description: # seg1d
         # define scaling percentage and rolling step size
         minW, maxW, step  = 70, 150, 1 
         #call the segmentation algorithm
-        seg1d.segmentData(r,t,w,minW,maxW,step)
-        
+        a = seg1d.segmentData(r,t,w,minW,maxW,step)
+        print(a)
         # Should output an array equal to:
         # array([[207.       , 240.       ,   0.9124224],
         #        [342.       , 381.       ,   0.8801901],
         #        [ 72.       , 112.       ,   0.8776795]])
+        # where each array is of form [start index, end index, correlation]
         
         ```
         

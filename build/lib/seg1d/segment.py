@@ -136,9 +136,9 @@ class Segmenter:
 
 
     @property
-    def featC(self):
+    def corrs(self):
         '''Rolling correlation of reference and target features created by
-        :func:`algorithm.rollingWinCorr`
+        :func:`algorithm.rolling_corr`
         '''
 
         resDict = {}
@@ -155,7 +155,7 @@ class Segmenter:
 
                 # get the correlation of a reference set across the length of
                 # the target data
-                featDict[featName] = alg.rollingWinCorr(t, r, wSize, cMax=self.cMax) 
+                featDict[featName] = alg.rolling_corr(t, r, wSize, cMax=self.cMax) 
 
             # store features for this window size
             resDict[wSize] = featDict
@@ -165,37 +165,37 @@ class Segmenter:
 
     @property
     def peaks(self):
-        ''' Peaks of the correlations created by :func:`algorithm.getPeaks`
+        ''' Peaks of the correlations created by :func:`algorithm.get_peaks`
         '''
-        return alg.getPeaks(self.meanC, self.cMin, self.pD)
+        return alg.get_peaks(self.combined, self.cMin, self.pD)
 
 
     @property
-    def meanC(self):
-        ''' The averaged correlation of the rolling feautre correlation
-        and the weighting table created by :func:`algorithm.avrCorrelate`
+    def combined(self):
+        ''' The averaged correlation of the rolling feature correlation
+        and the weighting table created by :func:`algorithm.combine_corr`
         '''
-        return alg.avrCorrelate(self.featC, self.w, self.fMode, self.fScale)
+        return alg.combine_corr(self.corrs, self.w, self.fMode, self.fScale)
 
 
     @property
     def clusters(self):
         '''Segments reduced by clustering algorithm from
-        :func:`algorithm.clusterSegments`
+        :func:`algorithm.cluster`
         '''
-        return alg.clusterSegments(self.groups, segAdder=self.cAdd, nClust=self.nC)
+        return alg.cluster(self.groups, segAdder=self.cAdd, nClust=self.nC)
 
 
     @property
     def groups(self):
         ''' Possible segments through parsing overlapping segment locations
-        defined by :func:`algorithm.uniqSegments`
+        defined by :func:`algorithm.uniques`
         '''
-        return alg.uniqSegments(self.peaks, self.tLen)
+        return alg.uniques(self.peaks, self.tLen)
 
 
     @property
-    def masked_t(self):
+    def t_masked(self):
         ''' The target data as ndarray masked with the non-defined
         segments as NaNs.
 
@@ -213,7 +213,67 @@ class Segmenter:
 
         return _t
 
-    def _processParams(self):
+
+    @property
+    def t_segments(self):
+        ''' Returns an array of segmented target data
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        Segments : List[Dict[str,numpy.array]]
+            applies the segment endpoints to the given target data *t* on all
+            features.
+
+        Examples
+        --------
+        >>> import numpy as np
+        >>> import seg1d
+
+        >>> #create an array of data
+        >>> x = np.linspace(-np.pi*2, np.pi*2, 500)
+        >>> #get an array of data from a sin function
+        >>> targ = np.sin(x)
+
+        >>> #Make an instance of the segmenter
+        >>> s = seg1d.Segmenter()
+        >>> #set scaling parameters
+        >>> s.minW,s.maxW,s.step = 98, 105, 1
+        >>> #Set target and reference data
+        >>> s.set_target(targ)
+
+        >>> #define a segment within the sine wave to use as reference
+        >>> s.add_reference(targ[75:100])
+        >>> #call the segmentation algorithm
+        >>> segments = s.segment()
+        >>> np.around(segments, decimals=7)
+        array([[ 75.       , 100.       ,   1.       ],
+               [324.       , 348.       ,   0.9999992]])
+
+        >>> s.t_segments
+        [{'0': array([0.94988243, 0.94170965, 0.93293968, 0.92357809, 0.91363079,
+               0.90310412, 0.89200474, 0.88033969, 0.86811636, 0.85534252,
+               0.84202625, 0.82817601, 0.81380058, 0.79890907, 0.78351093,
+               0.76761592, 0.75123412, 0.73437593, 0.71705202, 0.6992734 ,
+               0.68105132, 0.66239735, 0.64332332, 0.62384133, 0.60396372])}, {'0': array([0.95374324, 0.94587102, 0.93739898, 0.92833248, 0.91867727,
+               0.90843947, 0.89762559, 0.88624247, 0.87429733, 0.86179776,
+               0.84875167, 0.83516734, 0.82105338, 0.80641875, 0.79127273,
+               0.77562491, 0.75948523, 0.74286391, 0.72577151, 0.70821885,
+               0.69021707, 0.67177759, 0.6529121 , 0.63363256])}]
+        '''
+
+        self.tSeg = []
+
+        for c in self.clusters:
+            self.tSeg.append({ x: y[c[0]:c[1]] for x, y in self.t.items() })
+
+        return self.tSeg
+
+
+    def _process_params(self):
         ''' Processes parameters
 
         If sizes for scaling are not set, uses min,max,step parameter.
@@ -221,7 +281,7 @@ class Segmenter:
 
         '''
 
-        self._refSize()
+        self._ref_size()
 
         if len(self.w.keys()) == 0: self.w = {x: 1 for x in self.t.keys()} 
 
@@ -230,17 +290,17 @@ class Segmenter:
 
         for _r in self.r: self.rF.update(_r.keys())
 
-        self._interpRef()
+        self._interp_ref()
 
         self.tLen = len(list(self.t.values())[0])
 
         if len(self.wSizes) == 0:
-            self._setScales()
+            self._set_scales()
 
-        self._checkCompliance()
+        self._check_compliance()
 
 
-    def _checkCompliance(self):
+    def _check_compliance(self):
         ''' Checks data formats and parameters for compliance with
         segmentation methods
         '''
@@ -252,7 +312,7 @@ class Segmenter:
         assert self.wF.issubset(self.tF), "All weights must exist in target data"
         assert self.wF.issubset(self.rF), "All weights must exist in reference data"
 
-    def _refSize(self):
+    def _ref_size(self):
         ''' Find the max length of all reference data
         '''
 
@@ -262,16 +322,16 @@ class Segmenter:
         self._maxR = a(self.r)
         self.rLen = a(self.r)
 
-    def _setScales(self):
-        ''' Sets the window scaling sizes based on the min and 
-        max percent with the step size 
+    def _set_scales(self):
+        ''' Sets the window scaling sizes based on the min and
+        max percent with the step size
         '''
 
         # define steps for data scaling based on percentage
         wScale = range(self.minW, self.maxW+1, self.step)
         self.wSizes = set([ int( self.rLen* (x/100.0) ) for x in wScale ])
 
-    def _interpRef(self):
+    def _interp_ref(self):
         ''' Resamples reference data to match the same length
         '''
 
@@ -284,7 +344,7 @@ class Segmenter:
         self.r = _r
 
 
-    def setTarget(self, t, copy=True):
+    def set_target(self, t, copy=True):
         ''' Sets the target data by overiding any existing target.
         If the target is not a dict, it will be converted to one.
 
@@ -308,7 +368,7 @@ class Segmenter:
 
         See Also
         --------
-        addReference : Add a reference item
+        add_reference : Add a reference item
 
 
         Notes
@@ -329,19 +389,19 @@ class Segmenter:
         >>> import numpy as np
         >>> import seg1d
         >>> 
-        >>> S = seg1d.Segmenter()
+        >>> s = seg1d.Segmenter()
         >>> t = np.linspace(0,1,4)
-        >>> S.setTarget(t)
-        >>> S.t
+        >>> s.set_target(t)
+        >>> s.t
         {'0': array([0.        , 0.33333333, 0.66666667, 1.        ])}
 
         Alternatively, you can pass a 2-dimensional array representing
         multiple features.
 
-        >>> S = seg1d.Segmenter()
+        >>> s = seg1d.Segmenter()
         >>> t = np.linspace(0,1,6).reshape(2,3)
-        >>> S.setTarget(t)
-        >>> S.t
+        >>> s.set_target(t)
+        >>> s.t
         {'0': array([0. , 0.2, 0.4]), '1': array([0.6, 0.8, 1. ])}
 
         '''
@@ -369,14 +429,14 @@ class Segmenter:
         else: self.t = t
 
         self.tLen = len(list( self.t.values() )[0])
-        self.tF   = set(self.t.keys())
+        self.tF = set(self.t.keys())
 
 
-    def addReference(self, r, copy=True):
+    def add_reference(self, r, copy=True):
         ''' Appends a reference containing one or more features to the existing
         reference dataset.
         If the reference is not a dict, it will be converted to one.
-        If this should be the only reference set, use ``clearReference()``
+        If this should be the only reference set, use ``clear_reference()``
         before calling this method.
 
 
@@ -396,8 +456,8 @@ class Segmenter:
 
         See Also
         --------
-        setTarget : Set the target data
-        clearReference: Clear the current reference data
+        set_target : Set the target data
+        clear_reference: Clear the current reference data
 
 
         Notes
@@ -417,10 +477,10 @@ class Segmenter:
         >>> import seg1d
         >>> import numpy as np
         >>> 
-        >>> S = seg1d.Segmenter()
+        >>> s = seg1d.Segmenter()
         >>> r = np.linspace(0,1,6).reshape(2,3)
-        >>> S.addReference( r )
-        >>> S.r
+        >>> s.add_reference( r )
+        >>> s.r
         [{'0': array([0. , 0.2, 0.4]), '1': array([0.6, 0.8, 1. ])}]
 
         Alternatively, each row of the array can be added as the same labeled
@@ -428,10 +488,10 @@ class Segmenter:
         Notice this is now an array of dictionaries containing the same
         feature label.
 
-        >>> S = seg1d.Segmenter()
+        >>> s = seg1d.Segmenter()
         >>> r = np.linspace(0,1,6).reshape(2,3)
-        >>> for _r in r: S.addReference(_r)
-        >>> S.r
+        >>> for _r in r: s.add_reference(_r)
+        >>> s.r
         [{'0': array([0. , 0.2, 0.4])}, {'0': array([0.6, 0.8, 1. ])}]
 
 
@@ -464,7 +524,7 @@ class Segmenter:
             self.rF.update(r.keys())
 
 
-    def clearReference(self):
+    def clear_reference(self):
         ''' Removes any reference data currently assigned
 
         Parameters
@@ -479,7 +539,7 @@ class Segmenter:
 
         See Also
         --------
-        addReference: Add a reference item
+        add_reference: Add a reference item
 
 
         Notes
@@ -491,12 +551,12 @@ class Segmenter:
         >>> import numpy as np
         >>> import seg1d
         >>>
-        >>> S = seg1d.Segmenter()
-        >>> S.addReference( np.linspace(0,3,3) )
-        >>> S.r
+        >>> s = seg1d.Segmenter()
+        >>> s.add_reference( np.linspace(0,3,3) )
+        >>> s.r
         [{'0': array([0. , 1.5, 3. ])}]
-        >>> S.clearReference()
-        >>> S.r
+        >>> s.clear_reference()
+        >>> s.r
         []
 
         '''
@@ -505,63 +565,6 @@ class Segmenter:
         self.rF = set()
         self.rLen = 0
         self._maxR = 0
-
-    def makeSegments(self):
-        ''' Returns an array of segmented target data
-
-        Parameters
-        ----------
-        None
-
-        Returns
-        -------
-        Segments : List[Dict[str,numpy.array]]
-            applies the segment endpoints to the given target data *t* on all
-            features.
-
-        Examples
-        --------
-        >>> import numpy as np
-        >>> import seg1d
-
-        >>> #create an array of data
-        >>> x = np.linspace(-np.pi*2, np.pi*2, 500)
-        >>> #get an array of data from a sin function
-        >>> targ = np.sin(x)
-
-        >>> #Make an instance of the segmenter
-        >>> S = seg1d.Segmenter()
-        >>> #set scaling parameters
-        >>> S.minW,S.maxW,S.step = 98, 105, 1
-        >>> #Set target and reference data
-        >>> S.setTarget(targ)
-
-        >>> #define a segment within the sine wave to use as reference
-        >>> S.addReference(targ[75:100])
-        >>> #call the segmentation algorithm
-        >>> segments = S.segment()
-        >>> np.around(segments, decimals=7)
-        array([[ 75.       , 100.       ,   1.       ],
-               [324.       , 348.       ,   0.9999992]])
-
-        >>> S.makeSegments()
-        [{'0': array([0.94988243, 0.94170965, 0.93293968, 0.92357809, 0.91363079,
-               0.90310412, 0.89200474, 0.88033969, 0.86811636, 0.85534252,
-               0.84202625, 0.82817601, 0.81380058, 0.79890907, 0.78351093,
-               0.76761592, 0.75123412, 0.73437593, 0.71705202, 0.6992734 ,
-               0.68105132, 0.66239735, 0.64332332, 0.62384133, 0.60396372])}, {'0': array([0.95374324, 0.94587102, 0.93739898, 0.92833248, 0.91867727,
-               0.90843947, 0.89762559, 0.88624247, 0.87429733, 0.86179776,
-               0.84875167, 0.83516734, 0.82105338, 0.80641875, 0.79127273,
-               0.77562491, 0.75948523, 0.74286391, 0.72577151, 0.70821885,
-               0.69021707, 0.67177759, 0.6529121 , 0.63363256])}]
-        '''
-
-        self.tSeg = []
-
-        for c in self.clusters:
-            self.tSeg.append({ x: y[c[0]:c[1]] for x, y in self.t.items() })
-
-        return self.tSeg
 
     def segment(self):
         ''' Method to run the segmentation algorithm on the current
@@ -603,12 +606,12 @@ class Segmenter:
 
         '''
 
-        self._processParams()   # generate missing parameters
+        self._process_params()   # generate missing parameters
 
         return self.clusters
 
 
-def segmentData(r, t, w, minS, maxS, step):
+def segment_data(r, t, w, minS, maxS, step):
     ''' Segmentation manager for interfacing with Segmenter class
 
     Find segments of a reference dataset in a target dataset using
@@ -662,7 +665,7 @@ def segmentData(r, t, w, minS, maxS, step):
 
     Finally we call the segmentation algorithm
 
-    >>> seg1d.segmentData(r,t,w,minW,maxW,step)
+    >>> seg1d.segment_data(r,t,w,minW,maxW,step)
     [[207, 240, 0.9124223704844657], [342, 381, 0.880190111545897], [72, 112, 0.8776795468035664]]
 
 

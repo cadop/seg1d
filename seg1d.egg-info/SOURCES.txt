@@ -3,7 +3,7 @@ README.md
 setup.cfg
 setup.py
 seg1d/__init__.py
-seg1d/_version.py
+seg1d/_about.py
 seg1d/algorithm.py
 seg1d/optimized_funcs.py
 seg1d/segment.py
@@ -25,3 +25,4 @@ seg1d/examples/ex_sine_noise.py
 seg1d/examples/ex_sine_noise_few.py
 seg1d/examples/ex_sine_scale.py
 seg1d/examples/noise.py
+seg1d/examples/test.py

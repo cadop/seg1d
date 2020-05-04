@@ -17,7 +17,7 @@ from sklearn.cluster import AgglomerativeClustering
 from . import optimized_funcs as optf
 
 
-def rollingWinCorr(x, yData, winSize, cMax=False):
+def rolling_corr(x, yData, winSize, cMax=False):
     ''' Rolling Correlation
 
     Calculates the rolling correlation coefficient over the given window sizes
@@ -55,7 +55,7 @@ def rollingWinCorr(x, yData, winSize, cMax=False):
     See Also
     --------
 
-    avrCorrelate : (takes the return of this function)
+    combine_corr : (takes the return of this function)
 
 
     Examples
@@ -69,11 +69,11 @@ def rollingWinCorr(x, yData, winSize, cMax=False):
     >>> y = np.sin( np.linspace(-np.pi*2, np.pi*2, 80) ).reshape(4,20)
 
     >>> #apply rolling correlations with 10 and 15
-    >>> alg.rollingWinCorr(x, y, 10 )
+    >>> alg.rolling_corr(x, y, 10 )
     array([-0.00766151,  0.02078156,  0.03501678,  0.04019572,  0.04211895,
             0.04262637,  0.04211895,  0.04019572,  0.03501678,  0.02078156,
            -0.00766151])
-    >>> alg.rollingWinCorr(x, y, 15 )
+    >>> alg.rolling_corr(x, y, 15 )
     array([0.03321832, 0.03972237, 0.04254858, 0.04254858, 0.03972237,
            0.03321832])
 
@@ -84,7 +84,7 @@ def rollingWinCorr(x, yData, winSize, cMax=False):
     assert x.size >= refScaled.shape[1], "Cannot correlate when reference larger than target "
 
     # get the rolling correlation between reference(s) and target
-    rCorr = optf.rCor(x, refScaled)
+    rCorr = optf.rcor(x, refScaled)
 
     # stack the correlations
     corrs = np.vstack(rCorr)
@@ -94,12 +94,12 @@ def rollingWinCorr(x, yData, winSize, cMax=False):
     else: return np.mean(corrs, axis=0)
 
 
-def avrCorrelate(x, w, method='m', scale=True):
-    ''' Average Weighted Correlation
+def combine_corr(x, w, method='m', scale=True):
+    ''' Combines Weighted Correlation
 
     Takes in the correlated data results and multiply the weighting values
     to each array of data for that feature.
-    | Averages the results of the weighted features
+    | Combines the results of the weighted features
 
 
     Parameters
@@ -110,9 +110,9 @@ def avrCorrelate(x, w, method='m', scale=True):
     w : Dict[string,float]
             ``{ feature: weight }``
 
-    method : {'w', 'm', 's'}
-        keyword to use for aggregating feature correlations (default `w`).
-        Options, w=weighted mean, m=mean, s=sum
+    method : {'m','w', 's'}
+        keyword to use for aggregating feature correlations (default `m`).
+        Options, m=mean, w=weighted mean, s=sum
 
     scale : bool, optional
         keyword argument for scaling the correlated feature before applying
@@ -128,8 +128,8 @@ def avrCorrelate(x, w, method='m', scale=True):
     See Also
     --------
 
-    rollingWinCorr : (input for this function)
-    getPeaks : (takes the return of this function)
+    rolling_corr : (input for this function)
+    get_peaks : (takes the return of this function)
 
 
     Examples
@@ -150,7 +150,7 @@ def avrCorrelate(x, w, method='m', scale=True):
     Assign some weights and find the averaged value
 
     >>> w = { 'a': 0.5, 'b': 0.9 }
-    >>> a = alg.avrCorrelate(x, w )
+    >>> a = alg.combine_corr(x, w )
     >>> for k,v in a.items(): print(k,v)
     10 [-0.14694631 -0.07296588  0.00666771  0.0857847   0.15825538  0.21846498
       0.26174865  0.28475292  0.2856955   0.26450336]
@@ -160,7 +160,7 @@ def avrCorrelate(x, w, method='m', scale=True):
     Change the weight values and see the weighted scores change
 
     >>> w = { 'a': 0.9, 'b': 0.2 }
-    >>> a = alg.avrCorrelate(x, w )
+    >>> a = alg.combine_corr(x, w )
     >>> for k,v in a.items(): print(k,v)
     10 [-0.26450336 -0.3270411  -0.36424081 -0.37322037 -0.35328408 -0.30597655
      -0.23496298 -0.14574528 -0.04523573  0.05877853]
@@ -193,7 +193,7 @@ def avrCorrelate(x, w, method='m', scale=True):
     return cDict
 
 
-def getPeaks(x, minC=0.7, dst=None):
+def get_peaks(x, minC=0.7, dst=None):
     ''' Peak Detection
 
     Find the peaks of a data array with a minimum value of a peak
@@ -227,8 +227,8 @@ def getPeaks(x, minC=0.7, dst=None):
     See Also
     --------
 
-    avrCorrelate : (input for this function)
-    uniqSegments : (takes the return of this function)
+    combine_corr : (input for this function)
+    uniques : (takes the return of this function)
 
 
     Examples
@@ -246,14 +246,14 @@ def getPeaks(x, minC=0.7, dst=None):
 
     Query the peaks in the data
 
-    >>> np.around(alg.getPeaks(x), decimals=7)
+    >>> np.around(alg.get_peaks(x), decimals=7)
     array([[10.       ,  0.9848078,  7.       ],
            [20.       ,  0.9848078,  1.       ],
            [20.       ,  0.8660254,  6.       ]])
 
     Define a minimum for the peak
 
-    >>> np.around(alg.getPeaks(x,minC = 0.9), decimals=7)
+    >>> np.around(alg.get_peaks(x,minC = 0.9), decimals=7)
     array([[10.       ,  0.9848078,  7.       ],
            [20.       ,  0.9848078,  1.       ]])
 
@@ -274,7 +274,7 @@ def getPeaks(x, minC=0.7, dst=None):
     return sortedPeaks
 
 
-def uniqSegments(sortedPeaks, srcLen):
+def uniques(sortedPeaks, srcLen):
     ''' Unique Segment Identification
 
     | Find unique segment(s) in a sequence of correlation values. 
@@ -303,8 +303,8 @@ def uniqSegments(sortedPeaks, srcLen):
     See Also
     --------
 
-    getPeaks : (input for this function)
-    clusterSegments : (takes in the return of this function)
+    get_peaks : (input for this function)
+    cluster : (takes in the return of this function)
 
     Examples
     --------
@@ -320,7 +320,7 @@ def uniqSegments(sortedPeaks, srcLen):
 
     >>> el = 50
 
-    >>> alg.uniqSegments(p,el)
+    >>> alg.uniques(p,el)
     [[7, 17, 0.9], [20, 40, 0.8], [40, 65, 0.7]]
 
     '''
@@ -355,7 +355,7 @@ def uniqSegments(sortedPeaks, srcLen):
     return segGroups
 
 
-def clusterSegments(segGroups, segAdder=0.5, nClust=2):
+def cluster(segGroups, segAdder=0.5, nClust=2):
     ''' Clustering
 
     Clusters segments based on correlation values
@@ -400,7 +400,7 @@ def clusterSegments(segGroups, segAdder=0.5, nClust=2):
     See Also
     --------
 
-    uniqSegments : (input for this function)
+    uniques : (input for this function)
 
     Examples
     --------
@@ -409,11 +409,11 @@ def clusterSegments(segGroups, segAdder=0.5, nClust=2):
     >>> import seg1d.algorithm as alg
 
     >>> x = [[7, 17, 0.90], [20, 40, 0.88], [40, 65, 0.8], [50, 65, 0.70]]
-    >>> alg.clusterSegments(x)
+    >>> alg.cluster(x)
     [[7, 17, 0.9], [20, 40, 0.88], [40, 65, 0.8], [50, 65, 0.7]]
-    >>> alg.clusterSegments(x,segAdder=None)
+    >>> alg.cluster(x,segAdder=None)
     [[7, 17, 0.9], [20, 40, 0.88], [40, 65, 0.8]]
-    >>> alg.clusterSegments(x,segAdder=0.85)
+    >>> alg.cluster(x,segAdder=0.85)
     [[7, 17, 0.9], [20, 40, 0.88], [40, 65, 0.8]]
 
     Note: This should raise the following warning:
@@ -421,9 +421,9 @@ def clusterSegments(segGroups, segAdder=0.5, nClust=2):
     UserWarning: Segment Adder value was included in final cluster.
         This may mean cluster is poorly defined or Adder is too high.
 
-    >>> alg.clusterSegments(x,nClust=3)
+    >>> alg.cluster(x,nClust=3)
     [[7, 17, 0.9], [20, 40, 0.88], [40, 65, 0.8]]
-    >>> alg.clusterSegments(x,segAdder=None,nClust=3)
+    >>> alg.cluster(x,segAdder=None,nClust=3)
     [[7, 17, 0.9], [20, 40, 0.88]]
 
 
@@ -492,7 +492,7 @@ def resample(x, s):
     See Also
     --------
 
-    clusterSegments : (input for this function)
+    cluster : (input for this function)
     resample : (takes in the return of this function)
 
 

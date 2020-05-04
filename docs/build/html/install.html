@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Installation &mdash; seg1d 0.0.13 documentation</title>
+    <title>Installation &mdash; seg1d 0.0.16 documentation</title>
     
     <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.13',
+        VERSION:     '0.0.16',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false
@@ -27,7 +27,7 @@
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" >
     <link rel="search" title="Search" href="search.html" >
-    <link rel="top" title="seg1d 0.0.13 documentation" href="index.html" >
+    <link rel="top" title="seg1d 0.0.16 documentation" href="index.html" >
     <link rel="next" title="Getting Started" href="start.html" >
     <link rel="prev" title="seg1d: subsequence segmentation" href="index.html" > 
   </head>
@@ -50,7 +50,7 @@
         <li class="active"><a href="http://github.com/cadop/seg1d">Github</a></li>
         <li class="active"><a href="http://">Paper</a></li>
 	
-        <li class="active"><a href="index.html">seg1d 0.0.13 documentation</a></li>
+        <li class="active"><a href="index.html">seg1d 0.0.16 documentation</a></li>
 	 
     </ul>
               
@@ -106,6 +106,16 @@ Navigate to the <code class="xref py py-obj docutils literal notranslate"><span 
 <p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">doctest</span></code></p>
 <p>A summary report will be generated and should not have any failed conditions.
 Note, this should be done after building the documentation with <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code>.</p>
+<p>End-users can test the installation with a similar method provided through the
+examples.</p>
+<p>After installation, start a python interactive console and import:</p>
+<p><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">seg1d.examples</span> <span class="pre">import</span> <span class="pre">test</span></code></p>
+<p>Then run the tests with:</p>
+<p><code class="docutils literal notranslate"><span class="pre">test.run()</span></code></p>
+<p>A series of tests will be performed to check for intended output.
+While <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> is not a required dependency, if it is not installed, some
+of the tests will fail. This will be obvious as the test will show in the
+traceback that it failed due to <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'matplotlib'</span></code>.</p>
 <p>Due to variations in OS, many of the doctests use <code class="docutils literal notranslate"><span class="pre">np.around</span></code> to ensure matching.
 However, sorting of correlation values is dependent on a few platform variables,
 so tests that output multiple array values that are identical may show as failed.

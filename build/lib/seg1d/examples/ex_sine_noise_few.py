@@ -29,14 +29,14 @@ plt.legend()#doctest: +SKIP
 plt.show()#doctest: +SKIP
 
 #Make an instance of the segmenter
-S = seg1d.Segmenter()
+s = seg1d.Segmenter()
 #set scaling parameters
-S.minW,S.maxW,S.step = 90, 110, 1
+s.minW,s.maxW,s.step = 90, 110, 1
 #Set target and reference data
-S.set_target(targ)
-S.add_reference(refData)
+s.set_target(targ)
+s.add_reference(refData)
 #call the segmentation algorithm
-segments = S.segment()
+segments = s.segment()
 print(segments)
 
 
@@ -58,7 +58,7 @@ plt.show()#doctest: +SKIP
 # By accessing the Segmenter attributes, the algorithm and this error are better understood (and resolved). 
 
 # First we look at the original segments before clustering
-print(S.groups)
+print(s.groups)
 
 # It turns out these are the same number of segments as the final. 
 # This happens as the clustering algorithm adds a correlation to force 2 clusters.
@@ -66,23 +66,23 @@ print(S.groups)
 # In this example, that sets the correlation values to (approx.) 0.99,0.99,0.86,0.5
 # Modifying this attribute would then change the clusters, for example:
 
-S.cAdd = 0.8
-print( S.segment() )
+s.cAdd = 0.8
+print( s.segment() )
 
 # Likewise, it is the presence of this added variable that causes the problem and removing it resolves the issue.
-S.cAdd = None
-print( S.segment() )
+s.cAdd = None
+print( s.segment() )
 
 # If the target data is expected to be highly similar to the reference data, the best solution is to set ``cAdd`` to None.
 # 
 # Alternatively, the minimum correlation for a given segment can be set with the ``Segmenter.cMin`` attribute.
-S.cMin = 0.9
-print( S.segment() )
+s.cMin = 0.9
+print( s.segment() )
 
 # Since the ``cAdd`` was removed, the only segments available were both 0.99, making the clustering result in a single segment. 
 # If ``cAdd`` is set back to the default, the segment is correct. 
-S.cAdd = 0.5
-segments = S.segment() 
+s.cAdd = 0.5
+segments = s.segment() 
 print(segments)
 
 

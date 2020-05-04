@@ -1,6 +1,6 @@
 import numpy as np
 
-def add_noise(a, snr = 20,seed = 123):
+def add_noise(a, snr = 20):
     x_watts = a ** 2
     # Set a target SNR
     target_snr_db = snr
@@ -12,7 +12,6 @@ def add_noise(a, snr = 20,seed = 123):
     noise_avg_watts = 10 ** (noise_avg_db / 10)
     # Generate an sample of white noise
     mean_noise = 0
-    np.random.seed(seed)
     noise_volts = np.random.normal(mean_noise, np.sqrt(noise_avg_watts), len(x_watts))
     
     b = a + noise_volts
