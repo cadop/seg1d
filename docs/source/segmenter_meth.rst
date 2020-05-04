@@ -14,7 +14,6 @@ These methods are used to handle data and run the segmentation process.
     segment
 
 
-See Also
---------
+.. rubric:: See Also
 
 :class:`seg1d.Segmenter`
