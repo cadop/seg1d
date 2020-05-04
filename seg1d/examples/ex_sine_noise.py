@@ -99,7 +99,7 @@ although a different SNR is used.
     ...     st = seg[0]
     ...     e = seg[1]
     ...     plt.plot(x[st:e], targ[st:e],dashes=[1,1],linewidth=2,alpha=0.8, #doctest: +SKIP
-    ...              label='Segment {}'.format(seg_num)) #doctest: +SKIP
+    ...     label='Segment {}'.format(seg_num)) #doctest: +SKIP
     ...     seg_num += 1
     >>> plt.xlabel('Angle [rad]')#doctest: +SKIP
     >>> plt.ylabel('sin(x)')#doctest: +SKIP
@@ -178,13 +178,14 @@ although a different SNR is used.
     ...     st = seg[0]
     ...     e = seg[1]
     ...     plt.plot(x[st:e], targ[st:e],dashes=[1,1],linewidth=2,alpha=0.8, #doctest: +SKIP
-    ...              label='Segment {}'.format(seg_num)) #doctest: +SKIP
+    ...     label='Segment {}'.format(seg_num)) #doctest: +SKIP
     ...     seg_num += 1
     >>> plt.xlabel('Angle [rad]')#doctest: +SKIP
     >>> plt.ylabel('sin(x)')#doctest: +SKIP
     >>> plt.legend()#doctest: +SKIP
     >>> plt.tight_layout()#doctest: +SKIP
     >>> plt.show()#doctest: +SKIP
+    
 .. plot::
     :context: close-figs
 

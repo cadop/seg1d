@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Parameter Tuning &mdash; seg1d 0.0.16 documentation</title>
+    <title>Parameter Tuning &mdash; seg1d 0.1.0 documentation</title>
     
     <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.16',
+        VERSION:     '0.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false
@@ -27,7 +27,7 @@
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" >
     <link rel="search" title="Search" href="search.html" >
-    <link rel="top" title="seg1d 0.0.16 documentation" href="index.html" >
+    <link rel="top" title="seg1d 0.1.0 documentation" href="index.html" >
     <link rel="up" title="API Examples" href="api.html" >
     <link rel="next" title="Code Reference" href="code.html" >
     <link rel="prev" title="Feature Inclusion" href="api_feat.html" > 
@@ -51,7 +51,7 @@
         <li class="active"><a href="http://github.com/cadop/seg1d">Github</a></li>
         <li class="active"><a href="http://">Paper</a></li>
 	
-        <li class="active"><a href="index.html">seg1d 0.0.16 documentation</a></li>
+        <li class="active"><a href="index.html">seg1d 0.1.0 documentation</a></li>
 	
           <li class="active"><a href="api.html" accesskey="U">API Examples</a></li> 
     </ul>
@@ -185,7 +185,7 @@ data should be located, along with the segments that were found.</p>
 <span class="gp">... </span>    <span class="n">st</span> <span class="o">=</span> <span class="n">seg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">... </span>    <span class="n">e</span> <span class="o">=</span> <span class="n">seg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="gp">... </span>    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">st</span><span class="p">:</span><span class="n">e</span><span class="p">],</span> <span class="n">targ</span><span class="p">[</span><span class="n">st</span><span class="p">:</span><span class="n">e</span><span class="p">],</span><span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> 
-<span class="gp">... </span>             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Segment </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">seg_num</span><span class="p">))</span> 
+<span class="gp">... </span>    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Segment </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">seg_num</span><span class="p">))</span> 
 <span class="gp">... </span>    <span class="n">seg_num</span> <span class="o">+=</span> <span class="mi">1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Angle [rad]&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;sin(x)&#39;</span><span class="p">)</span>
@@ -260,7 +260,7 @@ identification.</p>
 <span class="gp">... </span>    <span class="n">st</span> <span class="o">=</span> <span class="n">seg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">... </span>    <span class="n">e</span> <span class="o">=</span> <span class="n">seg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="gp">... </span>    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">st</span><span class="p">:</span><span class="n">e</span><span class="p">],</span> <span class="n">targ</span><span class="p">[</span><span class="n">st</span><span class="p">:</span><span class="n">e</span><span class="p">],</span><span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> 
-<span class="gp">... </span>             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Segment </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">seg_num</span><span class="p">))</span> 
+<span class="gp">... </span>    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Segment </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">seg_num</span><span class="p">))</span> 
 <span class="gp">... </span>    <span class="n">seg_num</span> <span class="o">+=</span> <span class="mi">1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Angle [rad]&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;sin(x)&#39;</span><span class="p">)</span>

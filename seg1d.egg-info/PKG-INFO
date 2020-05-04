@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: seg1d
-Version: 0.0.16
+Version: 0.1.0
 Summary: Automated one-dimensional subsequence segmentation
 Home-page: https://github.com/cadop/seg1d
 Author: Mathew Schwartz
@@ -17,6 +17,7 @@ Description: # seg1d
         
         ![seg1d](https://raw.githubusercontent.com/cadop/seg1d/master/docs/build/plot_directive/api_basic-1.png)
         
+        Example of the segmentation algorithm using a portion of a sine wave. The initial reference segment is found, along with any additional segments. 
         
         ### Documentation
         
