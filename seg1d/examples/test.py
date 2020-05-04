@@ -11,6 +11,7 @@ print('Use: test.run() to start tests')
 from . import *
 import seg1d
 
+
 def run():
     import doctest
     
@@ -27,7 +28,7 @@ def run():
     print(doctest.testmod(ex_sine))
     
     print("\nTesting SINE NOISE Example")
-    print(doctest.testmod(ex_sin_noise))
+    print(doctest.testmod(ex_sine_noise))
 
     print("\nTesting SEGMENTER FEATURES Example")
     print(doctest.testmod(ex_segmenter_features))
@@ -42,6 +43,7 @@ def run():
     print(doctest.testmod(seg1d.algorithm))
 
     print("Finished running tests \n")
+
 
 if __name__ == '__main__':
     run()
