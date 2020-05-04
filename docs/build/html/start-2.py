@@ -39,7 +39,10 @@ plt.plot(x, targ,linewidth=6,alpha=0.2,label='Target') # doctest: +SKIP
 # plot the original reference segment
 plt.plot(x[t_s:t_e], targ[t_s:t_e],linewidth=8,alpha=0.5,label='Reference') # doctest: +SKIP
 # plot all segments found
+seg_num = 1
 for s,e,c in segments:
-    plt.plot(x[s:e], targ[s:e],dashes=[0.5,0.5],linewidth=4,alpha=0.8,label='Segments') # doctest: +SKIP
+    plt.plot(x[s:e], targ[s:e],dashes=[0.5,0.5],linewidth=4,alpha=0.8, #doctest: +SKIP
+    label='Segment {}'.format(seg_num)) #doctest: +SKIP
+    seg_num += 1 #doctest: +SKIP
 plt.legend() # doctest: +SKIP
 plt.show() # doctest: +SKIP
