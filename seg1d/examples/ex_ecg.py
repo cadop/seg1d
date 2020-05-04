@@ -51,6 +51,9 @@ In the second portion of the example, only one segment is used for the reference
 
     >>> plt.figure(figsize=(5,3))  # doctest: +SKIP
     >>> plt.plot(refs.T)  # doctest: +SKIP
+    >>> plt.xlabel("time in s")  # doctest: +SKIP
+    >>> plt.ylabel("ECG in mV")  # doctest: +SKIP
+    >>> plt.tight_layout()  # doctest: +SKIP
     >>> plt.show()  # doctest: +SKIP
 
 .. plot::
@@ -62,6 +65,9 @@ In the second portion of the example, only one segment is used for the reference
 
     >>> plt.figure(figsize=(15,3))  # doctest: +SKIP
     >>> plt.plot(s.t_masked.T)  # doctest: +SKIP
+    >>> plt.xlabel("time in s")  # doctest: +SKIP
+    >>> plt.ylabel("ECG in mV")  # doctest: +SKIP
+    >>> plt.tight_layout()  # doctest: +SKIP
     >>> plt.show()  # doctest: +SKIP
 
 .. plot::
@@ -76,6 +82,9 @@ In the second portion of the example, only one segment is used for the reference
 
     >>> plt.figure(figsize=(5,3))  # doctest: +SKIP
     >>> plt.plot(refs.T)  # doctest: +SKIP
+    >>> plt.xlabel("time in s")  # doctest: +SKIP
+    >>> plt.ylabel("ECG in mV")  # doctest: +SKIP
+    >>> plt.tight_layout()  # doctest: +SKIP
     >>> plt.show()  # doctest: +SKIP
 
 .. plot::
@@ -104,13 +113,16 @@ In the second portion of the example, only one segment is used for the reference
 
     >>> plt.figure(figsize=(15,3))  # doctest: +SKIP
     >>> plt.plot(res.T)  # doctest: +SKIP
-    >>> plt.show() # doctest: +SKIP
+    >>> plt.xlabel("time in s")  # doctest: +SKIP
+    >>> plt.ylabel("ECG in mV")  # doctest: +SKIP
+    >>> plt.tight_layout()  # doctest: +SKIP
+    >>> plt.show()  # doctest: +SKIP
 
 
 '''
 
 
-if __name__ == "__main__":
+def run():
         
     import random
     import numpy as np
@@ -152,10 +164,16 @@ if __name__ == "__main__":
 
     plt.figure(figsize=(5, 3))
     plt.plot(refs.T)
+    plt.xlabel("time in s")
+    plt.ylabel("ECG in mV")
+    plt.tight_layout()
     plt.show()
 
     plt.figure(figsize=(15, 3))
     plt.plot(s.t_masked.T)
+    plt.xlabel("time in s")
+    plt.ylabel("ECG in mV")
+    plt.tight_layout()
     plt.show()
 
     # use only 1 reference
@@ -184,5 +202,10 @@ if __name__ == "__main__":
 
     plt.figure(figsize=(15, 3))
     plt.plot(res.T)
+    plt.xlabel("time in s")
+    plt.ylabel("ECG in mV")
+    plt.tight_layout()
     plt.show()
 
+if __name__ == "__main__":
+    run()

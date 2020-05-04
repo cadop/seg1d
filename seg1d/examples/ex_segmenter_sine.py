@@ -10,7 +10,7 @@ An example of instancing the Segmenter class to use the convenience methods on a
     Then we generate some data
 
     >>> x = np.linspace(-np.pi*2, np.pi*2, 2000) #create an array of data
-    >>> targ = np.sin(x)  # target data from a sin function
+    >>> targ = np.sin(x)  # target data from a sin function 
     >>> t_s,t_e = 200,400 # define a sub-series
     
     To assign the data to the Segmenter, first we create an instance of it and then
@@ -90,7 +90,6 @@ def run():
     plt.legend()
     plt.tight_layout()
     plt.show()
-
 
 if __name__ == '__main__':
     run()

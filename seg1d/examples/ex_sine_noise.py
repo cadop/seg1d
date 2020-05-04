@@ -32,7 +32,10 @@ although a different SNR is used.
     >>> # Plot the target
     >>> plt.figure(figsize=(10,3)) #doctest: +SKIP
     >>> plt.plot(x, targ,linewidth=4,alpha=0.5,label='Target')#doctest: +SKIP
+    >>> plt.xlabel('Angle [rad]')#doctest: +SKIP
+    >>> plt.ylabel('sin(x)')#doctest: +SKIP
     >>> plt.legend()#doctest: +SKIP
+    >>> plt.tight_layout()#doctest: +SKIP
     >>> plt.show()#doctest: +SKIP
         
 .. plot::
@@ -53,7 +56,10 @@ although a different SNR is used.
     >>> plt.figure(figsize=(3,3)) #doctest: +SKIP
     >>> # Plot the reference
     >>> plt.plot(x[t_s:t_e], refData,linewidth=4,alpha=0.5,label='Reference')#doctest: +SKIP
+    >>> plt.xlabel('Angle [rad]')#doctest: +SKIP
+    >>> plt.ylabel('sin(x)')#doctest: +SKIP
     >>> plt.legend()#doctest: +SKIP
+    >>> plt.tight_layout()#doctest: +SKIP
     >>> plt.show()#doctest: +SKIP
 
 .. plot::
@@ -88,11 +94,17 @@ although a different SNR is used.
     >>> # NOTE this is just the location, the actual reference data is shown above
     >>> plt.plot(x[t_s:t_e], targ[t_s:t_e],linewidth=6,alpha=0.7,label='Reference')#doctest: +SKIP
     >>> #plot all segments found
+    >>> seg_num = 1
     >>> for seg in segments:
     ...     st = seg[0]
     ...     e = seg[1]
-    ...     plt.plot(x[st:e], targ[st:e],dashes=[1,1],linewidth=2,alpha=0.8,label='Segment')#doctest: +SKIP
+    ...     plt.plot(x[st:e], targ[st:e],dashes=[1,1],linewidth=2,alpha=0.8, #doctest: +SKIP
+    ...              label='Segment {}'.format(seg_num)) #doctest: +SKIP
+    ...     seg_num += 1
+    >>> plt.xlabel('Angle [rad]')#doctest: +SKIP
+    >>> plt.ylabel('sin(x)')#doctest: +SKIP
     >>> plt.legend()#doctest: +SKIP
+    >>> plt.tight_layout()#doctest: +SKIP
     >>> plt.show()#doctest: +SKIP
 
 .. plot::
@@ -161,19 +173,24 @@ although a different SNR is used.
     >>> #plot the original reference segment
     >>> plt.plot(x[t_s:t_e], targ[t_s:t_e],linewidth=6,alpha=0.7,label='Reference')#doctest: +SKIP
     >>> #plot all segments found
+    >>> seg_num = 1
     >>> for seg in segments:
-    ...     s = seg[0]
+    ...     st = seg[0]
     ...     e = seg[1]
-    ...     plt.plot(x[s:e], targ[s:e],dashes=[1,1],linewidth=2,alpha=0.8,label='Segment')#doctest: +SKIP
+    ...     plt.plot(x[st:e], targ[st:e],dashes=[1,1],linewidth=2,alpha=0.8, #doctest: +SKIP
+    ...              label='Segment {}'.format(seg_num)) #doctest: +SKIP
+    ...     seg_num += 1
+    >>> plt.xlabel('Angle [rad]')#doctest: +SKIP
+    >>> plt.ylabel('sin(x)')#doctest: +SKIP
     >>> plt.legend()#doctest: +SKIP
+    >>> plt.tight_layout()#doctest: +SKIP
     >>> plt.show()#doctest: +SKIP
-
 .. plot::
     :context: close-figs
 
 '''
 
-if __name__ == "__main__":
+def run():
         
     import seg1d
     import numpy as np
@@ -191,8 +208,12 @@ if __name__ == "__main__":
     #Plot the target
     plt.figure(figsize=(10,3)) #doctest: +SKIP
     plt.plot(x, targ,linewidth=4,alpha=0.5,label='Target')#doctest: +SKIP
+    plt.xlabel('Angle [rad]')#doctest: +SKIP
+    plt.ylabel('sin(x)')#doctest: +SKIP
     plt.legend()#doctest: +SKIP
+    plt.tight_layout()#doctest: +SKIP
     plt.show()#doctest: +SKIP
+
 
 
     """
@@ -213,9 +234,13 @@ if __name__ == "__main__":
     refData = segnoise.add_noise(np.sin(x),snr=45)[t_s:t_e] 
 
     # Plot the reference
-    plt.plot(x[t_s:t_e], refData,linewidth=4,alpha=0.5,label='Reference')#doctest: +SKIP
-    plt.legend()  # doctest: +SKIP
-    plt.show()  # doctest: +SKIP
+    plt.plot(x[t_s:t_e],refData,linewidth=4,alpha=0.5,label='Reference')#doctest: +SKIP
+    plt.xlabel('Angle [rad]')#doctest: +SKIP
+    plt.ylabel('sin(x)')#doctest: +SKIP
+    plt.legend()#doctest: +SKIP
+    plt.tight_layout()#doctest: +SKIP
+    plt.show()#doctest: +SKIP
+
 
     # Make an instance of the segmenter
     s = seg1d.Segmenter()
@@ -236,12 +261,19 @@ if __name__ == "__main__":
     # NOTE this is just the location, the actual reference data is shown above
     plt.plot(x[t_s:t_e], targ[t_s:t_e],linewidth=2,alpha=0.7,label='Reference')  # doctest: +SKIP
     #plot all segments found
+    seg_num = 1
     for seg in segments:
         st = seg[0]
         e = seg[1]
-        plt.plot(x[st:e], targ[st:e],dashes=[1,1],linewidth=2,alpha=0.8,label='Segment')  # doctest: +SKIP
-    plt.legend()  # doctest: +SKIP
-    plt.show()  # doctest: +SKIP
+        plt.plot(x[st:e], targ[st:e],dashes=[1,1],linewidth=2,alpha=0.8,#doctest: +SKIP
+                 label='Segment {}'.format(seg_num))#doctest: +SKIP
+        seg_num += 1
+    plt.xlabel('Angle [rad]')#doctest: +SKIP
+    plt.ylabel('sin(x)')#doctest: +SKIP
+    plt.legend()#doctest: +SKIP
+    plt.tight_layout()#doctest: +SKIP
+    plt.show()#doctest: +SKIP
+
 
     # From the plot, it is clear there is a segment that doesn't belong. 
     # By accessing the Segmenter attributes, the algorithm and this error are better understood (and resolved). 
@@ -296,9 +328,19 @@ if __name__ == "__main__":
     #plot the original reference segment
     plt.plot(x[t_s:t_e], targ[t_s:t_e],linewidth=2,alpha=0.7,label='Reference')#doctest: +SKIP
     #plot all segments found
+    seg_num = 1
     for seg in segments:
         s = seg[0]
         e = seg[1]
-        plt.plot(x[s:e], targ[s:e],dashes=[1,1],linewidth=2,alpha=0.8,label='Segment')#doctest: +SKIP
+        plt.plot(x[s:e], targ[s:e],dashes=[1,1],linewidth=2,alpha=0.8,#doctest: +SKIP
+                 label='Segment {}'.format(seg_num))#doctest: +SKIP
+        seg_num += 1
+    plt.xlabel('Angle [rad]')#doctest: +SKIP
+    plt.ylabel('sin(x)')#doctest: +SKIP
     plt.legend()#doctest: +SKIP
+    plt.tight_layout()#doctest: +SKIP
     plt.show()#doctest: +SKIP
+
+
+if __name__ == "__main__":
+    run()
