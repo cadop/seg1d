@@ -1,5 +1,21 @@
-Results of doctest builder run on 2020-05-04 18:23:07
+Results of doctest builder run on 2020-05-04 19:15:02
 =====================================================
+
+Document: generated/seg1d.Segmenter.clear_reference
+---------------------------------------------------
+1 items passed all tests:
+   7 tests in default
+7 tests in 1 items.
+7 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.optimized_funcs.rcor
+----------------------------------------------
+1 items passed all tests:
+   5 tests in default
+5 tests in 1 items.
+5 passed and 0 failed.
+Test passed.
 
 Document: generated/seg1d.optimized_funcs.vcor
 ----------------------------------------------
@@ -9,12 +25,36 @@ Document: generated/seg1d.optimized_funcs.vcor
 5 passed and 0 failed.
 Test passed.
 
-Document: generated/seg1d.optimized_funcs.rcor
+Document: generated/seg1d.Segmenter.add_reference
+-------------------------------------------------
+1 items passed all tests:
+  10 tests in default
+10 tests in 1 items.
+10 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.Segmenter.t_segments
 ----------------------------------------------
 1 items passed all tests:
-   5 tests in default
-5 tests in 1 items.
-5 passed and 0 failed.
+  11 tests in default
+11 tests in 1 items.
+11 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.algorithm.resample
+--------------------------------------------
+1 items passed all tests:
+   6 tests in default
+6 tests in 1 items.
+6 passed and 0 failed.
+Test passed.
+
+Document: api_basic
+-------------------
+1 items passed all tests:
+  13 tests in default
+13 tests in 1 items.
+13 passed and 0 failed.
 Test passed.
 
 Document: api_ecg
@@ -33,86 +73,6 @@ Document: generated/seg1d.Segmenter
 6 passed and 0 failed.
 Test passed.
 
-Document: generated/seg1d.algorithm.uniques
--------------------------------------------
-1 items passed all tests:
-   5 tests in default
-5 tests in 1 items.
-5 passed and 0 failed.
-Test passed.
-
-Document: generated/seg1d.algorithm.combine_corr
-------------------------------------------------
-1 items passed all tests:
-  11 tests in default
-11 tests in 1 items.
-11 passed and 0 failed.
-Test passed.
-
-Document: generated/seg1d.Segmenter.t_segments
-----------------------------------------------
-1 items passed all tests:
-  11 tests in default
-11 tests in 1 items.
-11 passed and 0 failed.
-Test passed.
-
-Document: generated/seg1d.Segmenter.add_reference
--------------------------------------------------
-1 items passed all tests:
-  10 tests in default
-10 tests in 1 items.
-10 passed and 0 failed.
-Test passed.
-
-Document: generated/seg1d.algorithm.get_peaks
----------------------------------------------
-1 items passed all tests:
-   6 tests in default
-6 tests in 1 items.
-6 passed and 0 failed.
-Test passed.
-
-Document: api_basic
--------------------
-1 items passed all tests:
-  13 tests in default
-13 tests in 1 items.
-13 passed and 0 failed.
-Test passed.
-
-Document: generated/seg1d.algorithm.rolling_corr
-------------------------------------------------
-1 items passed all tests:
-   6 tests in default
-6 tests in 1 items.
-6 passed and 0 failed.
-Test passed.
-
-Document: api_tune
-------------------
-1 items passed all tests:
-  27 tests in default
-27 tests in 1 items.
-27 passed and 0 failed.
-Test passed.
-
-Document: code_simple
----------------------
-1 items passed all tests:
-   6 tests in default
-6 tests in 1 items.
-6 passed and 0 failed.
-Test passed.
-
-Document: generated/seg1d.algorithm.resample
---------------------------------------------
-1 items passed all tests:
-   6 tests in default
-6 tests in 1 items.
-6 passed and 0 failed.
-Test passed.
-
 Document: generated/seg1d.algorithm.cluster
 -------------------------------------------
 1 items passed all tests:
@@ -121,7 +81,15 @@ Document: generated/seg1d.algorithm.cluster
 8 passed and 0 failed.
 Test passed.
 
-Document: generated/seg1d.Segmenter.segment
+Document: api_feat
+------------------
+1 items passed all tests:
+  17 tests in default
+17 tests in 1 items.
+17 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.algorithm.uniques
 -------------------------------------------
 1 items passed all tests:
    5 tests in default
@@ -129,12 +97,12 @@ Document: generated/seg1d.Segmenter.segment
 5 passed and 0 failed.
 Test passed.
 
-Document: generated/seg1d.Segmenter.set_target
-----------------------------------------------
+Document: api_tune
+------------------
 1 items passed all tests:
-  10 tests in default
-10 tests in 1 items.
-10 passed and 0 failed.
+  29 tests in default
+29 tests in 1 items.
+29 passed and 0 failed.
 Test passed.
 
 Document: start
@@ -170,25 +138,57 @@ Got:
 37 passed and 1 failed.
 ***Test Failed*** 1 failures.
 
-Document: api_feat
-------------------
+Document: generated/seg1d.algorithm.rolling_corr
+------------------------------------------------
 1 items passed all tests:
-  17 tests in default
-17 tests in 1 items.
-17 passed and 0 failed.
+   6 tests in default
+6 tests in 1 items.
+6 passed and 0 failed.
 Test passed.
 
-Document: generated/seg1d.Segmenter.clear_reference
----------------------------------------------------
+Document: code_simple
+---------------------
 1 items passed all tests:
-   7 tests in default
-7 tests in 1 items.
-7 passed and 0 failed.
+   6 tests in default
+6 tests in 1 items.
+6 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.Segmenter.set_target
+----------------------------------------------
+1 items passed all tests:
+  10 tests in default
+10 tests in 1 items.
+10 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.Segmenter.segment
+-------------------------------------------
+1 items passed all tests:
+   5 tests in default
+5 tests in 1 items.
+5 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.algorithm.combine_corr
+------------------------------------------------
+1 items passed all tests:
+  11 tests in default
+11 tests in 1 items.
+11 passed and 0 failed.
+Test passed.
+
+Document: generated/seg1d.algorithm.get_peaks
+---------------------------------------------
+1 items passed all tests:
+   6 tests in default
+6 tests in 1 items.
+6 passed and 0 failed.
 Test passed.
 
 Doctest summary
 ===============
-  227 tests
+  229 tests
     1 failure in tests
     0 failures in setup code
     0 failures in cleanup code

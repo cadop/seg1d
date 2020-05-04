@@ -22,5 +22,8 @@ targ = segnoise.add_noise(targ,snr=30)
 # Plot the target
 plt.figure(figsize=(10,3)) #doctest: +SKIP
 plt.plot(x, targ,linewidth=4,alpha=0.5,label='Target')#doctest: +SKIP
+plt.xlabel('Angle [rad]')#doctest: +SKIP
+plt.ylabel('sin(x)')#doctest: +SKIP
 plt.legend()#doctest: +SKIP
+plt.tight_layout()#doctest: +SKIP
 plt.show()#doctest: +SKIP

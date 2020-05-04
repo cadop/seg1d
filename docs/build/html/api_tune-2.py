@@ -13,5 +13,8 @@ refData = segnoise.add_noise(np.sin(x),snr=45)[t_s:t_e]
 plt.figure(figsize=(3,3)) #doctest: +SKIP
 # Plot the reference
 plt.plot(x[t_s:t_e], refData,linewidth=4,alpha=0.5,label='Reference')#doctest: +SKIP
+plt.xlabel('Angle [rad]')#doctest: +SKIP
+plt.ylabel('sin(x)')#doctest: +SKIP
 plt.legend()#doctest: +SKIP
+plt.tight_layout()#doctest: +SKIP
 plt.show()#doctest: +SKIP

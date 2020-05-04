@@ -21,4 +21,7 @@ res = s.t_masked
 
 plt.figure(figsize=(15,3))  # doctest: +SKIP
 plt.plot(res.T)  # doctest: +SKIP
-plt.show() # doctest: +SKIP
+plt.xlabel("time in s")  # doctest: +SKIP
+plt.ylabel("ECG in mV")  # doctest: +SKIP
+plt.tight_layout()  # doctest: +SKIP
+plt.show()  # doctest: +SKIP

@@ -61,9 +61,15 @@ plt.plot(x, targ,linewidth=4,alpha=0.2,label='Target')#doctest: +SKIP
 #plot the original reference segment
 plt.plot(x[t_s:t_e], targ[t_s:t_e],linewidth=6,alpha=0.7,label='Reference')#doctest: +SKIP
 #plot all segments found
+seg_num = 1
 for seg in segments:
-    s = seg[0]
+    st = seg[0]
     e = seg[1]
-    plt.plot(x[s:e], targ[s:e],dashes=[1,1],linewidth=2,alpha=0.8,label='Segment')#doctest: +SKIP
+    plt.plot(x[st:e], targ[st:e],dashes=[1,1],linewidth=2,alpha=0.8, #doctest: +SKIP
+             label='Segment {}'.format(seg_num)) #doctest: +SKIP
+    seg_num += 1
+plt.xlabel('Angle [rad]')#doctest: +SKIP
+plt.ylabel('sin(x)')#doctest: +SKIP
 plt.legend()#doctest: +SKIP
+plt.tight_layout()#doctest: +SKIP
 plt.show()#doctest: +SKIP

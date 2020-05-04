@@ -4,8 +4,9 @@ Getting Started
 
 In this section, a few simple examples are given to ensure the installation is working
 and you are able to segment data.  These examples call a method provided that uses
-default parameters for the algorithms within the segmentation process but contains
-the data related parameters such as scaling and step size for the matching process. 
+default parameters for the algorithms within the segmentation process but allows
+user input for the data related parameters such as scaling and step size for the 
+matching process. 
 
 
 Sample Data
@@ -23,6 +24,7 @@ Sine Wave
 .. automodule:: seg1d.examples.ex_sine
 	:members:
 	
+
 Gauss
 =====
 
