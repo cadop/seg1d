@@ -23,6 +23,10 @@ There are existing libraries that provide clustering and similarity measures for
   * [The UCR Suite](https://www.cs.ucr.edu/~eamonn/UCRsuite.html) (Ultrafast subsequence search under both Dynamic Time Warping (DTW) and Euclidean Distance (ED))
 
   * [tslearn](https://github.com/rtavenar/tslearn)(Machine learning tools for the analysis of time series)
+  
+  * [seglearn](https://dmbee.github.io/seglearn/)(Provides a flexible approach to multivariate time series and related contextual (meta) data for classification, regression, and forecasting problems)
+
+The advantage of seg1d is a simpler API which makes getting started and using the code quicker for non-experts when interested in purely extracting timestamps (segments) from a dataset. The API was built with motion capture data in mind, making the addition of features (e.g., marker trajectories) and sets of features (e.g., multiple subjects) easy. The output of seg1d is also geared towards users that are interested in comparing the segments found, such as returning masked arrays of segments. 
 
 
 ## Quickstart 
