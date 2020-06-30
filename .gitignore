@@ -8,3 +8,6 @@ __pycache__/
 .vscode/
 
 _internal_testing.py
+
+dist/
+seg1d.egg-info/
