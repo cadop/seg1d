@@ -83,8 +83,10 @@ def process_numba_docstring(app, what, name, obj, options, signature, return_ann
 
         return (str(orig_sig), ret_ann)
 
-def setup(app):
-    app.connect('autodoc-process-signature', process_numba_docstring)
+# Do not try to process the numba signature
+
+# def setup(app):
+#     app.connect('autodoc-process-signature', process_numba_docstring)
 
 # -- Options for HTML output -------------------------------------------------
 
