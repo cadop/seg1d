@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>seg1d.algorithm.combine_corr &mdash; seg1d 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" type="text/css" href="../_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../_static/css/spc-extend.css">
+    <link rel="stylesheet" href="../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/js/copybutton.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" >
+    <link rel="search" title="Search" href="../search.html" >
+    <link rel="top" title="seg1d 0.1.0 documentation" href="../index.html" >
+    <link rel="up" title="Algorithm Methods" href="../routines.html" >
+    <link rel="next" title="seg1d.algorithm.uniques" href="seg1d.algorithm.uniques.html" >
+    <link rel="prev" title="seg1d.algorithm.rolling_corr" href="seg1d.algorithm.rolling_corr.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="http://github.com/cadop/seg1d">Github</a></li>
+        <li class="active"><a href="http://">Paper</a></li>
+	
+        <li class="active"><a href="../index.html">seg1d 0.1.0 documentation</a></li>
+	
+          <li class="active"><a href="../code.html" >Code Reference</a></li>
+          <li class="active"><a href="../routines.html" accesskey="U">Algorithm Methods</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="../genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="seg1d.algorithm.uniques.html" title="seg1d.algorithm.uniques"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="seg1d.algorithm.rolling_corr.html" title="seg1d.algorithm.rolling_corr"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="seg1d-algorithm-combine-corr">
+<h1>seg1d.algorithm.combine_corr<a class="headerlink" href="#seg1d-algorithm-combine-corr" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="seg1d.algorithm.combine_corr">
+<code class="descclassname">seg1d.algorithm.</code><code class="descname">combine_corr</code><span class="sig-paren">(</span><em><span class="n">x</span></em>, <em><span class="n">w</span></em>, <em><span class="n">method</span><span class="o">=</span><span class="default_value">'m'</span></em>, <em><span class="n">scale</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/algorithm.py#L97-L193"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.algorithm.combine_corr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Combines Weighted Correlation</p>
+<p>Takes in the correlated data results and multiply the weighting values
+to each array of data for that feature.
+| Combines the results of the weighted features</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>x</strong><span class="classifier">Dict[int,Dict[string,numpy.array]]</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">{scale:{</span> <span class="pre">feature:</span> <span class="pre">array([correlations])</span> <span class="pre">}</span> <span class="pre">}</span></code></p>
+</dd>
+<dt><strong>w</strong><span class="classifier">Dict[string,float]</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">feature:</span> <span class="pre">weight</span> <span class="pre">}</span></code></p>
+</dd>
+<dt><strong>method</strong><span class="classifier">{‘m’,’w’, ‘s’}</span></dt><dd><p>keyword to use for aggregating feature correlations (default <em class="xref py py-obj">m</em>).
+Options, m=mean, w=weighted mean, s=sum</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">bool, optional</span></dt><dd><p>keyword argument for scaling the correlated feature before applying
+any of the aggregation methods</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt>Dict[int,numpy.array]</dt><dd><p><code class="docutils literal notranslate"><span class="pre">{scale:</span> <span class="pre">array([weighted</span> <span class="pre">correlations])</span> <span class="pre">}</span></code></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="seg1d.algorithm.rolling_corr.html#seg1d.algorithm.rolling_corr" title="seg1d.algorithm.rolling_corr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rolling_corr</span></code></a></dt><dd>(input for this function)</dd>
+<dt><a class="reference internal" href="seg1d.algorithm.get_peaks.html#seg1d.algorithm.get_peaks" title="seg1d.algorithm.get_peaks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_peaks</span></code></a></dt><dd>(takes the return of this function)</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">seg1d.algorithm</span> <span class="k">as</span> <span class="nn">alg</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#make a convenience function to get a wave for sample data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">s</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">f3</span><span class="p">):</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">f3</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="mi">10</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="n">s</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mf">0.8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="n">s</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mf">0.8</span><span class="p">,</span> <span class="mi">10</span><span class="p">)},</span>
+<span class="gp">... </span>    <span class="mi">20</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="n">s</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mf">0.7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="n">s</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mf">0.7</span><span class="p">,</span> <span class="mi">10</span><span class="p">)}</span>
+<span class="gp">... </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Assign some weights and find the averaged value</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mf">0.9</span> <span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">alg</span><span class="o">.</span><span class="n">combine_corr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">items</span><span class="p">():</span> <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+<span class="go">10 [-0.14694631 -0.07296588  0.00666771  0.0857847   0.15825538  0.21846498</span>
+<span class="go">  0.26174865  0.28475292  0.2856955   0.26450336]</span>
+<span class="go">20 [-0.20225425 -0.12293111 -0.03630481  0.0524783   0.13814375  0.21560229</span>
+<span class="go">  0.2802522   0.32825274  0.35675226  0.36405765]</span>
+</pre></div>
+</div>
+<p>Change the weight values and see the weighted scores change</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mf">0.2</span> <span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">alg</span><span class="o">.</span><span class="n">combine_corr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">items</span><span class="p">():</span> <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+<span class="go">10 [-0.26450336 -0.3270411  -0.36424081 -0.37322037 -0.35328408 -0.30597655</span>
+<span class="go"> -0.23496298 -0.14574528 -0.04523573  0.05877853]</span>
+<span class="go">20 [-0.36405765 -0.39304054 -0.39867347 -0.38062179 -0.33995792 -0.27909765</span>
+<span class="go"> -0.20165658 -0.1122354  -0.01614647  0.0809017 ]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+          </div>
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="seg1d.algorithm.rolling_corr.html"
+                        title="previous chapter">seg1d.algorithm.rolling_corr</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="seg1d.algorithm.uniques.html"
+                        title="next chapter">seg1d.algorithm.uniques</a></p>
+
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2020, Mathew Schwartz.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

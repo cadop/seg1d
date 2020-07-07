@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>seg1d.Segmenter &mdash; seg1d 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" type="text/css" href="../_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../_static/css/spc-extend.css">
+    <link rel="stylesheet" href="../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/js/copybutton.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" >
+    <link rel="search" title="Search" href="../search.html" >
+    <link rel="top" title="seg1d 0.1.0 documentation" href="../index.html" >
+    <link rel="up" title="Segmenter Class" href="../segmenter.html" >
+    <link rel="next" title="Segmenter Methods" href="../segmenter_meth.html" >
+    <link rel="prev" title="Segmenter Class" href="../segmenter.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="http://github.com/cadop/seg1d">Github</a></li>
+        <li class="active"><a href="http://">Paper</a></li>
+	
+        <li class="active"><a href="../index.html">seg1d 0.1.0 documentation</a></li>
+	
+          <li class="active"><a href="../code.html" >Code Reference</a></li>
+          <li class="active"><a href="../segmenter.html" accesskey="U">Segmenter Class</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="../genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="../segmenter_meth.html" title="Segmenter Methods"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="../segmenter.html" title="Segmenter Class"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="seg1d-segmenter">
+<h1>seg1d.Segmenter<a class="headerlink" href="#seg1d-segmenter" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="seg1d.Segmenter">
+<em class="property">class </em><code class="descclassname">seg1d.</code><code class="descname">Segmenter</code><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L15-L611"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Segmentation class that exposes all algorithm parameters and attributes for
+advanced access and tuning of segmentation.</p>
+<p>Additional convenience methods for adding reference and target data as
+numpy arrays are provided.</p>
+<p>Results of each step of the algorithm process can be accessed through the
+class Attributes after running the segmentation. These can likewise be
+passed to the algorithms methods described in the documentation.</p>
+<p class="rubric">Examples</p>
+<p>Simple usage of the class by directly assigning attributes
+using sample data included with this package.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">seg1d</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#Make an instance of the segmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">Segmenter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#retrieve the sample reference, target, and weight data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">r</span><span class="p">,</span><span class="n">s</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">s</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">sampleData</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#set the parameters</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">minW</span><span class="p">,</span><span class="n">s</span><span class="o">.</span><span class="n">maxW</span><span class="p">,</span><span class="n">s</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">1</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">segment</span><span class="p">(),</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="go">array([[207.       , 240.       ,   0.9124224],</span>
+<span class="go">       [342.       , 381.       ,   0.8801901],</span>
+<span class="go">       [ 72.       , 112.       ,   0.8776795]])</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="seg1d.Segmenter.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L51-L135"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialization of segmentation class and parameters</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>r</strong><span class="classifier">array of dicts</span></dt><dd><p>The reference dataset</p>
+</dd>
+<dt><strong>t</strong><span class="classifier">dict</span></dt><dd><p>The target dataset</p>
+</dd>
+<dt><strong>w</strong><span class="classifier">dict</span></dt><dd><p>Weights for correlation</p>
+</dd>
+<dt><strong>minW</strong><span class="classifier">int</span></dt><dd><p>minimum percent to scale data</p>
+</dd>
+<dt><strong>maxW</strong><span class="classifier">int</span></dt><dd><p>maximum percent to scale data</p>
+</dd>
+<dt><strong>step</strong><span class="classifier">int</span></dt><dd><p>step size for rolling correlation</p>
+</dd>
+<dt><strong>wSizes</strong><span class="classifier">list</span></dt><dd><p>sizes to use for resampling reference
+(can be used instead of minW,maxW,step)</p>
+</dd>
+<dt><strong>cMax</strong><span class="classifier">bool</span></dt><dd><p>use maximum in rolling correlation (default False)</p>
+</dd>
+<dt><strong>cMin</strong><span class="classifier">float</span></dt><dd><p>-1 to 1, min correlation</p>
+</dd>
+<dt><strong>cAdd</strong><span class="classifier">float</span></dt><dd><p>0 to 1 or None, value to add for forcing clusters (Default 0.5)</p>
+</dd>
+<dt><strong>pD</strong><span class="classifier">None</span></dt><dd><p>peak distance to use for scipy peak detection (Default None)</p>
+</dd>
+<dt><strong>nC</strong><span class="classifier">int</span></dt><dd><p>number of clusters for correlation results</p>
+</dd>
+<dt><strong>fMode</strong><span class="classifier">{‘w’, ‘m’, ‘s’}</span></dt><dd><p>keyword to use for aggregating feature correlations (default <em class="xref py py-obj">w</em>).
+Options, w=weighted mean, m=mean, s=sum</p>
+</dd>
+<dt><strong>fScale</strong><span class="classifier">bool</span></dt><dd><p>scale the feature correlation by its weight before feature
+aggregation (Default True)</p>
+</dd>
+<dt><strong>tSeg</strong><span class="classifier">[]</span></dt><dd><p>the target data as segmented arrays</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils align-default">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#seg1d.Segmenter.__init__" title="seg1d.Segmenter.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self)</td>
+<td>Initialization of segmentation class and parameters</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="seg1d.Segmenter.add_reference.html#seg1d.Segmenter.add_reference" title="seg1d.Segmenter.add_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_reference</span></code></a>(self,&nbsp;r[,&nbsp;copy])</td>
+<td>Appends a reference containing one or more features to the existing reference dataset.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="seg1d.Segmenter.clear_reference.html#seg1d.Segmenter.clear_reference" title="seg1d.Segmenter.clear_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear_reference</span></code></a>(self)</td>
+<td>Removes any reference data currently assigned</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="seg1d.Segmenter.segment.html#seg1d.Segmenter.segment" title="seg1d.Segmenter.segment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">segment</span></code></a>(self)</td>
+<td>Method to run the segmentation algorithm on the current Segmenter instance</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="seg1d.Segmenter.set_target.html#seg1d.Segmenter.set_target" title="seg1d.Segmenter.set_target"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_target</span></code></a>(self,&nbsp;t[,&nbsp;copy])</td>
+<td>Sets the target data by overiding any existing target.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table border="1" class="longtable docutils align-default">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="seg1d.Segmenter.clusters.html#seg1d.Segmenter.clusters" title="seg1d.Segmenter.clusters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clusters</span></code></a></td>
+<td>Segments reduced by clustering algorithm from <a class="reference internal" href="seg1d.algorithm.cluster.html#seg1d.algorithm.cluster" title="seg1d.algorithm.cluster"><code class="xref py py-func docutils literal notranslate"><span class="pre">algorithm.cluster()</span></code></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="seg1d.Segmenter.combined.html#seg1d.Segmenter.combined" title="seg1d.Segmenter.combined"><code class="xref py py-obj docutils literal notranslate"><span class="pre">combined</span></code></a></td>
+<td>The averaged correlation of the rolling feature correlation and the weighting table created by <a class="reference internal" href="seg1d.algorithm.combine_corr.html#seg1d.algorithm.combine_corr" title="seg1d.algorithm.combine_corr"><code class="xref py py-func docutils literal notranslate"><span class="pre">algorithm.combine_corr()</span></code></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="seg1d.Segmenter.corrs.html#seg1d.Segmenter.corrs" title="seg1d.Segmenter.corrs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">corrs</span></code></a></td>
+<td>Rolling correlation of reference and target features created by <a class="reference internal" href="seg1d.algorithm.rolling_corr.html#seg1d.algorithm.rolling_corr" title="seg1d.algorithm.rolling_corr"><code class="xref py py-func docutils literal notranslate"><span class="pre">algorithm.rolling_corr()</span></code></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="seg1d.Segmenter.groups.html#seg1d.Segmenter.groups" title="seg1d.Segmenter.groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">groups</span></code></a></td>
+<td>Possible segments through parsing overlapping segment locations defined by <a class="reference internal" href="seg1d.algorithm.uniques.html#seg1d.algorithm.uniques" title="seg1d.algorithm.uniques"><code class="xref py py-func docutils literal notranslate"><span class="pre">algorithm.uniques()</span></code></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="seg1d.Segmenter.peaks.html#seg1d.Segmenter.peaks" title="seg1d.Segmenter.peaks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">peaks</span></code></a></td>
+<td>Peaks of the correlations created by <a class="reference internal" href="seg1d.algorithm.get_peaks.html#seg1d.algorithm.get_peaks" title="seg1d.algorithm.get_peaks"><code class="xref py py-func docutils literal notranslate"><span class="pre">algorithm.get_peaks()</span></code></a></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="seg1d.Segmenter.t_masked.html#seg1d.Segmenter.t_masked" title="seg1d.Segmenter.t_masked"><code class="xref py py-obj docutils literal notranslate"><span class="pre">t_masked</span></code></a></td>
+<td>The target data as ndarray masked with the non-defined segments as NaNs.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="seg1d.Segmenter.t_segments.html#seg1d.Segmenter.t_segments" title="seg1d.Segmenter.t_segments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">t_segments</span></code></a></td>
+<td>Returns an array of segmented target data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+          </div>
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../segmenter.html"
+                        title="previous chapter">Segmenter Class</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../segmenter_meth.html"
+                        title="next chapter">Segmenter Methods</a></p>
+
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2020, Mathew Schwartz.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>
