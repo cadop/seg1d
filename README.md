@@ -32,7 +32,7 @@ The advantage of seg1d is a simpler API which makes getting started and using th
 ## Quickstart 
 
 
-### Dependencies
+### Minimum Dependencies
 
 Currently tested on ``Python 3.8`` on Ubuntu 18.04 and Windows 10. (Should work on ``Python 3.6`` and above)
 
@@ -42,7 +42,11 @@ Required Packages:
 
 For documentation:
 
-``sphinx>=2``
+``sphinx>=2``, ``numpydoc>=0.9.2``
+
+For examples:
+
+``matplotlib>=3.2.0``
 
 ### Installation
 
