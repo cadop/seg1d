@@ -20,6 +20,16 @@ Building Documentation
 
 Documentation is built using sphinx with the scipy html_theme in the `docs` folder. 
 
+To get the requirements for building documentation you can run:
+
+``pip install sphinx numpydoc matplotlib``
+
+If you have not installed ``seg1d`` you can then run the following to get the remaining requirements
+
+``pip install numpy scipy sklearn numba``
+
+Finally, the following two lines will build the documentation. 
+
 ``make clean``
 
 ``make html``
