@@ -86,7 +86,7 @@
             
   <div class="section" id="seg1d-segmenter">
 <h1>seg1d.Segmenter<a class="headerlink" href="#seg1d-segmenter" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="seg1d.Segmenter">
 <em class="property">class </em><code class="descclassname">seg1d.</code><code class="descname">Segmenter</code><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L15-L611"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Segmentation class that exposes all algorithm parameters and attributes for
@@ -117,61 +117,50 @@ using sample data included with this package.</p>
 <span class="go">       [ 72.       , 112.       ,   0.8776795]])</span>
 </pre></div>
 </div>
-<dl class="method">
+<dl class="py method">
 <dt id="seg1d.Segmenter.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L51-L135"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L51-L135"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialization of segmentation class and parameters</p>
-<p class="rubric">Attributes</p>
-<table border="1" class="docutils align-default">
-<colgroup>
-<col width="7%" />
-<col width="93%" />
-</colgroup>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-odd"><td><strong>r</strong></td>
-<td>(array of dicts) The reference dataset</td>
-</tr>
-<tr class="row-even"><td><strong>t</strong></td>
-<td>(dict) The target dataset</td>
-</tr>
-<tr class="row-odd"><td><strong>w</strong></td>
-<td>(dict) Weights for correlation</td>
-</tr>
-<tr class="row-even"><td><strong>minW</strong></td>
-<td>(int) minimum percent to scale data</td>
-</tr>
-<tr class="row-odd"><td><strong>maxW</strong></td>
-<td>(int) maximum percent to scale data</td>
-</tr>
-<tr class="row-even"><td><strong>step</strong></td>
-<td>(int) step size for rolling correlation</td>
-</tr>
-<tr class="row-odd"><td><strong>wSizes</strong></td>
-<td>(list) sizes to use for resampling reference (can be used instead of minW,maxW,step)</td>
-</tr>
-<tr class="row-even"><td><strong>cMax</strong></td>
-<td>(bool) use maximum in rolling correlation (default False)</td>
-</tr>
-<tr class="row-odd"><td><strong>cMin</strong></td>
-<td>(float) -1 to 1, min correlation</td>
-</tr>
-<tr class="row-even"><td><strong>cAdd</strong></td>
-<td>(float) 0 to 1 or None, value to add for forcing clusters (Default 0.5)</td>
-</tr>
-<tr class="row-odd"><td><strong>pD</strong></td>
-<td>(None) peak distance to use for scipy peak detection (Default None)</td>
-</tr>
-<tr class="row-even"><td><strong>nC</strong></td>
-<td>(int) number of clusters for correlation results</td>
-</tr>
-<tr class="row-odd"><td><strong>fMode</strong></td>
-<td>({‘w’, ‘m’, ‘s’}) keyword to use for aggregating feature correlations (default <em class="xref py py-obj">w</em>). Options, w=weighted mean, m=mean, s=sum</td>
-</tr>
-<tr class="row-even"><td><strong>fScale</strong></td>
-<td>(bool) scale the feature correlation by its weight before feature aggregation (Default True)</td>
-</tr>
-<tr class="row-odd"><td><strong>tSeg</strong></td>
-<td>([]) the target data as segmented arrays</td>
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>r</strong><span class="classifier">array of dicts</span></dt><dd><p>The reference dataset</p>
+</dd>
+<dt><strong>t</strong><span class="classifier">dict</span></dt><dd><p>The target dataset</p>
+</dd>
+<dt><strong>w</strong><span class="classifier">dict</span></dt><dd><p>Weights for correlation</p>
+</dd>
+<dt><strong>minW</strong><span class="classifier">int</span></dt><dd><p>minimum percent to scale data</p>
+</dd>
+<dt><strong>maxW</strong><span class="classifier">int</span></dt><dd><p>maximum percent to scale data</p>
+</dd>
+<dt><strong>step</strong><span class="classifier">int</span></dt><dd><p>step size for rolling correlation</p>
+</dd>
+<dt><strong>wSizes</strong><span class="classifier">list</span></dt><dd><p>sizes to use for resampling reference
+(can be used instead of minW,maxW,step)</p>
+</dd>
+<dt><strong>cMax</strong><span class="classifier">bool</span></dt><dd><p>use maximum in rolling correlation (default False)</p>
+</dd>
+<dt><strong>cMin</strong><span class="classifier">float</span></dt><dd><p>-1 to 1, min correlation</p>
+</dd>
+<dt><strong>cAdd</strong><span class="classifier">float</span></dt><dd><p>0 to 1 or None, value to add for forcing clusters (Default 0.5)</p>
+</dd>
+<dt><strong>pD</strong><span class="classifier">None</span></dt><dd><p>peak distance to use for scipy peak detection (Default None)</p>
+</dd>
+<dt><strong>nC</strong><span class="classifier">int</span></dt><dd><p>number of clusters for correlation results</p>
+</dd>
+<dt><strong>fMode</strong><span class="classifier">{‘w’, ‘m’, ‘s’}</span></dt><dd><p>keyword to use for aggregating feature correlations (default <em class="xref py py-obj">w</em>).
+Options, w=weighted mean, m=mean, s=sum</p>
+</dd>
+<dt><strong>fScale</strong><span class="classifier">bool</span></dt><dd><p>scale the feature correlation by its weight before feature
+aggregation (Default True)</p>
+</dd>
+<dt><strong>tSeg</strong><span class="classifier">[]</span></dt><dd><p>the target data as segmented arrays</p>
+</dd>
+</dl>
+</td>
 </tr>
 </tbody>
 </table>
@@ -184,19 +173,19 @@ using sample data included with this package.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#seg1d.Segmenter.__init__" title="seg1d.Segmenter.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="#seg1d.Segmenter.__init__" title="seg1d.Segmenter.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self)</td>
 <td>Initialization of segmentation class and parameters</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="seg1d.Segmenter.add_reference.html#seg1d.Segmenter.add_reference" title="seg1d.Segmenter.add_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_reference</span></code></a>(r[,&nbsp;copy])</td>
+<tr class="row-even"><td><a class="reference internal" href="seg1d.Segmenter.add_reference.html#seg1d.Segmenter.add_reference" title="seg1d.Segmenter.add_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_reference</span></code></a>(self,&nbsp;r[,&nbsp;copy])</td>
 <td>Appends a reference containing one or more features to the existing reference dataset.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="seg1d.Segmenter.clear_reference.html#seg1d.Segmenter.clear_reference" title="seg1d.Segmenter.clear_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear_reference</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="seg1d.Segmenter.clear_reference.html#seg1d.Segmenter.clear_reference" title="seg1d.Segmenter.clear_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear_reference</span></code></a>(self)</td>
 <td>Removes any reference data currently assigned</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="seg1d.Segmenter.segment.html#seg1d.Segmenter.segment" title="seg1d.Segmenter.segment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">segment</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="seg1d.Segmenter.segment.html#seg1d.Segmenter.segment" title="seg1d.Segmenter.segment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">segment</span></code></a>(self)</td>
 <td>Method to run the segmentation algorithm on the current Segmenter instance</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="seg1d.Segmenter.set_target.html#seg1d.Segmenter.set_target" title="seg1d.Segmenter.set_target"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_target</span></code></a>(t[,&nbsp;copy])</td>
+<tr class="row-odd"><td><a class="reference internal" href="seg1d.Segmenter.set_target.html#seg1d.Segmenter.set_target" title="seg1d.Segmenter.set_target"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_target</span></code></a>(self,&nbsp;t[,&nbsp;copy])</td>
 <td>Sets the target data by overiding any existing target.</td>
 </tr>
 </tbody>
@@ -267,7 +256,7 @@ using sample data included with this package.</p>
         &copy; Copyright 2020, Mathew Schwartz.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
       </li>
     </ul>
     </div>

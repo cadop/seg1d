@@ -86,30 +86,28 @@
             
   <div class="section" id="seg1d-optimized-funcs-vcor">
 <h1>seg1d.optimized_funcs.vcor<a class="headerlink" href="#seg1d-optimized-funcs-vcor" title="Permalink to this headline">¶</a></h1>
-<dl class="attribute">
+<dl class="py function">
 <dt id="seg1d.optimized_funcs.vcor">
-<code class="descclassname">optimized_funcs.</code><code class="descname">vcor</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/optimized_funcs.py#L69-L134"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.optimized_funcs.vcor" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">seg1d.optimized_funcs.</code><code class="descname">vcor</code><span class="sig-paren">(</span><em><span class="n">x</span></em>, <em><span class="n">y</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/optimized_funcs.py#L69-L134"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.optimized_funcs.vcor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rolling correlation between two arrays.
 Optimized by numba if available</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x</strong> : 1D array</p>
-<blockquote>
-<div><p>array to use as static data</p>
-</div></blockquote>
-<p><strong>y</strong> : 1D array</p>
-<blockquote>
-<div><p>array to use as rolling data</p>
-</div></blockquote>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>x</strong><span class="classifier">1D array</span></dt><dd><p>array to use as static data</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">1D array</span></dt><dd><p>array to use as rolling data</p>
+</dd>
+</dl>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">1D array</p>
-<blockquote class="last">
-<div><p>correlations at each increment</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt>1D array</dt><dd><p>correlations at each increment</p>
 <p><code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">=</span> <span class="pre">(size(x)</span> <span class="pre">-</span> <span class="pre">size(y))</span> <span class="pre">+</span> <span class="pre">1</span></code></p>
-</div></blockquote>
+</dd>
+</dl>
 </td>
 </tr>
 </tbody>
@@ -167,7 +165,7 @@ This will try to use numba for optimization.</p>
         &copy; Copyright 2020, Mathew Schwartz.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
       </li>
     </ul>
     </div>

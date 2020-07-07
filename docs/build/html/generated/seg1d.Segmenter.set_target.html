@@ -86,32 +86,32 @@
             
   <div class="section" id="seg1d-segmenter-set-target">
 <h1>seg1d.Segmenter.set_target<a class="headerlink" href="#seg1d-segmenter-set-target" title="Permalink to this headline">¶</a></h1>
-<dl class="method">
+<dl class="py method">
 <dt id="seg1d.Segmenter.set_target">
-<code class="descclassname">Segmenter.</code><code class="descname">set_target</code><span class="sig-paren">(</span><em>t</em>, <em>copy=True</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L347-L432"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter.set_target" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">Segmenter.</code><code class="descname">set_target</code><span class="sig-paren">(</span><em><span class="n">self</span></em>, <em><span class="n">t</span></em>, <em><span class="n">copy</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L347-L432"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter.set_target" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the target data by overiding any existing target.
 If the target is not a dict, it will be converted to one.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>t</strong> : dict or ndarray</p>
-<blockquote>
-<div><div class="line-block">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>t</strong><span class="classifier">dict or ndarray</span></dt><dd><div class="line-block">
 <div class="line">Dictionary containing labeled features as keys and values as 1-D
 arrays (must be same size).</div>
 <div class="line">ndarray of dimension 1 will be used as a single feature
 for the target.</div>
 <div class="line">ndarray of n-dimensions will use rows as unique features.</div>
 </div>
-</div></blockquote>
-<p><strong>copy</strong> : bool, optional</p>
-<blockquote>
-<div><p>If True, will make a deepcopy of the passed parameter (Default True)</p>
-</div></blockquote>
+</dd>
+<dt><strong>copy</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, will make a deepcopy of the passed parameter (Default True)</p>
+</dd>
+</dl>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt>None</dt><dd></dd>
+</dl>
 </td>
 </tr>
 </tbody>
@@ -186,7 +186,7 @@ multiple features.</p>
         &copy; Copyright 2020, Mathew Schwartz.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
       </li>
     </ul>
     </div>

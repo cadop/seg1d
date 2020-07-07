@@ -85,9 +85,9 @@
             
   <div class="section" id="simple-interface">
 <h1>Simple Interface<a class="headerlink" href="#simple-interface" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt>
-<code class="descclassname">seg1d.</code><code class="descname">segment_data</code><span class="sig-paren">(</span><em>r</em>, <em>t</em>, <em>w</em>, <em>minS</em>, <em>maxS</em>, <em>step</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L614-L686"><span class="viewcode-link">[source]</span></a></dt>
+<code class="descclassname">seg1d.</code><code class="descname">segment_data</code><span class="sig-paren">(</span><em><span class="n">r</span></em>, <em><span class="n">t</span></em>, <em><span class="n">w</span></em>, <em><span class="n">minS</span></em>, <em><span class="n">maxS</span></em>, <em><span class="n">step</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L614-L686"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Segmentation manager for interfacing with Segmenter class</p>
 <p>Find segments of a reference dataset in a target dataset using
 a rolling correlation of <em>n</em> number of reference examples with
@@ -97,40 +97,30 @@ with weights applied to each feature.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>r</strong> : List[Dict[key,numpy.array]]</p>
-<blockquote>
-<div><p>reference data of form
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>r</strong><span class="classifier">List[Dict[key,numpy.array]]</span></dt><dd><p>reference data of form
 <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">{(feature</span> <span class="pre">Key):</span> <span class="pre">[data</span> <span class="pre">array]</span> <span class="pre">},</span> <span class="pre">{(feature</span> <span class="pre">Key):</span> <span class="pre">[data</span> <span class="pre">array]</span> <span class="pre">}</span> <span class="pre">]</span></code></p>
-</div></blockquote>
-<p><strong>t</strong> : Dict[key,numpy.array]</p>
-<blockquote>
-<div><p>target data of form
+</dd>
+<dt><strong>t</strong><span class="classifier">Dict[key,numpy.array]</span></dt><dd><p>target data of form
 <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">(feature</span> <span class="pre">Key):</span> <span class="pre">[data</span> <span class="pre">array]</span> <span class="pre">}</span></code></p>
-</div></blockquote>
-<p><strong>w</strong> : Dict[key,float] or None</p>
-<blockquote>
-<div><p>Weights of form
+</dd>
+<dt><strong>w</strong><span class="classifier">Dict[key,float] or None</span></dt><dd><p>Weights of form
 <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">(feature</span> <span class="pre">key):float,(feature</span> <span class="pre">key):float</span> <span class="pre">}</span></code></p>
-</div></blockquote>
-<p><strong>minS</strong> : int</p>
-<blockquote>
-<div><p>Minimum scale to apply for reference data</p>
-</div></blockquote>
-<p><strong>maxS</strong> : int</p>
-<blockquote>
-<div><p>Maximum scale to apply for reference data</p>
-</div></blockquote>
-<p><strong>step</strong> : int</p>
-<blockquote>
-<div><p>Size of step to use in rolling correlation</p>
-</div></blockquote>
+</dd>
+<dt><strong>minS</strong><span class="classifier">int</span></dt><dd><p>Minimum scale to apply for reference data</p>
+</dd>
+<dt><strong>maxS</strong><span class="classifier">int</span></dt><dd><p>Maximum scale to apply for reference data</p>
+</dd>
+<dt><strong>step</strong><span class="classifier">int</span></dt><dd><p>Size of step to use in rolling correlation</p>
+</dd>
+</dl>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><em>3 x n</em> array</p>
-<blockquote class="last">
-<div><p>segments of form
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><em>3 x n</em> array</dt><dd><p>segments of form
 <code class="docutils literal notranslate"><span class="pre">[start</span> <span class="pre">of</span> <span class="pre">segment,end</span> <span class="pre">of</span> <span class="pre">segment,correlation</span> <span class="pre">score]</span></code></p>
-</div></blockquote>
+</dd>
+</dl>
 </td>
 </tr>
 </tbody>
@@ -190,7 +180,7 @@ of the reference data and index stepping to use in rolling correlation</p>
         &copy; Copyright 2020, Mathew Schwartz.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
       </li>
     </ul>
     </div>

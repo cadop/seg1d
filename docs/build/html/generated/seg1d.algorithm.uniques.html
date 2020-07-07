@@ -86,9 +86,9 @@
             
   <div class="section" id="seg1d-algorithm-uniques">
 <h1>seg1d.algorithm.uniques<a class="headerlink" href="#seg1d-algorithm-uniques" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
+<dl class="py function">
 <dt id="seg1d.algorithm.uniques">
-<code class="descclassname">seg1d.algorithm.</code><code class="descname">uniques</code><span class="sig-paren">(</span><em>sortedPeaks</em>, <em>srcLen</em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/algorithm.py#L277-L355"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.algorithm.uniques" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">seg1d.algorithm.</code><code class="descname">uniques</code><span class="sig-paren">(</span><em><span class="n">sortedPeaks</span></em>, <em><span class="n">srcLen</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/algorithm.py#L277-L355"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.algorithm.uniques" title="Permalink to this definition">¶</a></dt>
 <dd><p>Unique Segment Identification</p>
 <div class="line-block">
 <div class="line">Find unique segment(s) in a sequence of correlation values. </div>
@@ -98,25 +98,21 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>sortedPeaks</strong> : n x 3 array</p>
-<blockquote>
-<div><p>n x 3 array sorted by highest to lowest correlation
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>sortedPeaks</strong><span class="classifier">n x 3 array</span></dt><dd><p>n x 3 array sorted by highest to lowest correlation
 of form <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">scale</span> <span class="pre">(int),</span> <span class="pre">correlation(float)</span> <span class="pre">,</span> <span class="pre">peak</span> <span class="pre">index</span> <span class="pre">(int)</span> <span class="pre">]</span></code></p>
-</div></blockquote>
-<p><strong>srcLen</strong> : int</p>
-<blockquote>
-<div><p>length of the target data, used to block out possible segments</p>
-</div></blockquote>
+</dd>
+<dt><strong>srcLen</strong><span class="classifier">int</span></dt><dd><p>length of the target data, used to block out possible segments</p>
+</dd>
+</dl>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">n x 3 array</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">start</span> <span class="pre">index,</span> <span class="pre">end</span> <span class="pre">index,</span> <span class="pre">correlation</span> <span class="pre">]</span></code></p>
-</div></blockquote>
-<p>None</p>
-<blockquote class="last">
-<div><p>if no segments are found</p>
-</div></blockquote>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt>n x 3 array</dt><dd><p><code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">start</span> <span class="pre">index,</span> <span class="pre">end</span> <span class="pre">index,</span> <span class="pre">correlation</span> <span class="pre">]</span></code></p>
+</dd>
+<dt>None</dt><dd><p>if no segments are found</p>
+</dd>
+</dl>
 </td>
 </tr>
 </tbody>
@@ -183,7 +179,7 @@ of form <code class="docutils literal notranslate"><span class="pre">[</span> <s
         &copy; Copyright 2020, Mathew Schwartz.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
       </li>
     </ul>
     </div>
