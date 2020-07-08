@@ -1,4 +1,6 @@
-from seg1d._about import __version__
+import sys
+sys.path.append('./seg1d')
+from _about import __version__
 import setuptools
 
 with open("README.md", "r") as fh:
