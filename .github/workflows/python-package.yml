@@ -45,4 +45,4 @@ jobs:
         python -c "from seg1d.examples import test; test.run()"
     - name: Test with doctest
       run: |
-        pytest --doctest-modules
+        pytest --doctest-modules PY_IGNORE_IMPORTMISMATCH=1
