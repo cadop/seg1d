@@ -48,9 +48,9 @@ plt.plot(x, targ,linewidth=4,alpha=0.2,label='Target')#doctest: +SKIP
 plt.plot(x[t_s:t_e], targ[t_s:t_e],linewidth=2,alpha=0.7,label='Reference')#doctest: +SKIP
 #plot all segments found
 for seg in segments:
-    s = seg[0]
+    st = seg[0]
     e = seg[1]
-    plt.plot(x[s:e], targ[s:e],dashes=[1,1],linewidth=2,alpha=0.8,label='Segment')#doctest: +SKIP
+    plt.plot(x[st:e], targ[st:e],dashes=[1,1],linewidth=2,alpha=0.8,label='Segment')#doctest: +SKIP
 plt.legend()#doctest: +SKIP
 plt.show()#doctest: +SKIP
 
@@ -93,8 +93,8 @@ plt.plot(x, targ,linewidth=4,alpha=0.2,label='Target')#doctest: +SKIP
 plt.plot(x[t_s:t_e], targ[t_s:t_e],linewidth=2,alpha=0.7,label='Reference')#doctest: +SKIP
 #plot all segments found
 for seg in segments:
-    s = seg[0]
+    st = seg[0]
     e = seg[1]
-    plt.plot(x[s:e], targ[s:e],dashes=[1,1],linewidth=2,alpha=0.8,label='Segment')#doctest: +SKIP
+    plt.plot(x[st:e], targ[st:e],dashes=[1,1],linewidth=2,alpha=0.8,label='Segment')#doctest: +SKIP
 plt.legend()#doctest: +SKIP
 plt.show()#doctest: +SKIP
