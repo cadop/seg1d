@@ -269,7 +269,7 @@ def get_peaks(x, minC=0.7, dst=None):
         peakArr += [[wSize, row[y], y] for y in peaks]
 
     # sort by highest correlations
-    sortedPeaks = sorted(peakArr, key=itemgetter(1), reverse=True)
+    sortedPeaks = sorted(peakArr, key=itemgetter(1,2), reverse=True)
 
     return sortedPeaks
 
