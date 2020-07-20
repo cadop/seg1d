@@ -68,7 +68,7 @@ r,t,w = seg1d.sampleData()
 # define scaling percentage and rolling step size
 minW, maxW, step  = 70, 150, 1 
 #call the segmentation algorithm
-a = seg1d.segmentData(r,t,w,minW,maxW,step)
+a = seg1d.segment_data(r,t,w,minW,maxW,step)
 print(a)
 # Should output an array equal to:
 # array([[207.       , 240.       ,   0.9124224],
