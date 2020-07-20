@@ -6,7 +6,7 @@ Check dependencies
 ------------------
 Currently tested on ``Python 3.8+``.
 
-For the package: ``numpy>=1.18``, ``scipy>=1.4.1``, ``sklearn>=0.22``, ``numba>=0.48``
+For the package: ``numpy>=1.15``, ``scipy>=1.0.0``, ``sklearn>=0.2``, ``numba>=0.40``
 
 For building documentation: ``sphinx``, ``scipy`` html_theme, ``numpydoc``, ``matplotlib``
 
