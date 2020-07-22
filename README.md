@@ -82,9 +82,9 @@ For more examples, please refer to the full documention.
 
 ## Project Info
 
-This project was used for the following paper: 
+This project was used for the following paper -  [Paper Link](https://commons.nmu.edu/isbs/vol38/iss1/231/) : 
 
-(Accepted) Schwartz, Mathew; Pataky, Todd; Sui Geok Karen, CHUA; Wei Tech, ANG; and Donnelly, Cyril (2020) "AUTOMATED MULTI-FEATURE SEGMENTATION OF TREADMILL RUNNING," ISBS Proceedings Archive: Vol. 37 : Iss. 2 , Article 1. 
+Schwartz, Mathew; Pataky, Todd; Sui Geok Karen, CHUA; Wei Tech, ANG; and Donnelly, Cyril (2020) "AUTOMATED MULTI-FEATURE SEGMENTATION OF TREADMILL RUNNING," ISBS Proceedings Archive: Vol. 38 : Iss. 1 , Article 231.
 
 ### Community
 
