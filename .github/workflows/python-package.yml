@@ -48,6 +48,7 @@ jobs:
         pytest --doctest-modules
     - name: Build documentation with sphinx
       run: |
+        cd docs
         make clean
         make html
         make doctest
