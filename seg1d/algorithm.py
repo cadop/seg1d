@@ -79,6 +79,12 @@ def rolling_corr(x, yData, winSize, cMax=False):
 
     '''
 
+    # Assert types are valid
+    assert isinstance(x, np.ndarray), 'X must be Numpy Array'
+    assert isinstance(yData, np.ndarray), 'yData must be Numpy Array'
+    assert isinstance(winSize, int), 'yData must be an Integer'
+    assert isinstance(cMax, bool), 'cMax must be a Boolean'
+
     refScaled = resample(yData, winSize)  # resample reference data
 
     assert x.size >= refScaled.shape[1], "Cannot correlate when reference larger than target "
@@ -168,6 +174,18 @@ def combine_corr(x, w, method='m', scale=True):
      -0.20165658 -0.1122354  -0.01614647  0.0809017 ]
 
     '''
+
+    # Assert types are valid
+    assert isinstance(x, dict), 'x must be a Dict'
+    assert all(isinstance(_, int) for _ in x.keys()), 'x keys must be int'
+    assert isinstance(w, dict), 'w must be a Dict'
+    assert all(all((isinstance(a, str), isinstance(b, float))) \
+            for a, b in w.items()), 'w must be of type Dict[str:float]'
+            
+    assert all(isinstance(_, str) for _ in w.keys()), 'w keys must be str'
+
+    # Assert argument is valid
+    assert (method in ['m', 'w', 's']), 'Method must be "m", "w", or "s"'
 
     cDict = {}
 
