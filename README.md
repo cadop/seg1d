@@ -1,3 +1,5 @@
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.02404/status.svg)](https://doi.org/10.21105/joss.02404)
+
 # seg1d
 
 Automated segmentation of one-dimensional (1D) data
@@ -81,6 +83,25 @@ print(a)
 For more examples, please refer to the full documention. 
 
 ## Project Info
+
+To cite: 
+Schwartz et al., (2020). seg1d: A Python package for Automated segmentation of one-dimensional (1D) data. Journal of Open Source Software, 5(52), 2404, https://doi.org/10.21105/joss.02404
+
+Bibtex
+```
+@article{Schwartz2020,
+  doi = {10.21105/joss.02404},
+  url = {https://doi.org/10.21105/joss.02404},
+  year = {2020},
+  publisher = {The Open Journal},
+  volume = {5},
+  number = {52},
+  pages = {2404},
+  author = {Mathew Schwartz and Todd C. Pataky and Cyril J. Donnelly},
+  title = {seg1d: A Python package for Automated segmentation of one-dimensional (1D) data},
+  journal = {Journal of Open Source Software}
+}
+```
 
 This project was used for the following paper -  [Paper Link](https://commons.nmu.edu/isbs/vol38/iss1/231/) : 
 
