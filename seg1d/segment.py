@@ -590,6 +590,7 @@ class Segmenter:
         This example is the same as the main ``Segmenter`` class as it is the
         interface method.
 
+        >>> import numpy as np
         >>> import seg1d
         >>>
         >>> #Make an instance of the segmenter
@@ -601,8 +602,10 @@ class Segmenter:
         >>> #set the parameters
         >>> s.minW,s.maxW,s.step = 70, 150, 1
         >>>
-        >>> s.segment()
-        [[207, 240, 0.9124223704844657], [342, 381, 0.880190111545897], [72, 112, 0.8776795468035664]]
+        >>> np.around(s.segment(),7)
+        array([[207.       , 240.       ,   0.9124224],
+               [342.       , 381.       ,   0.8801901],
+               [ 72.       , 112.       ,   0.8776795]])
 
         '''
 
@@ -650,6 +653,9 @@ def segment_data(r, t, w, minS, maxS, step):
 
     Examples
     --------
+
+    >>> import numpy as np
+
     First we import sample data from the examples folder that has multiple
     features derived from motion capture data
 
@@ -665,8 +671,10 @@ def segment_data(r, t, w, minS, maxS, step):
 
     Finally we call the segmentation algorithm
 
-    >>> seg1d.segment_data(r,t,w,minW,maxW,step)
-    [[207, 240, 0.9124223704844657], [342, 381, 0.880190111545897], [72, 112, 0.8776795468035664]]
+    >>> np.around(seg1d.segment_data(r,t,w,minW,maxW,step),7)
+    array([[207.       , 240.       ,   0.9124224],
+           [342.       , 381.       ,   0.8801901],
+           [ 72.       , 112.       ,   0.8776795]])
 
 
     '''

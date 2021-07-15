@@ -7,7 +7,7 @@
     >>> maxW = 150 #maximum percent to scale up reference data
     >>> step = 1 #step to use for correlating reference to target data
     >>> #call the segmentation algorithm
-    >>> seg1d.segment_data(r,t,w,minW,maxW,step)
+    >>> np.around(seg1d.segment_data(r,t,w,minW,maxW,step), 5)
     [[207, 240, 0.9124223704844657], [342, 381, 0.880190111545897], [72, 112, 0.8776795468035664]]
 
 '''
