@@ -26,6 +26,7 @@ convenience functions for adding data and tuning parameters of the segmentation 
 
    segmenter.rst
    segmenter_meth.rst   
+   processing.rst
 
 
 Methods
