@@ -14,7 +14,7 @@ import numpy as np
 from . import algorithm as alg
 
 class Features():
-        
+
     @staticmethod
     def match_len(dataset):
         ''' interpolate to the maximum sized data in the reference set
@@ -23,7 +23,7 @@ class Features():
         Parameters
         ----------
 
-        dataset : List[Dict{feature : val}]
+        dataset : List[Dict{feature:val}]
             list of multiple datasets containing dictionary of
             1d features that will be matched to same length
 
@@ -31,7 +31,7 @@ class Features():
         Returns
         -------
 
-        interp_d : List[Dict{feature : val}]
+        interp_d : List[Dict{feature:val}]
             feature length-matched data
         
 
@@ -45,13 +45,14 @@ class Features():
         --------
 
         >>> import numpy as np
-        >>> import segld.processing as process
+        >>> import seg1d.processing as process
         >>> s20 = np.linspace(-np.pi*2, np.pi*2, 20) 
         >>> s30 = np.linspace(-np.pi*2, np.pi*2, 30)
         >>> s40 = np.linspace(-np.pi*2, np.pi*2, 40) 
+        >>> s_longest = np.sin(s40)
         >>> a1 = {'s':np.sin(s20), 'c':np.cos(s20)}
         >>> a2 = {'s':np.sin(s30), 'c':np.cos(s30)}
-        >>> a3 = {'s':np.sin(s40), 'c':np.cos(s40)}
+        >>> a3 = {'s':s_longest, 'c':np.cos(s40)}
         >>> d = [a1, a2, a3]
         >>> r = process.Features.match_len(d)
         >>> print(len(r[0]['s']) == len(s_longest))
@@ -83,24 +84,25 @@ class Features():
 
     @staticmethod
     def center(ref_data):
-        '''
+        ''' subtract the mean of each feature from itself
 
         Parameters
         ----------
 
-        ref_data : Dict{trial : Dict{feature : val}} or List[Dict{feature : val}]
+        ref_data : Dict{trial:Dict{feature:val}} or List[Dict{feature:val}]
             dictionary of 1d features that will be centered (mean subtracted) 
 
         Returns
         -------
 
-        cent_dict : Dict{trial : Dict{feature : val}} or List[Dict{feature : val}]
+        cent_dict : Dict{trial:Dict{feature:val}} or List[Dict{feature:val}]
             centered features
 
         Examples
         --------
 
-        >>> import segld.processing as process
+        >>> import numpy as np
+        >>> import seg1d.processing as process
         >>> s20 = np.linspace(-np.pi*2, np.pi*2, 10)
         >>> s30 = np.linspace(-np.pi*2, np.pi*2, 20) 
         >>> s1 = np.sin(s20)
@@ -143,10 +145,10 @@ class Features():
         Parameters
         ----------
 
-        D1 : Dict{feature : value} or List[Dict{feature : value}]
+        D1 : Dict{feature:value} or List[Dict{feature:value}]
             sets of references to be parsed for shared features
 
-        D2 : Dict{feature : value} or List[Dict{feature : value}], optional
+        D2 : Dict{feature:value} or List[Dict{feature:value}], optional
             optional dictionary, if supplied, will return as a secondary dict
             that also contains only shared features
 
@@ -168,13 +170,15 @@ class Features():
         Examples
         --------
 
-        >>> import segld.processing as process
+        >>> import seg1d.processing as process
         >>> d1 = {'a':[1,2], 'b':[2,2]}
         >>> d2 = {'e':[3,2], 'b':[5,1], 'a':[5,5]}
         >>> d3 = {'b':[8,2], 'a':[3,3], 'c': [1,2]}
-        >>> r = process.Features.shared(d1,[d2,d3])
-        >>> print(r)
-        ({'a': [1, 2], 'b': [2, 2]}, [{'a': [5, 5], 'b': [5, 1]}, {'a': [3, 3], 'b': [8, 2]}])
+        >>> r1, r2 = process.Features.shared(d1,[d2,d3])
+        >>> print({k:r1[k] for k in sorted(r1)})
+        {'a': [1, 2], 'b': [2, 2]}
+        >>> print({k:r[k] for r in r2 for k in sorted(r)})
+        {'a': [3, 3], 'b': [8, 2]}
 
         '''
 
@@ -235,12 +239,12 @@ class Features():
 
     @staticmethod
     def gen_weights(dataset):
-        """ Create weight table from reference data
+        ''' Create weight table from reference data
 
         Parameters
         ----------
 
-        dataset: List[ Dict{feature : value} ]
+        dataset: List[Dict{feature:value}]
             sets of references to be correlated against eachother to generate 
             an importance score of each feature
 
@@ -248,7 +252,7 @@ class Features():
         Returns
         -------
 
-        weights : Dict{feature : score}
+        weights : Dict{feature:score}
             normalized sum of weights over all segments 
         
         Notes
@@ -259,40 +263,42 @@ class Features():
         See Also
         --------
 
-        `match_len()`
+        match_len : match length of all features
 
         Examples
         --------
 
         >>> import numpy as np
-        >>> import segld.processing as process
+        >>> import seg1d.processing as process
         >>> e10 = np.linspace(-np.pi*2, np.pi*2, 10)
         >>> s1 = {'f1': np.sin(e10) , 'f2': np.sin(e10), 'f3': np.linspace(0,9,10) }
         >>> s2 = {'f1': np.sin(e10) , 'f2': np.cos(e10), 'f3': -1*np.linspace(0,9,10) }
         >>> s3 = {'f1': np.sin(e10) , 'f2': np.tan(e10), 'f3': np.ones((10))}
         >>> d = [s1, s2, s3]
         >>> r = process.Features.gen_weights(d)
-        >>> print(r)
-        {'f3': array([-1.]), 'f1': array([1.]), 'f2': array([-0.25])}
+        >>> print([np.around(r[x], 3) for x in sorted(r)])
+        [array([1.]), array([-0.25]), array([-1.])]
 
-        """
+        '''
 
         # Get labels
-        x_labels = set({ m for v in dataset for m in v.keys()})
+        labels = [ m for v in dataset for m in v.keys() ]
+        x_labels = set(labels)
         # # get the nxm arrays for each dataset
-        x = [ itemgetter(*x_labels)(i) for i in dataset ] 
+        x = [ list(itemgetter(*x_labels)(i)) for i in dataset ] 
 
-        C = np.empty((len(x_labels),1))
+        C = np.zeros((len(x_labels),1))
 
-        cor_combinations = itertools.combinations(range(len(x)),2)
+        cor_combinations = list(itertools.combinations(range(len(x)),2))
+
         for x1, x2 in cor_combinations:
             # get the correlations
-            _corr = np.empty((len(x_labels),1))
+            _corr = np.zeros((len(x_labels),1))
             for i in range(len(x[x1])):
                 _corr[i] = stats.pearsonr(x[x1][i], x[x2][i])[0]
             # sum results
             C = np.nansum([C, _corr], axis=0)
-        
+
         #scale between values
         minX = np.nanmin(C) # min of all values
         maxX = np.nanmax(C) # max of all values
@@ -312,7 +318,7 @@ class Features():
         Parameters
         ----------
 
-        weights : Dict{feature : score}
+        weights : Dict{feature:score}
 
 
         limit : float, optional {0.5}
@@ -330,7 +336,7 @@ class Features():
         Returns
         -------
 
-        weight_table : Dict{feature : score}
+        weight_table : Dict{feature:score}
 
 
         Notes
@@ -342,12 +348,12 @@ class Features():
         Examples
         --------
 
-        >>> import segld.processing as process
+        >>> import seg1d.processing as process
         >>> w = {'a': 0.1, 'b': 0.4, 'c': 0.2, 'd':0.8, 'e':0.9}
-        >>> r = proc.Features.meaningful(w, limit=0.1)
+        >>> r = process.Features.meaningful(w, limit=0.1)
         >>> print(r)
         {'e': 0.9, 'd': 0.8, 'b': 0.4, 'c': 0.2}
-        >>> r = proc.Features.meaningful(w, limit=0.1, top=2)
+        >>> r = process.Features.meaningful(w, limit=0.1, top=2)
         >>> print(r)
         {'e': 0.9, 'd': 0.8}
         >>> r = process.Features.meaningful(w, limit=0.1, include_keys=['a','b','d'])
