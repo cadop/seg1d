@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>seg1d.Segmenter.segment &mdash; seg1d 0.1.0 documentation</title>
+    <title>seg1d.Segmenter.segment &mdash; seg1d 0.1.2 documentation</title>
     
     <link rel="stylesheet" type="text/css" href="../_static/css/spc-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../_static/css/spc-extend.css">
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.1.0',
+        VERSION:     '0.1.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false
@@ -27,9 +27,9 @@
     <script type="text/javascript" src="../_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" >
     <link rel="search" title="Search" href="../search.html" >
-    <link rel="top" title="seg1d 0.1.0 documentation" href="../index.html" >
+    <link rel="top" title="seg1d 0.1.2 documentation" href="../index.html" >
     <link rel="up" title="Segmenter Methods" href="../segmenter_meth.html" >
-    <link rel="next" title="Algorithm Methods" href="../routines.html" >
+    <link rel="next" title="Features Class" href="../processing.html" >
     <link rel="prev" title="seg1d.Segmenter.clear_reference" href="seg1d.Segmenter.clear_reference.html" > 
   </head>
   <body>
@@ -51,7 +51,7 @@
         <li class="active"><a href="http://github.com/cadop/seg1d">Github</a></li>
         <li class="active"><a href="http://">Paper</a></li>
 	
-        <li class="active"><a href="../index.html">seg1d 0.1.0 documentation</a></li>
+        <li class="active"><a href="../index.html">seg1d 0.1.2 documentation</a></li>
 	
           <li class="active"><a href="../code.html" >Code Reference</a></li>
           <li class="active"><a href="../segmenter_meth.html" accesskey="U">Segmenter Methods</a></li> 
@@ -64,7 +64,7 @@
            accesskey="I">index</a>
       </li>
       <li class="active">
-        <a href="../routines.html" title="Algorithm Methods"
+        <a href="../processing.html" title="Features Class"
            accesskey="N">next</a>
       </li>
       <li class="active">
@@ -88,7 +88,7 @@
 <h1>seg1d.Segmenter.segment<a class="headerlink" href="#seg1d-segmenter-segment" title="Permalink to this headline">¶</a></h1>
 <dl class="py method">
 <dt id="seg1d.Segmenter.segment">
-<code class="descclassname">Segmenter.</code><code class="descname">segment</code><span class="sig-paren">(</span><em><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L569-L611"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter.segment" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">Segmenter.</code><code class="descname">segment</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/..\seg1d\segment.py#L569-L614"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter.segment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method to run the segmentation algorithm on the current
 Segmenter instance</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -112,7 +112,8 @@ Segmenter instance</p>
 <p class="rubric">Examples</p>
 <p>This example is the same as the main <code class="docutils literal notranslate"><span class="pre">Segmenter</span></code> class as it is the
 interface method.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">seg1d</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">seg1d</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#Make an instance of the segmenter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">Segmenter</span><span class="p">()</span>
@@ -123,8 +124,10 @@ interface method.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#set the parameters</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">minW</span><span class="p">,</span><span class="n">s</span><span class="o">.</span><span class="n">maxW</span><span class="p">,</span><span class="n">s</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">1</span>
 <span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">segment</span><span class="p">()</span>
-<span class="go">[[207, 240, 0.9124223704844657], [342, 381, 0.880190111545897], [72, 112, 0.8776795468035664]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">segment</span><span class="p">(),</span><span class="mi">7</span><span class="p">)</span>
+<span class="go">array([[207.       , 240.       ,   0.9124224],</span>
+<span class="go">       [342.       , 381.       ,   0.8801901],</span>
+<span class="go">       [ 72.       , 112.       ,   0.8776795]])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -141,8 +144,8 @@ interface method.</p>
   <p class="topless"><a href="seg1d.Segmenter.clear_reference.html"
                         title="previous chapter">seg1d.Segmenter.clear_reference</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="../routines.html"
-                        title="next chapter">Algorithm Methods</a></p>
+  <p class="topless"><a href="../processing.html"
+                        title="next chapter">Features Class</a></p>
 
         </div>
       </div>
@@ -163,7 +166,7 @@ interface method.</p>
         &copy; Copyright 2020, Mathew Schwartz.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.1.2.
       </li>
     </ul>
     </div>

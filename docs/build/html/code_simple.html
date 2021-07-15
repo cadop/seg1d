@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Simple Interface &mdash; seg1d 0.1.0 documentation</title>
+    <title>Simple Interface &mdash; seg1d 0.1.2 documentation</title>
     
     <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.1.0',
+        VERSION:     '0.1.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  false
@@ -27,7 +27,7 @@
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" >
     <link rel="search" title="Search" href="search.html" >
-    <link rel="top" title="seg1d 0.1.0 documentation" href="index.html" >
+    <link rel="top" title="seg1d 0.1.2 documentation" href="index.html" >
     <link rel="up" title="Code Reference" href="code.html" >
     <link rel="next" title="Segmenter Class" href="segmenter.html" >
     <link rel="prev" title="Code Reference" href="code.html" > 
@@ -51,7 +51,7 @@
         <li class="active"><a href="http://github.com/cadop/seg1d">Github</a></li>
         <li class="active"><a href="http://">Paper</a></li>
 	
-        <li class="active"><a href="index.html">seg1d 0.1.0 documentation</a></li>
+        <li class="active"><a href="index.html">seg1d 0.1.2 documentation</a></li>
 	
           <li class="active"><a href="code.html" accesskey="U">Code Reference</a></li> 
     </ul>
@@ -87,7 +87,7 @@
 <h1>Simple Interface<a class="headerlink" href="#simple-interface" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt>
-<code class="descclassname">seg1d.</code><code class="descname">segment_data</code><span class="sig-paren">(</span><em><span class="n">r</span></em>, <em><span class="n">t</span></em>, <em><span class="n">w</span></em>, <em><span class="n">minS</span></em>, <em><span class="n">maxS</span></em>, <em><span class="n">step</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L614-L686"><span class="viewcode-link">[source]</span></a></dt>
+<code class="descclassname">seg1d.</code><code class="descname">segment_data</code><span class="sig-paren">(</span><em><span class="n">r</span></em>, <em><span class="n">t</span></em>, <em><span class="n">w</span></em>, <em><span class="n">minS</span></em>, <em><span class="n">maxS</span></em>, <em><span class="n">step</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/..\seg1d\segment.py#L617-L694"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Segmentation manager for interfacing with Segmenter class</p>
 <p>Find segments of a reference dataset in a target dataset using
 a rolling correlation of <em>n</em> number of reference examples with
@@ -126,6 +126,9 @@ with weights applied to each feature.</p>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
 <p>First we import sample data from the examples folder that has multiple
 features derived from motion capture data</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">seg1d</span>
@@ -140,8 +143,10 @@ of the reference data and index stepping to use in rolling correlation</p>
 </pre></div>
 </div>
 <p>Finally we call the segmentation algorithm</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seg1d</span><span class="o">.</span><span class="n">segment_data</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">minW</span><span class="p">,</span><span class="n">maxW</span><span class="p">,</span><span class="n">step</span><span class="p">)</span>
-<span class="go">[[207, 240, 0.9124223704844657], [342, 381, 0.880190111545897], [72, 112, 0.8776795468035664]]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">seg1d</span><span class="o">.</span><span class="n">segment_data</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">minW</span><span class="p">,</span><span class="n">maxW</span><span class="p">,</span><span class="n">step</span><span class="p">),</span><span class="mi">7</span><span class="p">)</span>
+<span class="go">array([[207.       , 240.       ,   0.9124224],</span>
+<span class="go">       [342.       , 381.       ,   0.8801901],</span>
+<span class="go">       [ 72.       , 112.       ,   0.8776795]])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -180,7 +185,7 @@ of the reference data and index stepping to use in rolling correlation</p>
         &copy; Copyright 2020, Mathew Schwartz.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.1.2.
       </li>
     </ul>
     </div>
