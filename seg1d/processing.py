@@ -23,7 +23,7 @@ class Features():
         Parameters
         ----------
 
-        dataset : List[dataset : Dict{feature : val}]
+        dataset : List[Dict{feature : val}]
             list of multiple datasets containing dictionary of
             1d features that will be matched to same length
 
@@ -31,7 +31,7 @@ class Features():
         Returns
         -------
 
-        interp_dict : Dict{ dataset : Dict{feature : val}}
+        interp_d : List[Dict{feature : val}]
             feature length-matched data
         
 
@@ -44,8 +44,18 @@ class Features():
         Examples
         --------
 
+        >>> import numpy as np
         >>> import segld.processing as process
-        >>> a = process.Features.match_len()
+        >>> s20 = np.linspace(-np.pi*2, np.pi*2, 20) 
+        >>> s30 = np.linspace(-np.pi*2, np.pi*2, 30)
+        >>> s40 = np.linspace(-np.pi*2, np.pi*2, 40) 
+        >>> a1 = {'s':np.sin(s20), 'c':np.cos(s20)}
+        >>> a2 = {'s':np.sin(s30), 'c':np.cos(s30)}
+        >>> a3 = {'s':np.sin(s40), 'c':np.cos(s40)}
+        >>> d = [a1, a2, a3]
+        >>> r = process.Features.match_len(d)
+        >>> print(len(r[0]['s']) == len(s_longest))
+        True
 
         '''
         
@@ -91,7 +101,18 @@ class Features():
         --------
 
         >>> import segld.processing as process
-        >>> a = process.Features.center()
+        >>> s20 = np.linspace(-np.pi*2, np.pi*2, 10)
+        >>> s30 = np.linspace(-np.pi*2, np.pi*2, 20) 
+        >>> s1 = np.sin(s20)
+        >>> c2 = np.cos(s30)
+        >>> a1 = {'s1':s1+3, 'c1':np.cos(s20)+10}
+        >>> a2 = {'s2':np.sin(s30)+15, 'c2':c2+15}
+        >>> d = [a1, a2]
+        >>> r = process.Features.center(d)
+        >>> print( np.allclose(r[0]['s1'], (s1+3)- np.mean(s1+3), atol=1e-05) )
+        True
+        >>> print( np.allclose(r[1]['c2'], (c2+15)- np.mean(c2+15), atol=1e-05) )
+        True
 
         '''
 
@@ -125,7 +146,7 @@ class Features():
         D1 : Dict{feature : value} or List[Dict{feature : value}]
             sets of references to be parsed for shared features
 
-        D2 : Dict{feature : value} or  List[Dict{feature : value}], optional
+        D2 : Dict{feature : value} or List[Dict{feature : value}], optional
             optional dictionary, if supplied, will return as a secondary dict
             that also contains only shared features
 
@@ -148,12 +169,14 @@ class Features():
         --------
 
         >>> import segld.processing as process
-        >>> a = process.Features.shared()
+        >>> d1 = {'a':[1,2], 'b':[2,2]}
+        >>> d2 = {'e':[3,2], 'b':[5,1], 'a':[5,5]}
+        >>> d3 = {'b':[8,2], 'a':[3,3], 'c': [1,2]}
+        >>> r = process.Features.shared(d1,[d2,d3])
+        >>> print(r)
+        ({'a': [1, 2], 'b': [2, 2]}, [{'a': [5, 5], 'b': [5, 1]}, {'a': [3, 3], 'b': [8, 2]}])
 
         '''
-
-        # TODO this can be a list instead of a dict since we ignore the trial labels 
-        # but doing so makes the dict/list check less reliable 
 
         # get shared keys through overloaded intersection operator &
         shared_keys = {}
@@ -226,23 +249,38 @@ class Features():
         -------
 
         weights : Dict{feature : score}
-            segment weights
+            normalized sum of weights over all segments 
         
+        Notes
+        -----
+
+        All features should be of same length. 
+
+        See Also
+        --------
+
+        `match_len()`
 
         Examples
         --------
 
+        >>> import numpy as np
         >>> import segld.processing as process
-        >>> a = process.Features.gen_weights()
+        >>> e10 = np.linspace(-np.pi*2, np.pi*2, 10)
+        >>> s1 = {'f1': np.sin(e10) , 'f2': np.sin(e10), 'f3': np.linspace(0,9,10) }
+        >>> s2 = {'f1': np.sin(e10) , 'f2': np.cos(e10), 'f3': -1*np.linspace(0,9,10) }
+        >>> s3 = {'f1': np.sin(e10) , 'f2': np.tan(e10), 'f3': np.ones((10))}
+        >>> d = [s1, s2, s3]
+        >>> r = process.Features.gen_weights(d)
+        >>> print(r)
+        {'f3': array([-1.]), 'f1': array([1.]), 'f2': array([-0.25])}
 
         """
 
         # Get labels
         x_labels = set({ m for v in dataset for m in v.keys()})
-        # x_labels = set({ m for k,v in dataset.items() for m in v.keys()})
         # # get the nxm arrays for each dataset
         x = [ itemgetter(*x_labels)(i) for i in dataset ] 
-        # x = [ itemgetter(*x_labels)(i[1]) for i in dataset.items() ] 
 
         C = np.empty((len(x_labels),1))
 
@@ -253,16 +291,17 @@ class Features():
             for i in range(len(x[x1])):
                 _corr[i] = stats.pearsonr(x[x1][i], x[x2][i])[0]
             # sum results
-            C += _corr  # TODO what happens when summing a nan value?
+            C = np.nansum([C, _corr], axis=0)
         
         #scale between values
-        minX = min(C) # min of all values
-        maxX = max(C) # max of all values
+        minX = np.nanmin(C) # min of all values
+        maxX = np.nanmax(C) # max of all values
         a = -1
         b = 1
         x_norm = a+ ((C- minX)*(b-a)) / (maxX - minX) # normalized on each element
 
         weights = dict(zip(x_labels, x_norm))
+
         return weights
 
 
@@ -304,7 +343,16 @@ class Features():
         --------
 
         >>> import segld.processing as process
-        >>> a = process.Features.meaningful()
+        >>> w = {'a': 0.1, 'b': 0.4, 'c': 0.2, 'd':0.8, 'e':0.9}
+        >>> r = proc.Features.meaningful(w, limit=0.1)
+        >>> print(r)
+        {'e': 0.9, 'd': 0.8, 'b': 0.4, 'c': 0.2}
+        >>> r = proc.Features.meaningful(w, limit=0.1, top=2)
+        >>> print(r)
+        {'e': 0.9, 'd': 0.8}
+        >>> r = process.Features.meaningful(w, limit=0.1, include_keys=['a','b','d'])
+        >>> print(r)
+        {'d': 0.8, 'b': 0.4}
 
         '''
 
@@ -324,96 +372,3 @@ class Features():
         # Return list converted back to dict
         return dict(crop_weights)
 
-
-    @staticmethod
-    def align_direc(data):
-        ''' align spatial features to vector
-        
-
-        Parameters
-        ----------
-
-
-
-        Returns
-        -------
-
-
-        Notes
-        -----
-
-        This concept requires an nxm feature list to be organized in strides of 3 for xyz values. 
-
-        Examples
-        --------
-
-        >>> import segld.processing as process
-        >>> a = process.Features.align_direc()
-
-        '''
-
-        def get_mid(data, label_1, label_2):
-            ''' get the midpoint of two marker names by breaking into tuple
-            '''
-
-            x = ( data[(label_1,'x')] + data[(label_2,'x')] ) /2.0
-            y = ( data[(label_1,'y')] + data[(label_2,'y')] ) /2.0
-            z = ( data[(label_1,'z')] + data[(label_2,'z')] ) /2.0
-
-            return x,y,z
-
-        #get the pelvis direction in the lab coordinate
-        try:
-            p1_p2 = get_mid(data,'RASIS', 'LASIS')
-            p3_p4 = get_mid(data,'RICR', 'LICR')
-
-        except:
-            p1_p2 = get_mid(data,'RASI', 'LASI')
-            p3_p4 = get_mid(data,'RPSI', 'LPSI')
-
-        p1_p2 = np.array(p1_p2).T
-        p3_p4 = np.array(p3_p4).T
-
-        # get direction vector   # Shape = (~1014,3)
-        v = p3_p4 - p1_p2  
-
-        # normalize vector        
-        xSize = np.shape(v)[0]
-        angle = np.empty((xSize,))
-        for i in range(0,xSize):
-            norm = np.linalg.norm(v[i])
-            if norm == 0: newDirec = v[i]
-            else: newDirec =  v[i] / norm
-            a = [0,1]
-            b = newDirec
-            angle[i] = atan2(b[1],b[0]) - atan2(a[1],a[0]) 
-
-        # Data keys
-        keys = data.keys()
-        x = np.array(list(data.values()), dtype=float).T
-
-        rSize =  np.shape(x)[0] 
-        cSize = np.shape(x)[1]
-        cSize = np.int(cSize/3)
-        rot = np.empty((rSize,cSize*3))
-        
-        for i in range(0,rSize):
-            theta = -1*angle[i]
-            Rpel = np.array([[np.cos(theta), -np.sin(theta),0 ],
-                            [np.sin(theta), np.cos(theta) ,0 ],
-                            [0,             0,             1 ]],dtype=np.float64)
-
-            for j in range(0,cSize):
-                k = j*3
-                m = [ x[i][k], x[i][k+1], x[i][k+2] ]
-                mNew = np.dot(Rpel,m)
-                rot[i][k]=mNew[0]
-                rot[i][k+1]=mNew[1]
-                rot[i][k+2]=mNew[2]
-
-        norm_data = rot.T
-        norm_dict = dict(zip(keys, norm_data))
-        return norm_dict
-
-
- 
