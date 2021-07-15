@@ -11,4 +11,4 @@ _internal_testing.py
 
 dist/
 seg1d.egg-info/
-/build/
+build/**
