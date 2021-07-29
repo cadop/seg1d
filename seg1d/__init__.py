@@ -25,6 +25,11 @@ def sampleData(c=0.8):
     c : float, optional
         the minimum correlation weights to load from the sample dataset
 
+    Returns
+    -------
+
+    tuple : refData, targData, refWeights
+
     """
 
     import numpy as np
@@ -39,3 +44,22 @@ def sampleData(c=0.8):
     refWeights = {x: y for x, y in refWeights.items() if y > c}
 
     return refData, targData, refWeights
+
+def sample_input_data():
+    """ Helper function for accessing sample input data for feature processing
+    
+    Returns
+    -------
+
+    tuple :  r, t
+
+    """
+
+    import numpy as np
+
+    data_dir = get_data_dir()
+
+    r = np.load(os.path.join(data_dir, 'raw_r.npy'), allow_pickle=True)
+    t = np.load(os.path.join(data_dir, 'raw_t.npy'), allow_pickle=True)
+
+    return r, t
