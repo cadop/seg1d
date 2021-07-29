@@ -28,11 +28,11 @@ the features most simliar between them (as a normalized sum of all features).
 
     First we can take a look at the reference datasets, noticing they are all different lengths
 
-    >>> plt.figure(figsize=(3,3)) 
+    >>> plt.figure(figsize=(3,3))  # doctest: +SKIP
     >>> for r in raw_r:
-    >>>     plt_r = np.asarray( [ x for x in r.values()  ]  ).T
-    >>>     plt.plot(plt_r,alpha=0.3) 
-    >>> plt.show() 
+    ...     plt_r = np.asarray( [ x for x in r.values()  ]  ).T
+    ...     plt.plot(plt_r,alpha=0.3)  # doctest: +SKIP
+    >>> plt.show()  # doctest: +SKIP
 
 .. plot::
     :context: close-figs
@@ -50,9 +50,9 @@ the features most simliar between them (as a normalized sum of all features).
     similarity over the same scaled timespan
 
     >>> plt_r = np.asarray( [ x for y in ref_data for x in y.values()  ]  ).T
-    >>> plt.figure(figsize=(3,3)) 
-    >>> plt.plot(plt_r,alpha=0.3) 
-    >>> plt.show() 
+    >>> plt.figure(figsize=(3,3))  # doctest: +SKIP
+    >>> plt.plot(plt_r,alpha=0.3)  # doctest: +SKIP
+    >>> plt.show()  # doctest: +SKIP
 
 .. plot::
     :context: close-figs
@@ -88,9 +88,9 @@ the features most simliar between them (as a normalized sum of all features).
     This data has also been centered (a few steps before)
  
     >>> plt_r = np.asarray( [ x for y in ref_data for x in y.values()  ]  ).T
-    >>> plt.figure(figsize=(3,3)) 
-    >>> plt.plot(plt_r,alpha=0.3) 
-    >>> plt.show() 
+    >>> plt.figure(figsize=(3,3))  # doctest: +SKIP
+    >>> plt.plot(plt_r,alpha=0.3)  # doctest: +SKIP
+    >>> plt.show()  # doctest: +SKIP
 
 .. plot::
     :context: close-figs
@@ -104,7 +104,7 @@ the features most simliar between them (as a normalized sum of all features).
     >>> s.minW, s.maxW, s.step = 70, 150, 1
 
     >>> for r in ref_data: 
-    >>>     s.add_reference(r)
+    ...     s.add_reference(r)
 
     As this sample dataset has multiple targets, we will just use the first one. 
     However, you could iterate over all the target trials by wrapping the remaining code
@@ -118,9 +118,9 @@ the features most simliar between them (as a normalized sum of all features).
     We can visualize this target data before segmentation
 
     >>> plt_t = np.asarray( [ x for x in target.values() ] )
-    >>> plt.figure(figsize=(15,4)) 
-    >>> plt.plot(plt_t.T,alpha=0.5) 
-    >>> plt.show() 
+    >>> plt.figure(figsize=(15,4))  # doctest: +SKIP
+    >>> plt.plot(plt_t.T,alpha=0.5)  # doctest: +SKIP
+    >>> plt.show()  # doctest: +SKIP
 
 .. plot::
     :context: close-figs
@@ -138,9 +138,9 @@ the features most simliar between them (as a normalized sum of all features).
 
     >>> plt_t = s.t_masked #get a NaN masked array of the target data
     >>> # plot masked target
-    >>> plt.figure(figsize=(15,4)) 
-    >>> plt.plot(plt_t.T,alpha=0.5) 
-    >>> plt.show() 
+    >>> plt.figure(figsize=(15,4))  # doctest: +SKIP
+    >>> plt.plot(plt_t.T,alpha=0.5)  # doctest: +SKIP
+    >>> plt.show()  # doctest: +SKIP
 
 
 '''
