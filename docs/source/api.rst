@@ -17,6 +17,7 @@ and generated data. Each example emphasizes a different aspect of the segmentati
 	api_ecg.rst
 	api_feat.rst
 	api_tune.rst
+	api_processing.rst
 
 
 .. rubric:: See Also
