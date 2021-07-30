@@ -3,7 +3,7 @@ name: Sphinx Documentation
 on:
   push:
     branches:    
-      - master
+      - test-doc-action-master
 
 jobs:
   build:
