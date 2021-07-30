@@ -49,12 +49,14 @@ jobs:
     - name: Commit files
       run: |
         git clone https://github.com/cadop/seg1d.git --branch doc-build --single-branch doc-build
-        git config --local user.email "action@github.com"
-        git config --local user.name "github-actions[bot]"
         cp -r docs/* doc-build/docs/
         ls
         cd doc-build
+        ls
         cd docs
+        ls
+        git config --local user.email "action@github.com"
+        git config --local user.name "github-actions[bot]"
         git add .
         git commit -m "Add changes" -a
     # - name: Deploy Docs
