@@ -51,9 +51,9 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "github-actions[bot]"
         git clone https://github.com/cadop/seg1d.git --branch doc-build --single-branch doc-build
-        cp -r docs/* sphinx-docs/docs/
+        cp -r docs/* doc-build/docs/
         ls
-        cd sphinx-docs
+        cd doc-build
         cd docs
         git add .
         git commit -m "Add changes" -a
