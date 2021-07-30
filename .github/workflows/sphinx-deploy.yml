@@ -59,13 +59,14 @@ jobs:
         git config --local user.name "github-actions[bot]"
         git add .
         git commit -m "Add changes" -a
+        cd ..
     - name: Push changes
       #uses: ad-m/github-push-action@master
       uses: ad-m/github-push-action@v0.5.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: doc-build # ${{ github.ref }}
-
+        directory: docs
     # runs-on: ubuntu-latest
 
     # steps:
