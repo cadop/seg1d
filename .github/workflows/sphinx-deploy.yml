@@ -21,7 +21,7 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - uses: actions/checkout@v2
-      with:
+      with: # for github push action
         #persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
         fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
     - name: Install dependencies
@@ -50,6 +50,12 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "github-actions[bot]"
+        git clone https://github.com/cadop/seg1d.git --branch doc-build --single-branch doc-build
+        cp -r docs/* sphinx-docs/docs/
+        ls
+        cd sphinx-docs
+        cd docs
+        git add .
         git commit -m "Add changes" -a
     # - name: Deploy Docs
     #   run: |
