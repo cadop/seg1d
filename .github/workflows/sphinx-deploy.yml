@@ -47,7 +47,6 @@ jobs:
         ls
         cd ..
     - name: Commit files
-
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "github-actions[bot]"
@@ -69,7 +68,7 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: sphinx-docs
+        branch: doc-build
 
     # runs-on: ubuntu-latest
 
