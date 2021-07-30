@@ -42,6 +42,11 @@ jobs:
         make latexpdf
         ls
         cd ..
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "github-actions[bot]"
+        git commit -m "Add changes" -a
     # - name: Deploy Docs
     #   run: |
     #     git clone https://github.com/cadop/seg1d.git --branch sphinx-docs --single-branch sphinx-docs
