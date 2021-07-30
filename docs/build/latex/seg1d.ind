@@ -1,0 +1,99 @@
+\begin{sphinxtheindex}
+\let\bigletter\sphinxstyleindexlettergroup
+\let\spxpagem \sphinxstyleindexpagemain
+\let\spxentry \sphinxstyleindexentry
+\let\spxextra \sphinxstyleindexextra
+
+  \bigletter {\sphinxsymbolsname}
+  \item \spxentry{\_\_init\_\_()}\spxextra{seg1d.Segmenter method}, \hyperpage{23}
+
+  \indexspace
+  \bigletter A
+  \item \spxentry{add\_reference()}\spxextra{seg1d.Segmenter method}, \hyperpage{26}
+  \item \spxentry{algorithm}
+    \subitem \spxentry{module}, \hyperpage{36}
+
+  \indexspace
+  \bigletter C
+  \item \spxentry{clear\_reference()}\spxextra{seg1d.Segmenter method}, \hyperpage{27}
+  \item \spxentry{cluster()}\spxextra{in module seg1d.algorithm}, \hyperpage{33}
+  \item \spxentry{combine\_corr()}\spxextra{in module seg1d.algorithm}, \hyperpage{30}
+
+  \indexspace
+  \bigletter G
+  \item \spxentry{get\_peaks()}\spxextra{in module seg1d.algorithm}, \hyperpage{32}
+
+  \indexspace
+  \bigletter M
+  \item \spxentry{module}
+    \subitem \spxentry{algorithm}, \hyperpage{36}
+    \subitem \spxentry{optimized\_funcs}, \hyperpage{36}
+    \subitem \spxentry{seg1d}, \hyperpage{36}
+    \subitem \spxentry{seg1d.algorithm}, \hyperpage{36}
+    \subitem \spxentry{seg1d.examples}, \hyperpage{36}
+    \subitem \spxentry{seg1d.examples.ex\_ecg}, \hyperpage{7}
+    \subitem \spxentry{seg1d.examples.ex\_feature\_processing}, \hyperpage{17}
+    \subitem \spxentry{seg1d.examples.ex\_gauss}, \hyperpage{4}
+    \subitem \spxentry{seg1d.examples.ex\_segmenter\_features}, \hyperpage{10}
+    \subitem \spxentry{seg1d.examples.ex\_segmenter\_sine}, \hyperpage{5}
+    \subitem \spxentry{seg1d.examples.ex\_simple}, \hyperpage{2}
+    \subitem \spxentry{seg1d.examples.ex\_sine}, \hyperpage{2}
+    \subitem \spxentry{seg1d.examples.ex\_sine\_noise}, \hyperpage{12}
+    \subitem \spxentry{seg1d.optimized\_funcs}, \hyperpage{36}
+    \subitem \spxentry{seg1d.segment}, \hyperpage{36}
+    \subitem \spxentry{segment}, \hyperpage{36}
+
+  \indexspace
+  \bigletter O
+  \item \spxentry{optimized\_funcs}
+    \subitem \spxentry{module}, \hyperpage{36}
+
+  \indexspace
+  \bigletter R
+  \item \spxentry{rcor()}\spxextra{in module seg1d.optimized\_funcs}, \hyperpage{35}
+  \item \spxentry{resample()}\spxextra{in module seg1d.algorithm}, \hyperpage{34}
+  \item \spxentry{rolling\_corr()}\spxextra{in module seg1d.algorithm}, \hyperpage{29}
+
+  \indexspace
+  \bigletter S
+  \item \spxentry{seg1d}
+    \subitem \spxentry{module}, \hyperpage{36}
+  \item \spxentry{seg1d.algorithm}
+    \subitem \spxentry{module}, \hyperpage{36}
+  \item \spxentry{seg1d.examples}
+    \subitem \spxentry{module}, \hyperpage{36}
+  \item \spxentry{seg1d.examples.ex\_ecg}
+    \subitem \spxentry{module}, \hyperpage{7}
+  \item \spxentry{seg1d.examples.ex\_feature\_processing}
+    \subitem \spxentry{module}, \hyperpage{17}
+  \item \spxentry{seg1d.examples.ex\_gauss}
+    \subitem \spxentry{module}, \hyperpage{4}
+  \item \spxentry{seg1d.examples.ex\_segmenter\_features}
+    \subitem \spxentry{module}, \hyperpage{10}
+  \item \spxentry{seg1d.examples.ex\_segmenter\_sine}
+    \subitem \spxentry{module}, \hyperpage{5}
+  \item \spxentry{seg1d.examples.ex\_simple}
+    \subitem \spxentry{module}, \hyperpage{2}
+  \item \spxentry{seg1d.examples.ex\_sine}
+    \subitem \spxentry{module}, \hyperpage{2}
+  \item \spxentry{seg1d.examples.ex\_sine\_noise}
+    \subitem \spxentry{module}, \hyperpage{12}
+  \item \spxentry{seg1d.optimized\_funcs}
+    \subitem \spxentry{module}, \hyperpage{36}
+  \item \spxentry{seg1d.segment}
+    \subitem \spxentry{module}, \hyperpage{36}
+  \item \spxentry{segment}
+    \subitem \spxentry{module}, \hyperpage{36}
+  \item \spxentry{segment()}\spxextra{seg1d.Segmenter method}, \hyperpage{27}
+  \item \spxentry{Segmenter}\spxextra{class in seg1d}, \hyperpage{22}
+  \item \spxentry{set\_target()}\spxextra{seg1d.Segmenter method}, \hyperpage{25}
+
+  \indexspace
+  \bigletter U
+  \item \spxentry{uniques()}\spxextra{in module seg1d.algorithm}, \hyperpage{31}
+
+  \indexspace
+  \bigletter V
+  \item \spxentry{vcor()}\spxextra{in module seg1d.optimized\_funcs}, \hyperpage{35}
+
+\end{sphinxtheindex}

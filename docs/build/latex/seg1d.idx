@@ -1,0 +1,46 @@
+\indexentry{module@\spxentry{module}!seg1d.examples.ex\_simple@\spxentry{seg1d.examples.ex\_simple}|hyperpage}{2}
+\indexentry{seg1d.examples.ex\_simple@\spxentry{seg1d.examples.ex\_simple}!module@\spxentry{module}|hyperpage}{2}
+\indexentry{module@\spxentry{module}!seg1d.examples.ex\_sine@\spxentry{seg1d.examples.ex\_sine}|hyperpage}{2}
+\indexentry{seg1d.examples.ex\_sine@\spxentry{seg1d.examples.ex\_sine}!module@\spxentry{module}|hyperpage}{2}
+\indexentry{module@\spxentry{module}!seg1d.examples.ex\_gauss@\spxentry{seg1d.examples.ex\_gauss}|hyperpage}{4}
+\indexentry{seg1d.examples.ex\_gauss@\spxentry{seg1d.examples.ex\_gauss}!module@\spxentry{module}|hyperpage}{4}
+\indexentry{module@\spxentry{module}!seg1d.examples.ex\_segmenter\_sine@\spxentry{seg1d.examples.ex\_segmenter\_sine}|hyperpage}{5}
+\indexentry{seg1d.examples.ex\_segmenter\_sine@\spxentry{seg1d.examples.ex\_segmenter\_sine}!module@\spxentry{module}|hyperpage}{5}
+\indexentry{module@\spxentry{module}!seg1d.examples.ex\_ecg@\spxentry{seg1d.examples.ex\_ecg}|hyperpage}{7}
+\indexentry{seg1d.examples.ex\_ecg@\spxentry{seg1d.examples.ex\_ecg}!module@\spxentry{module}|hyperpage}{7}
+\indexentry{module@\spxentry{module}!seg1d.examples.ex\_segmenter\_features@\spxentry{seg1d.examples.ex\_segmenter\_features}|hyperpage}{10}
+\indexentry{seg1d.examples.ex\_segmenter\_features@\spxentry{seg1d.examples.ex\_segmenter\_features}!module@\spxentry{module}|hyperpage}{10}
+\indexentry{module@\spxentry{module}!seg1d.examples.ex\_sine\_noise@\spxentry{seg1d.examples.ex\_sine\_noise}|hyperpage}{12}
+\indexentry{seg1d.examples.ex\_sine\_noise@\spxentry{seg1d.examples.ex\_sine\_noise}!module@\spxentry{module}|hyperpage}{12}
+\indexentry{module@\spxentry{module}!seg1d.examples.ex\_feature\_processing@\spxentry{seg1d.examples.ex\_feature\_processing}|hyperpage}{17}
+\indexentry{seg1d.examples.ex\_feature\_processing@\spxentry{seg1d.examples.ex\_feature\_processing}!module@\spxentry{module}|hyperpage}{17}
+\indexentry{Segmenter (class in seg1d)@\spxentry{Segmenter}\spxextra{class in seg1d}|hyperpage}{22}
+\indexentry{\_\_init\_\_() (seg1d.Segmenter method)@\spxentry{\_\_init\_\_()}\spxextra{seg1d.Segmenter method}|hyperpage}{23}
+\indexentry{set\_target() (seg1d.Segmenter method)@\spxentry{set\_target()}\spxextra{seg1d.Segmenter method}|hyperpage}{25}
+\indexentry{add\_reference() (seg1d.Segmenter method)@\spxentry{add\_reference()}\spxextra{seg1d.Segmenter method}|hyperpage}{26}
+\indexentry{clear\_reference() (seg1d.Segmenter method)@\spxentry{clear\_reference()}\spxextra{seg1d.Segmenter method}|hyperpage}{27}
+\indexentry{segment() (seg1d.Segmenter method)@\spxentry{segment()}\spxextra{seg1d.Segmenter method}|hyperpage}{27}
+\indexentry{rolling\_corr() (in module seg1d.algorithm)@\spxentry{rolling\_corr()}\spxextra{in module seg1d.algorithm}|hyperpage}{29}
+\indexentry{combine\_corr() (in module seg1d.algorithm)@\spxentry{combine\_corr()}\spxextra{in module seg1d.algorithm}|hyperpage}{30}
+\indexentry{uniques() (in module seg1d.algorithm)@\spxentry{uniques()}\spxextra{in module seg1d.algorithm}|hyperpage}{31}
+\indexentry{get\_peaks() (in module seg1d.algorithm)@\spxentry{get\_peaks()}\spxextra{in module seg1d.algorithm}|hyperpage}{32}
+\indexentry{cluster() (in module seg1d.algorithm)@\spxentry{cluster()}\spxextra{in module seg1d.algorithm}|hyperpage}{33}
+\indexentry{resample() (in module seg1d.algorithm)@\spxentry{resample()}\spxextra{in module seg1d.algorithm}|hyperpage}{34}
+\indexentry{rcor() (in module seg1d.optimized\_funcs)@\spxentry{rcor()}\spxextra{in module seg1d.optimized\_funcs}|hyperpage}{35}
+\indexentry{vcor() (in module seg1d.optimized\_funcs)@\spxentry{vcor()}\spxextra{in module seg1d.optimized\_funcs}|hyperpage}{35}
+\indexentry{module@\spxentry{module}!seg1d@\spxentry{seg1d}|hyperpage}{36}
+\indexentry{seg1d@\spxentry{seg1d}!module@\spxentry{module}|hyperpage}{36}
+\indexentry{module@\spxentry{module}!seg1d.segment@\spxentry{seg1d.segment}|hyperpage}{36}
+\indexentry{seg1d.segment@\spxentry{seg1d.segment}!module@\spxentry{module}|hyperpage}{36}
+\indexentry{module@\spxentry{module}!segment@\spxentry{segment}|hyperpage}{36}
+\indexentry{segment@\spxentry{segment}!module@\spxentry{module}|hyperpage}{36}
+\indexentry{module@\spxentry{module}!seg1d.algorithm@\spxentry{seg1d.algorithm}|hyperpage}{36}
+\indexentry{seg1d.algorithm@\spxentry{seg1d.algorithm}!module@\spxentry{module}|hyperpage}{36}
+\indexentry{module@\spxentry{module}!algorithm@\spxentry{algorithm}|hyperpage}{36}
+\indexentry{algorithm@\spxentry{algorithm}!module@\spxentry{module}|hyperpage}{36}
+\indexentry{module@\spxentry{module}!seg1d.optimized\_funcs@\spxentry{seg1d.optimized\_funcs}|hyperpage}{36}
+\indexentry{seg1d.optimized\_funcs@\spxentry{seg1d.optimized\_funcs}!module@\spxentry{module}|hyperpage}{36}
+\indexentry{module@\spxentry{module}!optimized\_funcs@\spxentry{optimized\_funcs}|hyperpage}{36}
+\indexentry{optimized\_funcs@\spxentry{optimized\_funcs}!module@\spxentry{module}|hyperpage}{36}
+\indexentry{module@\spxentry{module}!seg1d.examples@\spxentry{seg1d.examples}|hyperpage}{36}
+\indexentry{seg1d.examples@\spxentry{seg1d.examples}!module@\spxentry{module}|hyperpage}{36}

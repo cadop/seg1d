@@ -1,0 +1,46 @@
+\babel@toc {english}{}
+\contentsline {chapter}{\numberline {1}Contents}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Installation}{1}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Check dependencies}{1}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Get seg1d}{1}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Building Documentation}{1}{subsection.1.1.3}%
+\contentsline {subsection}{\numberline {1.1.4}Testing}{1}{subsection.1.1.4}%
+\contentsline {section}{\numberline {1.2}Getting Started}{2}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Sample Data}{2}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Sine Wave}{2}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Gauss}{4}{subsection.1.2.3}%
+\contentsline {section}{\numberline {1.3}API Examples}{5}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Basic Use}{5}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}ECG}{7}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}Feature Inclusion}{10}{subsection.1.3.3}%
+\contentsline {subsection}{\numberline {1.3.4}Parameter Tuning}{12}{subsection.1.3.4}%
+\contentsline {subsection}{\numberline {1.3.5}Feature Processing}{17}{subsection.1.3.5}%
+\contentsline {section}{\numberline {1.4}Code Reference}{21}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Simple Interface}{21}{subsection.1.4.1}%
+\contentsline {subsubsection}{Simple Interface}{21}{subsubsection*.8}%
+\contentsline {subsection}{\numberline {1.4.2}Class}{22}{subsection.1.4.2}%
+\contentsline {subsubsection}{Segmenter Class}{22}{subsubsection*.9}%
+\contentsline {paragraph}{seg1d.Segmenter}{22}{paragraph*.10}%
+\contentsline {subsubsection}{Segmenter Methods}{24}{subsubsection*.13}%
+\contentsline {paragraph}{seg1d.Segmenter.set\_target}{25}{paragraph*.14}%
+\contentsline {paragraph}{seg1d.Segmenter.add\_reference}{26}{paragraph*.16}%
+\contentsline {paragraph}{seg1d.Segmenter.clear\_reference}{27}{paragraph*.18}%
+\contentsline {paragraph}{seg1d.Segmenter.segment}{27}{paragraph*.20}%
+\contentsline {subsubsection}{Features Class}{28}{subsubsection*.22}%
+\contentsline {subsection}{\numberline {1.4.3}Methods}{28}{subsection.1.4.3}%
+\contentsline {subsubsection}{Algorithm Methods}{28}{subsubsection*.23}%
+\contentsline {paragraph}{seg1d.algorithm.rolling\_corr}{29}{paragraph*.24}%
+\contentsline {paragraph}{seg1d.algorithm.combine\_corr}{30}{paragraph*.26}%
+\contentsline {paragraph}{seg1d.algorithm.uniques}{31}{paragraph*.28}%
+\contentsline {paragraph}{seg1d.algorithm.get\_peaks}{32}{paragraph*.30}%
+\contentsline {paragraph}{seg1d.algorithm.cluster}{33}{paragraph*.32}%
+\contentsline {paragraph}{seg1d.algorithm.resample}{34}{paragraph*.34}%
+\contentsline {paragraph}{seg1d.optimized\_funcs.rcor}{35}{paragraph*.36}%
+\contentsline {paragraph}{seg1d.optimized\_funcs.vcor}{35}{paragraph*.38}%
+\contentsline {section}{\numberline {1.5}Community Guidelines}{36}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Issues}{36}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}Contributing}{36}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.3}Copyright and Licensing}{36}{subsection.1.5.3}%
+\contentsline {chapter}{\numberline {2}Indices and tables}{37}{chapter.2}%
+\contentsline {chapter}{Python Module Index}{39}{section*.48}%
+\contentsline {chapter}{Index}{41}{section*.49}%

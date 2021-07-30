@@ -1,0 +1,7 @@
+This is makeindex, version 2.15 [TeX Live 2019] (kpathsea + Thai support).
+Scanning style file ./python.ist.......done (7 attributes redefined, 0 ignored).
+Scanning input file seg1d.idx....done (46 entries accepted, 0 rejected).
+Sorting entries....done (261 comparisons).
+Generating output file seg1d.ind....done (99 lines written, 0 warnings).
+Output written in seg1d.ind.
+Transcript written in seg1d.ilg.
