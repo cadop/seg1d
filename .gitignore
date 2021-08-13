@@ -1,0 +1,14 @@
+### Python ###
+.ipynb_checkpoints
+__pycache__/
+*.py[cod]
+*$py.class
+
+.vscode/settings.json
+.vscode/
+
+_internal_testing.py
+
+dist/
+seg1d.egg-info/
+build/**

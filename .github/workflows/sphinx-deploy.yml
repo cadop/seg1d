@@ -1,0 +1,57 @@
+name: Sphinx Documentation
+
+on:
+  push:
+    branches:    
+      - master
+
+jobs:
+  build:
+
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/checkout@v2
+      with: # for github push action
+        #persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+        fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Install documentation dependencies
+      run: |
+        pip install sphinx numpydoc matplotlib     
+    - name: Install package
+      run: |
+        pip install -e .
+    - name: Install Sphinx Latex
+      run: |
+        sudo apt-get update -y && sudo apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+    - name: Build documentation with sphinx
+      run: |
+        cd docs
+        make clean
+        make html
+        make latexpdf
+        ls
+        cd ..
+    - name: Commit changes
+      uses: EndBug/add-and-commit@v7.2.0
+      with:
+        branch: doc-build
+        default_author: github_actions
+        message: 'Auto-built sphinx documentation'
+        add: 'docs'
+        pull_strategy: NO-PULL
+           
