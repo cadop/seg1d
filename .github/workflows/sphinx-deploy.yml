@@ -48,14 +48,14 @@ jobs:
 
     - name: Auto-deploy doc changes
       run : |
-        cd docs
+
         git config --local user.email "action@github.com"
         git config --local user.name "github-actions[bot]"
 
         mkdir html_build
         git worktree add -B ghpages html_build origin/ghpages
 
-        cp -a build/html/. html_build/
+        cp -a docs/. html_build/
 
         cd html_build
 
