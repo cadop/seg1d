@@ -10,6 +10,9 @@
     <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
     <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" >
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -20,10 +23,10 @@
         HAS_SOURCE:  false
       };
     </script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" >
     <link rel="search" title="Search" href="search.html" >
@@ -119,7 +122,7 @@ raw_r is the set of references, and raw_t is a set of targets</p>
 </div>
 <p>(<a class="reference external" href=".//api_processing-1.py">Source code</a>)</p>
 <div class="figure align-default">
-<img alt="_images/api_processing-1.png" src="_images/api_processing-1.png" />
+<img alt="_images/api_processing-1.png" class="plot-directive" src="_images/api_processing-1.png" />
 </div>
 <p>Match feature length and center time series</p>
 <p>The first function we use for pre-processing the data is <em class="xref py py-obj">match_len</em>. 
@@ -138,7 +141,7 @@ similarity over the same scaled timespan</p>
 </div>
 <p>(<a class="reference external" href=".//api_processing-2.py">Source code</a>)</p>
 <div class="figure align-default">
-<img alt="_images/api_processing-2.png" src="_images/api_processing-2.png" />
+<img alt="_images/api_processing-2.png" class="plot-directive" src="_images/api_processing-2.png" />
 </div>
 <p>This next process is not always necessary, but is convenient to know. It simply shifts the mean
 of each array in the references to center along the 0 axis.</p>
@@ -177,7 +180,7 @@ This data has also been centered (a few steps before)</p>
 </div>
 <p>(<a class="reference external" href=".//api_processing-3.py">Source code</a>)</p>
 <div class="figure align-default">
-<img alt="_images/api_processing-3.png" src="_images/api_processing-3.png" />
+<img alt="_images/api_processing-3.png" class="plot-directive" src="_images/api_processing-3.png" />
 </div>
 <p>########################## SEG1D Analysis #######################</p>
 <p>At this point the data is properly processed and features weighted. 
@@ -207,7 +210,7 @@ for idx, target in enumerate(tar_data):</p>
 </div>
 <p>(<a class="reference external" href=".//api_processing-4.py">Source code</a>)</p>
 <div class="figure align-default">
-<img alt="_images/api_processing-4.png" src="_images/api_processing-4.png" />
+<img alt="_images/api_processing-4.png" class="plot-directive" src="_images/api_processing-4.png" />
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_target</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
 </pre></div>
@@ -230,7 +233,7 @@ for idx, target in enumerate(tar_data):</p>
 </div>
 <p>(<a class="reference external" href=".//api_processing-5.py">Source code</a>)</p>
 <div class="figure align-default">
-<img alt="_images/api_processing-5.png" src="_images/api_processing-5.png" />
+<img alt="_images/api_processing-5.png" class="plot-directive" src="_images/api_processing-5.png" />
 </div>
 </div>
 
@@ -266,7 +269,7 @@ for idx, target in enumerate(tar_data):</p>
         &copy; Copyright 2020, Mathew Schwartz.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.1.2.
       </li>
     </ul>
     </div>

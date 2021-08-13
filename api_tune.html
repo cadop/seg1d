@@ -10,6 +10,9 @@
     <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
     <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" >
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -20,10 +23,10 @@
         HAS_SOURCE:  false
       };
     </script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" >
     <link rel="search" title="Search" href="search.html" >
@@ -125,7 +128,7 @@ A signal-noise ratio of 30 is added to the sine wave.</p>
 </div>
 <p>(<a class="reference external" href=".//api_tune-1.py">Source code</a>)</p>
 <div class="figure align-default">
-<img alt="_images/api_tune-1.png" src="_images/api_tune-1.png" />
+<img alt="_images/api_tune-1.png" class="plot-directive" src="_images/api_tune-1.png" />
 </div>
 <p>Now another noisy sine wave is created and a segment of it is cut out.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># define a segment within the sine wave to use as reference</span>
@@ -151,7 +154,7 @@ A signal-noise ratio of 30 is added to the sine wave.</p>
 </div>
 <p>(<a class="reference external" href=".//api_tune-2.py">Source code</a>)</p>
 <div class="figure align-default">
-<img alt="_images/api_tune-2.png" src="_images/api_tune-2.png" />
+<img alt="_images/api_tune-2.png" class="plot-directive" src="_images/api_tune-2.png" />
 </div>
 <p>To find the sub-series segment, an instance of the <code class="docutils literal notranslate"><span class="pre">Segmenter</span></code> class is created,
 basic scaling parameters, and the target and reference data are assigned.</p>
@@ -196,7 +199,7 @@ data should be located, along with the segments that were found.</p>
 </div>
 <p>(<a class="reference external" href=".//api_tune-3.py">Source code</a>)</p>
 <div class="figure align-default">
-<img alt="_images/api_tune-3.png" src="_images/api_tune-3.png" />
+<img alt="_images/api_tune-3.png" class="plot-directive" src="_images/api_tune-3.png" />
 </div>
 <p>From the plot, it is clear there are segments that do not belong. 
 By accessing the <code class="docutils literal notranslate"><span class="pre">Segmenter</span></code> attributes, the algorithm and this error are better understood (and resolved).</p>
@@ -271,7 +274,7 @@ identification.</p>
 </div>
 <p>(<a class="reference external" href=".//api_tune-4.py">Source code</a>)</p>
 <div class="figure align-default">
-<img alt="_images/api_tune-4.png" src="_images/api_tune-4.png" />
+<img alt="_images/api_tune-4.png" class="plot-directive" src="_images/api_tune-4.png" />
 </div>
 </div>
 
@@ -307,7 +310,7 @@ identification.</p>
         &copy; Copyright 2020, Mathew Schwartz.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.1.2.
       </li>
     </ul>
     </div>

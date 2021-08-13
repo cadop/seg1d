@@ -10,6 +10,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/css/spc-extend.css">
     <link rel="stylesheet" href="../_static/scipy.css" type="text/css" >
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" >
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" >
+    <link rel="stylesheet" href="../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" >
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -20,10 +23,10 @@
         HAS_SOURCE:  false
       };
     </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
     <script type="text/javascript" src="../_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" >
     <link rel="search" title="Search" href="../search.html" >
@@ -87,8 +90,8 @@
   <div class="section" id="seg1d-segmenter">
 <h1>seg1d.Segmenter<a class="headerlink" href="#seg1d-segmenter" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
-<dt id="seg1d.Segmenter">
-<em class="property">class </em><code class="descclassname">seg1d.</code><code class="descname">Segmenter</code><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L15-L614"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="seg1d.Segmenter">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">seg1d.</span></code><code class="sig-name descname"><span class="pre">Segmenter</span></code><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L15-L614"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seg1d.Segmenter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Segmentation class that exposes all algorithm parameters and attributes for
 advanced access and tuning of segmentation.</p>
 <p>Additional convenience methods for adding reference and target data as
@@ -118,8 +121,8 @@ using sample data included with this package.</p>
 </pre></div>
 </div>
 <dl class="py method">
-<dt id="seg1d.Segmenter.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L51-L135"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#seg1d.Segmenter.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="seg1d.Segmenter.__init__">
+<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cadop/seg1d/blob/master/seg1d/../seg1d/segment.py#L51-L135"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seg1d.Segmenter.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialization of segmentation class and parameters</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -173,19 +176,19 @@ aggregation (Default True)</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#seg1d.Segmenter.__init__" title="seg1d.Segmenter.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#seg1d.Segmenter.__init__" title="seg1d.Segmenter.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</td>
 <td>Initialization of segmentation class and parameters</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="seg1d.Segmenter.add_reference.html#seg1d.Segmenter.add_reference" title="seg1d.Segmenter.add_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_reference</span></code></a>(self,&nbsp;r[,&nbsp;copy])</td>
+<tr class="row-even"><td><a class="reference internal" href="seg1d.Segmenter.add_reference.html#seg1d.Segmenter.add_reference" title="seg1d.Segmenter.add_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_reference</span></code></a>(r[,&nbsp;copy])</td>
 <td>Appends a reference containing one or more features to the existing reference dataset.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="seg1d.Segmenter.clear_reference.html#seg1d.Segmenter.clear_reference" title="seg1d.Segmenter.clear_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear_reference</span></code></a>(self)</td>
+<tr class="row-odd"><td><a class="reference internal" href="seg1d.Segmenter.clear_reference.html#seg1d.Segmenter.clear_reference" title="seg1d.Segmenter.clear_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear_reference</span></code></a>()</td>
 <td>Removes any reference data currently assigned</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="seg1d.Segmenter.segment.html#seg1d.Segmenter.segment" title="seg1d.Segmenter.segment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">segment</span></code></a>(self)</td>
+<tr class="row-even"><td><a class="reference internal" href="seg1d.Segmenter.segment.html#seg1d.Segmenter.segment" title="seg1d.Segmenter.segment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">segment</span></code></a>()</td>
 <td>Method to run the segmentation algorithm on the current Segmenter instance</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="seg1d.Segmenter.set_target.html#seg1d.Segmenter.set_target" title="seg1d.Segmenter.set_target"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_target</span></code></a>(self,&nbsp;t[,&nbsp;copy])</td>
+<tr class="row-odd"><td><a class="reference internal" href="seg1d.Segmenter.set_target.html#seg1d.Segmenter.set_target" title="seg1d.Segmenter.set_target"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_target</span></code></a>(t[,&nbsp;copy])</td>
 <td>Sets the target data by overiding any existing target.</td>
 </tr>
 </tbody>
@@ -256,7 +259,7 @@ aggregation (Default True)</p>
         &copy; Copyright 2020, Mathew Schwartz.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.1.2.
       </li>
     </ul>
     </div>

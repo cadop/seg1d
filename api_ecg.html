@@ -10,6 +10,9 @@
     <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
     <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" >
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -20,10 +23,10 @@
         HAS_SOURCE:  false
       };
     </script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" >
     <link rel="search" title="Search" href="search.html" >
@@ -145,7 +148,7 @@ in the final segments of the target data later.</p>
 </div>
 <p>(<a class="reference external" href=".//api_ecg-1.py">Source code</a>)</p>
 <div class="figure align-default">
-<img alt="_images/api_ecg-1.png" src="_images/api_ecg-1.png" />
+<img alt="_images/api_ecg-1.png" class="plot-directive" src="_images/api_ecg-1.png" />
 </div>
 <p>The final segments are shown by calling the property <code class="docutils literal notranslate"><span class="pre">t_masked</span></code> which returns the 
 target data as an ndarray with NaN values for areas not found to be segments.</p>
@@ -159,7 +162,7 @@ target data as an ndarray with NaN values for areas not found to be segments.</p
 </div>
 <p>(<a class="reference external" href=".//api_ecg-2.py">Source code</a>)</p>
 <div class="figure align-default">
-<img alt="_images/api_ecg-2.png" src="_images/api_ecg-2.png" />
+<img alt="_images/api_ecg-2.png" class="plot-directive" src="_images/api_ecg-2.png" />
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#use only 1 reference</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">clear_reference</span><span class="p">()</span>
@@ -180,7 +183,7 @@ target data as an ndarray with NaN values for areas not found to be segments.</p
 </div>
 <p>(<a class="reference external" href=".//api_ecg-3.py">Source code</a>)</p>
 <div class="figure align-default">
-<img alt="_images/api_ecg-3.png" src="_images/api_ecg-3.png" />
+<img alt="_images/api_ecg-3.png" class="plot-directive" src="_images/api_ecg-3.png" />
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#remove first part of data (contains reference)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_target</span><span class="p">(</span><span class="n">ecg</span><span class="p">[</span><span class="mi">1500</span><span class="p">:</span><span class="mi">3500</span><span class="p">])</span>
@@ -217,7 +220,7 @@ target data as an ndarray with NaN values for areas not found to be segments.</p
 </div>
 <p>(<a class="reference external" href=".//api_ecg-4.py">Source code</a>)</p>
 <div class="figure align-default">
-<img alt="_images/api_ecg-4.png" src="_images/api_ecg-4.png" />
+<img alt="_images/api_ecg-4.png" class="plot-directive" src="_images/api_ecg-4.png" />
 </div>
 </div>
 
@@ -253,7 +256,7 @@ target data as an ndarray with NaN values for areas not found to be segments.</p
         &copy; Copyright 2020, Mathew Schwartz.
       </li>
       <li>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.1.2.
       </li>
     </ul>
     </div>
