@@ -45,13 +45,21 @@ jobs:
         make html
         make latexpdf
         ls
-        cd ..
-    - name: Commit changes
-      uses: EndBug/add-and-commit@v7.2.0
-      with:
-        branch: doc-build
-        default_author: github_actions
-        message: 'Auto-built sphinx documentation'
-        add: 'docs'
-        pull_strategy: NO-PULL
+
+    - name: Auto-deploy doc changes
+      run : |
+        cd docs
+        git config --local user.email "action@github.com"
+        git config --local user.name "github-actions[bot]"
+
+        mkdir html_build
+        git worktree add -B ghpages html_build origin/ghpages
+
+        cp -a build/html/. html_build/
+
+        cd html_build
+
+        git add . 
+        git commit -m "ghpages"
+        git push 
            
