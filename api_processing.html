@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Feature Processing &mdash; seg1d 0.1.2 documentation</title>
+    
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
+    <link rel="stylesheet" href="_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/js/copybutton.js"></script>
+    <link rel="index" title="Index" href="genindex.html" >
+    <link rel="search" title="Search" href="search.html" >
+    <link rel="top" title="seg1d 0.1.2 documentation" href="index.html" >
+    <link rel="up" title="API Examples" href="api.html" >
+    <link rel="next" title="Code Reference" href="code.html" >
+    <link rel="prev" title="Parameter Tuning" href="api_tune.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="http://github.com/cadop/seg1d">Github</a></li>
+        <li class="active"><a href="http://">Paper</a></li>
+	
+        <li class="active"><a href="index.html">seg1d 0.1.2 documentation</a></li>
+	
+          <li class="active"><a href="api.html" accesskey="U">API Examples</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="code.html" title="Code Reference"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="api_tune.html" title="Parameter Tuning"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="feature-processing">
+<h1>Feature Processing<a class="headerlink" href="#feature-processing" title="Permalink to this headline">¶</a></h1>
+<p>If there is a series of references that have different lengths, or the weighting is unknown,
+this example can help guide users to process the data.</p>
+<span class="target" id="module-seg1d.examples.ex_feature_processing"></span><p>In this example we use a few utilities provided by <a class="reference internal" href="code.html#module-seg1d" title="seg1d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">seg1d</span></code></a> to process raw data. 
+In many of the other examples, a reference set, target data, and weighting is assumed
+or provided as sample.  If you have data from multiple sources, perhaps of different lengths of time
+(or samples of points) or varying features, the data must be rescaled and parsed for the matching features.
+This example also shows how to generate the feature weights, which will compare a set of references and find
+the features most simliar between them (as a normalized sum of all features).</p>
+<p>First we import numpy and matplotlib (to plot for the example)</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+<p>Then import the base seg1d and the seg1d processing module</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">seg1d</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">seg1d.processing</span> <span class="k">as</span> <span class="nn">proc</span>
+</pre></div>
+</div>
+<p>##########################  SEG1D Processing #######################</p>
+<p>To start, we load an array of dictionaries provided as sample data in seg1d.
+raw_r is the set of references, and raw_t is a set of targets</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">raw_r</span><span class="p">,</span> <span class="n">raw_t</span> <span class="o">=</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">sample_input_data</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>First we can take a look at the reference datasets, noticing they are all different lengths</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">raw_r</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">plt_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span> <span class="p">[</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>  <span class="p">]</span>  <span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="gp">... </span>    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plt_r</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  
+</pre></div>
+</div>
+<p>(<a class="reference external" href=".//api_processing-1.py">Source code</a>)</p>
+<div class="figure align-default">
+<img alt="_images/api_processing-1.png" src="_images/api_processing-1.png" />
+</div>
+<p>Match feature length and center time series</p>
+<p>The first function we use for pre-processing the data is <em class="xref py py-obj">match_len</em>. 
+This will take the largest array of all reference datasets and rescale the other datasets 
+to this longer size</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ref_data</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">Features</span><span class="o">.</span><span class="n">match_len</span><span class="p">(</span><span class="n">raw_r</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can now plot the length-matched datasets to see how the reference segments do show 
+similarity over the same scaled timespan</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span> <span class="p">[</span> <span class="n">x</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ref_data</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>  <span class="p">]</span>  <span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plt_r</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  
+</pre></div>
+</div>
+<p>(<a class="reference external" href=".//api_processing-2.py">Source code</a>)</p>
+<div class="figure align-default">
+<img alt="_images/api_processing-2.png" src="_images/api_processing-2.png" />
+</div>
+<p>This next process is not always necessary, but is convenient to know. It simply shifts the mean
+of each array in the references to center along the 0 axis.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ref_data</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">Features</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="n">ref_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Make sure all reference data has valid keys
+In this step, we use the <em class="xref py py-obj">shared</em> function by passing all the datasets we will will use
+to ensure no feature keys are missing. This requires a dictionary to map each feature correctly</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ref_data</span><span class="p">,</span> <span class="n">tar_data</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">Features</span><span class="o">.</span><span class="n">shared</span><span class="p">(</span><span class="n">ref_data</span><span class="p">,</span> <span class="n">raw_t</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Generate weights from the segmented data
+One of the most important steps for many use cases is the automatic weighting of multiple features.
+The <em class="xref py py-obj">gen_weights</em> function takes a list of reference datasets and finds the features that match
+best among all of the references.  It then normalizes all the results from 0 to 1. 
+This is important to note, as it means some features will not be used. 
+If all of your features are necessary or should be used, this function should be skipped.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">weights</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">Features</span><span class="o">.</span><span class="n">gen_weights</span><span class="p">(</span><span class="n">ref_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, the last step of pre-processing is to get which params to use and limit to specific ones. 
+In this example, we take only the top 20 features, limit to the normalized score of 0.8, and pass
+an empty list, which means we use all available features.  If there was a list of features
+that you wanted to include, passing this key list of strings would be possible.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">weight_dict</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">Features</span><span class="o">.</span><span class="n">meaningful</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">include_keys</span><span class="o">=</span><span class="p">[])</span>
+</pre></div>
+</div>
+<p>Now we can take a look at the reference data that we will use for segmentation. 
+This data has also been centered (a few steps before)</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span> <span class="p">[</span> <span class="n">x</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ref_data</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>  <span class="p">]</span>  <span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plt_r</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  
+</pre></div>
+</div>
+<p>(<a class="reference external" href=".//api_processing-3.py">Source code</a>)</p>
+<div class="figure align-default">
+<img alt="_images/api_processing-3.png" src="_images/api_processing-3.png" />
+</div>
+<p>########################## SEG1D Analysis #######################</p>
+<p>At this point the data is properly processed and features weighted. 
+From here on, the normal segmentation process (as seen in the other examples) is applied.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">seg1d</span><span class="o">.</span><span class="n">Segmenter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">minW</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">maxW</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">ref_data</span><span class="p">:</span> 
+<span class="gp">... </span>    <span class="n">s</span><span class="o">.</span><span class="n">add_reference</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As this sample dataset has multiple targets, we will just use the first one. 
+However, you could iterate over all the target trials by wrapping the remaining code
+under this example loop:
+for idx, target in enumerate(tar_data):</p>
+<p>Run the analysis on the first target data.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">target</span> <span class="o">=</span> <span class="n">tar_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>We can visualize this target data before segmentation</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span> <span class="p">[</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">target</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="p">]</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plt_t</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  
+</pre></div>
+</div>
+<p>(<a class="reference external" href=".//api_processing-4.py">Source code</a>)</p>
+<div class="figure align-default">
+<img alt="_images/api_processing-4.png" src="_images/api_processing-4.png" />
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_target</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">weight_dict</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">segments</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">segment</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])[:</span><span class="mi">3</span><span class="p">],</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+<span class="go">[[ 42.       67.        0.99856]</span>
+<span class="go"> [112.      137.        0.99864]</span>
+<span class="go"> [181.      208.        0.99709]]</span>
+</pre></div>
+</div>
+<p>Now that we have segmented the data, the masked array can be plotted to show the results.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt_t</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">t_masked</span> <span class="c1">#get a NaN masked array of the target data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot masked target</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plt_t</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  
+</pre></div>
+</div>
+<p>(<a class="reference external" href=".//api_processing-5.py">Source code</a>)</p>
+<div class="figure align-default">
+<img alt="_images/api_processing-5.png" src="_images/api_processing-5.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+          </div>
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="api_tune.html"
+                        title="previous chapter">Parameter Tuning</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="code.html"
+                        title="next chapter">Code Reference</a></p>
+
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2020, Mathew Schwartz.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.0.0.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>
